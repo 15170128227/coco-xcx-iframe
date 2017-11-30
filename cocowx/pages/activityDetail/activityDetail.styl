@@ -1,0 +1,41 @@
+@import '/cocowx/stylus/global'
+@import '/cocowx/wxParse/wxParse'
+
+// $bannerHei = 500rpx
+page 
+  background-color: $pageBg
+  height: 100vh
+
+.ad-main 
+  height 100%
+  background-color: $white
+  .adm-banner 
+    overflow: hidden
+    height: $bannerHei
+    image 
+      width: 100%
+      height: $bannerHei
+  .adm-title 
+    padding: 30rpx $paddingPage
+    font-size: $fontSize36
+    font-weight: bold
+    line-height: 52rpx
+    textOverflowEs(2)
+    background-color: $white
+  .adm-desc 
+    padding: 0 $paddingPage
+    background-color: $white
+    view 
+      overflow: hidden
+      line-height: 44rpx
+  // 空状态
+  .adm-es
+    display: flex
+    justify-content: center
+    align-items: center
+    height: 100%
+    image 
+      width: 298rpx
+      height: 331rpx   
+      margin-top: -200rpx   
+      

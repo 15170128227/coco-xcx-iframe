@@ -1,0 +1,111 @@
+page {
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  width: 750rpx;
+  bottom: 0;
+  background-color: #f1f1f1;
+}
+.al-main {
+  position: absolute;
+  overflow-x: hidden;
+  overflow-y: auto;
+  top: 0;
+  bottom: 0;
+  width: 750rpx;
+  height: 100vh;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  margin-top: 14rpx;
+  padding-bottom: 88rpx;
+}
+.al-main .alm-single {
+  display: flex;
+  justify-content: flex-start;
+  width: 750rpx;
+  height: 150rpx;
+  border-bottom: 2rpx solid #f1f1f1;
+  background-color: #fff;
+}
+.al-main .alm-single .alms-main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 630rpx;
+  padding-left: 24rpx;
+}
+.al-main .alm-single .alms-main .alms-unit {
+  box-sizing: border-box;
+  position: relative;
+  padding-left: 152rpx;
+}
+.al-main .alm-single .alms-main .alms-name {
+  display: flex;
+  padding-right: 24rpx;
+}
+.al-main .alm-single .alms-main .alms-name .almsn-text {
+  position: absolute;
+  left: 0;
+  width: 128rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.al-main .alm-single .alms-main .alms-info {
+  display: flex;
+}
+.al-main .alm-single .alms-main .alms-info .almsn-default {
+  position: absolute;
+  left: 0;
+}
+.al-main .alm-single .alms-main .alms-info .almsn-icon {
+  position: relative;
+  padding: 0 8rpx;
+  border: 1rpx solid #2caef8;
+  border-radius: 6rpx;
+  font-size: 20rpx;
+}
+.al-main .alm-single .alms-main .alms-info .almsi-address {
+  font-size: 24rpx;
+  color: #979797;
+}
+.al-main .alm-single .alms-icon {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  position: relative;
+  width: 120rpx;
+}
+.al-main .alm-single .alms-icon .alms-unit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 120rpx;
+  height: 150rpx;
+}
+.al-main .alm-single .alms-icon image {
+  width: 38rpx;
+  height: 38rpx;
+}
+.al-es {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+.al-es image {
+  width: 341rpx;
+  height: 330rpx;
+  margin-top: -200rpx;
+}
+.al-footer.footer {
+  width: 100%;
+}
+.al-footer.footer navigator {
+  width: 100%;
+}
+.al-footer.footer navigator button {
+  width: 100%;
+  border-radius: 0;
+  color: #fff;
+}

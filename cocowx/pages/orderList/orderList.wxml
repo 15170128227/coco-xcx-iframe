@@ -1,0 +1,60 @@
+<!--pages/orderList/orderList.wxml-->
+<import src="../../components/orderInfoList/orderInfoList.wxml"/> 
+<template name="orderSingle">
+  <view class="olml-single" wx:for="{{data}}" wx:key="index">
+    <view bindtap="toOrderDetail" data-orderId="{{item.orderId}}" data-ordersn="{{item.orderSn}}" 
+    data-orderstatus="{{item.orderStatus}}" data-paystatus="{{item.payStatus}}">
+    <template is="orderList" data="{{data: item}}"/>
+    </view>
+    <view class="olmls-footer">
+      <text class="lomlsf-price">合计： ¥{{item.orderAmount}}</text>
+      <view class="lomlsf-btns">
+        <button class="btns-cacel" bindtap="cacelOrder" data-orderId="{{item.orderId}}" wx:if="{{item.payStatus === 0 && item.orderStatus !==-1 && item.orderStatus !== 4}}">取消订单</button>
+        <button class="btns-pay default-color" bindtap="payOrder" 
+        data-orderItems="{{item.orderItems}}" data-orderId="{{item.orderId}}" 
+        data-buyerId="{{item.buyerId}}" data-orderAmount="{{item.orderAmount}}" 
+        wx:if="{{item.payStatus === 0 && item.orderStatus !== -1 && item.orderStatus !== 4}}">
+        付款</button><!--  {{countArr[index].mm}}:{{countArr[index].ss}} -->
+        <button class="btns-logcits" bindtap="toLogistics" data-mallOrderId="{{item.mallOrderId}}" data-mainpic="{{item.orderItems[0].productThumbnail}}" wx:if="{{item.orderStatus === 2}}">查看物流</button>
+        <button class="btns-cacel" bindtap="receive" data-orderId="{{item.orderId}}" wx:if="{{item.orderStatus === 2}}">确认收货</button>
+        <button class="btns-cacel" bindtap="delOrder" data-orderId="{{item.orderId}}" wx:if="{{item.orderStatus === -1 || item.orderStatus === 3 || item.orderStatus === 4}}">删除订单</button> 
+      </view>
+    </view>
+  </view> 
+</template>
+
+<view class="order-list-main">
+  <view class="olm-header {{currentOrderType}}" bindtap="selectOrderType">
+    <button wx:for="{{orderTypeList}}" wx:key="index" id="{{item.id}}" class="{{item.active}}">{{item.text}}</button>
+  </view>
+  <!-- <scroll-view scroll-y style="height: {{scrollEleHeight}}" lower-threshold="150" bindscrolltolower="loadMore" scroll-into-view="{{toView}}" class="olm-list"> -->
+  <view class="olm-list" wx:if="{{!isEmptyList}}">
+    <!-- 全部列表 -->
+    <view class="olml-all olml-unit">
+      <template is="orderSingle" data="{{data: orderList}}"/>
+    </view>
+    <!-- 待付款列表
+    <view class="olml-penddingPay olml-unit">
+      <template is="orderSingle" data="{{data: orderList}}"/>
+    </view> -->
+    <!-- 待发货列表
+    <view class="olml-penddingSend olml-unit">
+      <template is="orderSingle" data="{{data: penddingPayList}}"/>
+    </view> -->
+    <!-- penddingReceive列表
+    <view class="olml-penddingReceive olml-unit">
+      <template is="orderSingle" data="{{data: penddingPayList}}"/>
+    </view> -->
+    <view class="tips-contain" wx:if="{{!hideTip}}">
+      <view wx:if="{{hasMore && orderList}}" class="tips-loading">
+        <text>玩命的加载中...</text></view>
+      <view class="tips-load-all" wx:else><text>我也是有底线的</text></view>
+    </view>
+  </view>
+  <!-- 物流信息页空状态页面 -->
+  <block wx:else>
+    <view class="ol-es">
+      <image src="/images/empty-state/es-orderList.png"></image>
+    </view>
+  </block>
+</view>

@@ -1,0 +1,82 @@
+<!--pages/goodsDetail/goodsDetail.wxml-->
+<!--
+  gd: goods-detail,
+  gd-main: goods-detail-main,
+  gdb: goods-detail-banner,
+  gd-cs: goods-detail-customer-service
+-->
+<import src="../../wxParse/wxParse.wxml"/> 
+<block wx:if="{{!isEmptyList}}">
+  <view class="gd-main">
+    <!-- 商品详情主图 -->
+    <swiper indicator-dots="{{indicatorDots}}" circular="circular" class="gd-banner">
+      <block wx:for="{{goodsDetailInfo.imageList}}" wx:key="">
+        <swiper-item>
+          <image lazy-load mode="widthFix" src="{{protocol + item.imagePath + '/' + item.imageName + item.imageType + imgQuery}}" class="slide-image"/>
+        </swiper-item>
+      </block>
+    </swiper>
+    <view class="paddingLr gdm-content" wx:if="{{goodsDetailInfo.productName}}">
+      <view class="gd-title"><text>{{goodsDetailInfo.productName}}</text></view>
+      <view class="gd-price {{themeType}}-price"><text>¥ {{goodsDetailInfo.tshPrice}}</text></view>
+      <template is="wxParse" data="{{wxParseData: article.nodes}}"/> <!-- 商品详情desc -->
+    </view>
+  </view>
+  <!-- 底部 -->
+  <view class="gd-footer footer">
+    <view class="gd-cs">
+      <view class="gdfc-unit gdfc-smile {{smileActive ? 'dc-color' : ''}}" bindtap="toggleSmileState"><image class="icon-smile-big" src="{{smileActive ? '/images/smile-active.png' : '/images/smile-big.png'}}"></image>{{goodsDetailInfo.pvNumber}}</view>
+      <view class="gdfc-unit"><button open-type="share"><image class="icon-share" src="../../images/share.png"></image>分享</button></view>
+    </view>
+    <button class="{{themeType}}-btn footer-btn" bindtap="showModal" disabled="{{disabled.buy}}">{{buyBtnText}}</button>
+  </view>
+</block>
+<!-- 物流空状态页面 -->
+<block wx:else>
+  <view class="lm-es">
+    <image src="/images/empty-state/invalid-goodsDetail.png"></image>
+  </view>
+</block>
+<!-- 商品规格弹窗 -->
+<view class="gd-modal" wx:if="{{modalShow}}">
+  <view class="gd-layer popup-layer" bindtap="closeModal"></view>
+  <view class="gdm-main">
+    <view class="gdm-close" bindtap="closeModal">
+      <image src="../../images/close.png"></image>
+    </view>
+    <view class="gdm-head">
+      <view class="gdm-img"><image src="{{curSkuMainPic}}"></image></view>
+      <view class="gdm-text">
+        <view class="gdmt-price {{themeType}}-gdm-price"><text>¥ {{stockInfo.price}}</text></view>
+        <view><text class="gdmt-stock">库存：{{stockInfo.stock}}</text></view>
+      </view>
+    </view>
+    <view class="gdm-serviceinfo">
+      <text class="gmds-title">本商品由CocoSurprise提供服务</text>
+      <view class="gdms-group font-size12">
+        <view class="gdmsg-unit"><image src="../../images/hook.png"></image><text>正品保证</text></view>
+        <view class="gdmsg-unit"><image src="../../images/hook.png"></image><text>七天无理由退换</text></view>
+        <view class="gdmsg-unit"><image src="../../images/hook.png"></image><text>3天内发货</text></view>
+      </view>
+    </view>
+    <view class="gdm-specification">
+      <view class="gdmsp-title">{{goodsNormList.normFirst}}</view>
+      <view>
+        <text class="{{themeType}}-gdmsp-unit gdmsp-unit {{item.state}}" bindtap="selectNormFirst" data-state="{{item.state}}" data-value="{{item.text}}" wx:for="{{goodsNormList.normFirstList}}">{{item.text}}</text>
+      </view>
+    </view>
+    <view class="gdm-specification" wx:if="{{goodsNormList.normSecond}}">
+      <view class="gdmsp-title">{{goodsNormList.normSecond}}</view>
+      <view>
+        <text class="{{themeType}}-gdmsp-unit gdmsp-unit {{item.state}}" bindtap="selectNormSecond" data-state="{{item.state}}" data-value="{{item.text}}" wx:for="{{goodsNormList.normSecondList}}">{{item.text}}</text>
+      </view>
+    </view>
+    <view class="bnq-quantity gdm-quantity">
+      <text class="bnq-title">数量 <text class="bnqt-limit" wx:if="{{limitTextShow}}">（限购数量{{limitNum}}）</text></text>
+      <view class="bnq-num">
+        <view class="bnq-unit bnq-reduce {{disabled.reduce ? 'disabled' : ''}}" bindtap="reduceQuantity">-</view><input class="bnq-input" type="number" value="{{quantity}}" bindchange="bindQuantity"/><view class="bnq-unit bnq-add {{disabled.add ? 'disabled' : ''}}" bindtap="addQuantity">+</view>
+      </view>
+    </view>
+    <view class="gdm-buy"><button class="{{themeType}}-btn submit-btn" disabled="{{disabled.submit}}" bindtap="paySubmit"> 立即购买 </button></view>
+  </view>
+</view>

@@ -1,0 +1,80 @@
+@import '/cocowx/stylus/global'
+
+page 
+  background-color: $grayLittle
+  height: 100vh
+
+.logistics-main 
+  height 100%
+  // 订单信息
+  .lm-order 
+    padding: $paddingPage
+    display: flex
+    background-color: $white
+    .lmo-info 
+      align-items: flex-end
+      line-height: 44rpx
+    image 
+      width: $mainPicSize
+      height: $mainPicSize
+      margin-right: 50rpx
+    
+  // 物流信息
+  .lm-detail 
+    height: 100vh - 200rpx
+    padding: $paddingPage
+    font-size: $fontSize24
+    .lmd-single 
+      display: flex
+      color: $textGrayColor
+      .lmd-time 
+        display: flex
+        flex-direction: column
+        position: relative
+        width: 180rpx
+        padding-right: 30rpx
+        padding-bottom: 30rpx
+        border-right: 1rpx solid $disabledColor
+        font-size: $fontSize24
+        text-align: right
+        image 
+          position: absolute
+          top: 0
+          right: -8rpx
+          width: 16rpx
+          height: 16rpx
+          border-radius: 100%
+          background-color: $minorColor
+          &.active 
+            background-color: $minorColor
+      .lmd-info 
+        box-sizing: border-box
+        width: 750rpx - $paddingPage * 2 - 180rpx
+        padding-left: 30rpx
+        padding-bottom: 30rpx
+      &:last-child 
+        .lmd-time 
+          border-right: 0
+    .lmd-single.active 
+      .lmd-time 
+        color: $defaultColor
+        image 
+          right: -15rpx
+          width: 30rpx
+          height: 30rpx
+      .lmd-info 
+        color: $defaultColor
+  // 空状态
+  .lm-es
+    display: flex
+    justify-content: center
+    align-items: center
+    height: 100%
+    image 
+      width: 337rpx
+      height: 309rpx   
+      margin-top: -200rpx   
+      
+    
+  
+

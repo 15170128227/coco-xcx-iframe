@@ -1,0 +1,202 @@
+@import '/cocowx/stylus/global'
+
+$listImgWid = 274rpx
+
+page 
+  background-color: $pageBg
+  height: 100vh
+.banner_contain 
+  height: $bannerHei
+  margin-bottom: 10rpx
+  image 
+    width: $width100
+    height: $bannerHei
+  
+.goods-single_contain 
+  display: flex
+  box-sizing: border-box
+  padding: 10rpx $paddingPage 
+  border-bottom: 1rpx solid $borderColorBase
+  background-color: $white
+.goods-single_img  
+  width: $listImgWid
+  height: $listImgWid
+  image 
+    width: 100%
+    height: 100%
+  
+.goods-single_img.type-12 
+  width: 100vw
+  height: 40vw
+
+.goods-single_content 
+  box-sizing: border-box
+  position: relative
+  width: 750rpx - $paddingPage * 2 - $listImgWid
+  padding-left: 26rpx
+
+.gsc-quot 
+  width: 29rpx
+  height: 24rpx
+  margin-top: 36rpx
+
+.goods-single_content__title 
+  margin-top: 30rpx
+  textOverflowEs(2)
+  font-size: $fontSize32
+  line-height: 44rpx
+  font-weight: bold
+  color: $black
+  &.gsc-title12 
+    margin-top: 10rpx
+
+.goods-single_content__text 
+  textOverflowEs(2)
+  padding-top: 16rpx
+  font-size: $fontSize28
+  letter-spacing: 1px
+  color: $textGrayColor
+
+.goods-smile 
+  display: flex
+  justify-content: flex-end
+  align-items: center
+  position: absolute
+  bottom: 10rpx
+  right: 12rpx
+  width: 100%
+  height: 38rpx
+  font-size: $fontSize24
+  line-height: 38rpx
+  color: $defaultColor
+  .goods-smile-unit 
+    position: relative
+  image 
+    position: absolute
+    top: 50%
+    left: -36rpx
+    transform: translateY(-50%)
+    width: 32rpx
+    height: 32rpx
+    margin-right: 8rpx
+
+.hmg-es
+  display: flex
+  justify-content: center
+  image 
+    width: 294rpx
+    height: 299rpx
+    margin-top: 100rpx
+// 我的 按钮
+.fixed-my 
+  overflow: hidden
+  position: fixed
+  bottom: 40rpx
+  right: 40rpx
+  width: 100rpx
+  height: 100rpx
+  border-radius: 100%
+  z-index 2
+  image 
+    width: 100rpx
+    height: 100rpx
+  
+// 个人中心列表
+.person-list-aside 
+  position: fixed
+  top: 0
+  right: 0
+  left: 0
+  bottom: 0
+  z-index: 2
+  .plm-body 
+    position: absolute
+    right: 0
+    width: 430rpx
+    height: 100vh
+    background-color: $white
+    animation: showFromRight .3s
+    .plmb-header 
+      display: flex
+      justify-content: flex-start
+      align-items: center
+      box-sizing: border-box
+      padding: 70rpx 44rpx 70rpx 64rpx
+      .plmbh-img 
+        overflow: hidden
+        width: 98rpx
+        height: 98rpx
+        margin-right: 40rpx
+        border-radius: 100%
+        image 
+          width: 98rpx
+          height: 98rpx
+          background-color: $borderColorGrayT1
+      .plmbh-name 
+        width: 430rpx - 44rpx - 64rpx - 40rpx - 98rpx
+        font-size: $fontSize32
+        textOverflowEs(1)
+    
+    .plmb-list 
+      padding: 0 48rpx
+      &.plmb-order
+        padding-bottom 13rpx
+      &.plmb-other 
+        border-top: 2rpx solid $borderColorBase
+        padding-top 13rpx
+      .plmbo-single 
+        display: flex
+        justify-content: flex-start
+        align-items: center
+        position: relative
+        height: 80rpx
+        font-size: $fontSize28
+        background-color: transparent
+        &::after 
+          border: 0
+        .plmbs-icon
+          display: flex
+          align-items: center
+          width: 60rpx
+        .plmbos-tip 
+          position: absolute
+          right: 0
+          top: 50%
+          transform: translateY(-12rpx)
+          width: 30rpx
+          height: 30rpx
+          border-radius: 30rpx
+          font-size: $fontSize20
+          line-height: 30rpx
+          text-align: center
+          color: $white
+          background-color: $red
+          &.active 
+            width: 50rpx
+        
+        .icon-my-order 
+          width: 27rpx
+          height: 37rpx
+        .icon-pending-pay 
+          width: 30rpx
+          height: 27rpx
+        .icon-pending-shipment 
+          width: 30rpx
+          height: 28rpx
+        .icon-pending-received 
+          width: 32rpx
+          height: 28rpx
+        .icon-service-line 
+          width: 38rpx
+          height: 32rpx
+        .icon-address-manage 
+          width: 28rpx
+          height: 34rpx
+        image 
+          margin-right: 20rpx
+        
+      
+
+    
+  
+

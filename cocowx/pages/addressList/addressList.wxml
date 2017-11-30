@@ -1,0 +1,41 @@
+<!--pages/addressList/addressList.wxml-->
+<view class="al-main" style="{{pageStyle}}" wx:if="{{!isEmptyList}}" bindtap="hideTipModal">
+  <!--<view class="alm-single" wx:for="{{addressList}}" animation="{{item.animationData}}" data-index="{{index}}" data-username="{{item.receiverName}}" data-telnumber="{{item.receiverMobile}}" data-address="{{item.receiverAddress}}" bindtap="backOrderConfirm" bindtouchstart="touchstart"  bindtouchmove="touchmove"  bindtouchend="touchend">l-->
+  <view class="alm-single" wx:for="{{addressList}}"
+   data-index="{{index}}" data-username="{{item.receiverName}}" data-telnumber="{{item.receiverMobile}}" 
+   data-address="{{item.receiverAddress}}" data-curaddressid="{{item.id}}" bindtap="backOrderConfirm" bindlongpress="delModal">
+    <view class="alms-main">
+      <view class="alms-name alms-unit">
+        <text class="almsn-text">{{item.receiverName}}</text>
+        <text class="almsi-phone">{{item.receiverMobile}}</text>
+      </view>
+      <view class="alms-info alms-unit">
+        <view class="almsn-default"><text class="almsn-icon dt-color" wx:if="{{item.isdefault === 1}}">默认</text></view>
+        <text class="almsi-address">{{item.receiverAddress}}</text>
+      </view>
+    </view>
+    <view class="alms-icon">
+      <view class="alms-unit alms-edit" catchtap="toEditAddress" data-curaddressid="{{item.id}}"><image class="icon-edit" src="../../images/edit.png"></image></view>
+      <!-- <view class="alms-unit alms-del dbg-color" catchtap="delAddress" data-curaddressid="{{item.id}}"><image class="icon-delete" src="../../images/delete.png"></image></view> -->
+    </view>
+    <!-- <view class="alms-icon">
+      <view class="alms-unit alms-edit" bindtap="toEditAddress" data-curaddressid="{{item.id}}"><image class="icon-edit" src="../../images/edit.png"></image></view>
+      <view class="alms-unit alms-del dbg-color"><image class="icon-delete" src="../../images/delete.png"></image></view>
+    </view> -->
+  </view>
+</view>
+<!-- 物流空状态页面 -->
+<block wx:else>
+  <view class="al-es">
+    <image src="/images/empty-state/es-addressList.png"></image>
+  </view>
+</block>
+<view class="tip-modal" id="tipModal" style="display:none;position:absolute;border:1rpx solid #ccc;border-radius:6rpx;background-color:#fff;line-height:40rpx;text-aglin:center;{{tipPosition}}">
+  <view style="padding:15rpx 20rpx;"  catchtap="delAddress">删除</view>
+</view>
+<!-- 底部 -->
+<view class="al-footer footer">
+  <navigator open-type="navigate" url="../addAddress/addAddress"><button class="dbg-color">+<text>新增地址</text></button></navigator>
+</view>
+
+

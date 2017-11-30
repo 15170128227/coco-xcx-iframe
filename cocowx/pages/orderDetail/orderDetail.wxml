@@ -1,0 +1,41 @@
+<!--pages/orderDetail/orderDetail.wxml-->
+<import src="../../components/orderAddress/orderAddress.wxml"/> 
+<import src="../../components/orderInfoList/orderInfoList.wxml"/>
+<block wx:if="{{orderInfo}}">
+  <view class="ol-main">
+    <!-- 订单收货地址 -->
+    <template is="orderAddress" data="{{data: addressInfo}}"/>
+    <!-- 订单详细信息 -->
+    <view class="olm-order">
+      <template is="orderConfirm" data="{{data: orderInfo.goodsList}}"/>
+      <view class="order-fare">
+        <text>运费 <text class="minorColor">（新、藏、港澳台等地不包邮）</text></text>
+        <text>¥0</text>
+      </view>
+      <view class="order-remarks">
+        <text>备注:</text>
+        <view>{{orderInfo.buyerMessage}}</view>
+      </view>
+    </view>
+    <!-- 订单状态 -->
+    <view class="olm-status">
+      <view>订单状态： {{orderInfo.orderStatusName}}</view>
+      <view>订单编号： {{orderInfo.orderSn}}</view>
+      <view>下单时间： {{orderInfo.createTime}}</view>
+    </view>
+    <!-- 客服 -->
+    <view class="olm-service">
+      <view class="">服务时间：10:00 - 19:00</view>
+      <view><button open-type="contact">在线客服</button></view>
+    </view>
+  </view>
+  <!-- 底部 -->
+  <view class="ol-footer footer">
+    <text class="olf-text">合计 : <text class="olfp-price">¥{{orderInfo.orderAmount}}</text></text>
+    <button class="olf-btn-left" bindtap="cacelOrder" data-orderId="{{orderInfo.orderId}}" wx:if="{{orderInfo.payStatus === 0 && orderInfo.orderStatus !==-1 && orderInfo.orderStatus !== 4}}">取消订单</button>
+    <button class="olf-btn-right" bindtap="payOrder" data-orderItems="{{orderInfo.orderItems}}" data-orderId="{{orderInfo.orderId}}" data-buyerId="{{orderInfo.buyerId}}" data-orderAmount="{{orderInfo.orderAmount}}" wx:if="{{orderInfo.payStatus === 0 && orderInfo.orderStatus !== -1 && orderInfo.orderStatus !== 4}}">付款 <text wx:if="{{!(showTime.mm === 0 && showTime.ss === 0)}}">{{showTime.mm}}:{{showTime.ss}}</text></button>
+    <button class="olf-btn-left" bindtap="toLogistics" data-mallOrderId="{{orderInfo.mallOrderId}}" data-mainpic="{{orderInfo.orderItems[0].productThumbnail}}" wx:if="{{orderInfo.orderStatus === 2}}">查看物流</button>
+    <button class="olf-btn-right" bindtap="receive" data-orderId="{{orderInfo.orderId}}" wx:if="{{orderInfo.orderStatus === 2}}">确认收货</button>
+    <button class="olf-btn-left" bindtap="delOrder" data-orderId="{{orderInfo.orderId}}" wx:if="{{orderInfo.orderStatus === -1 || orderInfo.orderStatus === 3 || orderInfo.orderStatus === 4}}">删除订单</button> 
+  </view> 
+</block>

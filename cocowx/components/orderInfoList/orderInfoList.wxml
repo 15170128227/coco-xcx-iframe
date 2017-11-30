@@ -1,0 +1,34 @@
+<!--components/orderList/orderList.wxml-->
+<!-- 订单确认 -->
+<template name="orderConfirm">
+  <view class="oc-order">
+    <view class="oc-title"><text>订单详情</text></view>
+    <view class="oc-goods">
+      <image class="ocg-mainpic" src="{{data.mainPic}}"></image>
+      <view class="og-info">
+        <text class="ogi-title">{{data.title}}</text>
+        <text class="ogi-info">{{(data.normFirstSelect || '红色') + ' ' + (data.normSecondSelect || '大码')}}</text>
+        <view class="ogi-price">
+          <text>¥ {{data.price}}</text><text class="ogip-num">X{{data.quantity}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>
+
+<!-- 订单列表 -->
+<template name="orderList">
+  <view class="oc-order">
+    <view class="oc-title"><text>订单编号：{{data.orderSn}}</text><text class="ol-state">{{data.orderStatusName}}</text></view>
+    <view class="oc-goods" wx:for="{{data.orderItems}}" wx:key="index">
+      <image class="ocg-mainpic" src="{{item.productThumbnail}}"></image>
+      <view class="og-info">
+        <text class="ogi-title">{{item.productName}}</text>
+        <text class="ogi-info">{{item.skuStr}}</text>
+        <view class="ogi-price">
+          <text>¥ {{item.salePrice}}</text><text class="ogip-num">X{{item.quantity}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>

@@ -1,0 +1,98 @@
+{
+	"description": "项目配置文件。",
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true
+	},
+	"compileType": "miniprogram",
+	"libVersion": "1.5.4",
+	"appid": "wxad5b01d70665bac2",
+	"projectname": "person_xcx",
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 0,
+			"list": [
+				{
+					"id": 0,
+					"name": "首页",
+					"pathName": "pages/index/index",
+					"query": "",
+					"scene": "1001"
+				},
+				{
+					"id": 1,
+					"name": "商品详情",
+					"pathName": "pages/goodsDetail/goodsDetail",
+					"query": "appEncrypt=bGpNUHA5MTNkWGYzMWJBNWcxMjI5&productId=364908&isOperation=1",
+					"scene": "1001"
+				},
+				{
+					"id": 2,
+					"name": "订单确认",
+					"pathName": "pages/orderConfirm/orderConfirm",
+					"query": ""
+				},
+				{
+					"id": 3,
+					"name": "订单列表（全部）",
+					"pathName": "pages/orderList/orderList",
+					"query": "appEncrypt=bGpNUHA5MTNkWGYzMWJBNWcxMjA5&buyerId=7388",
+					"scene": "1001"
+				},
+				{
+					"id": 4,
+					"name": "订单详情",
+					"pathName": "pages/orderDetail/orderDetail",
+					"query": "orderId=39397",
+					"scene": "1001"
+				},
+				{
+					"id": 5,
+					"name": "物流信息",
+					"pathName": "pages/logistics/logistics",
+					"query": "appEncrypt=bGpNUHA5MTNkWGYzMWJBNWcxMjI5&mallOrderId=MEN3R13258464_1",
+					"scene": "1001"
+				},
+				{
+					"id": 6,
+					"name": "地址管理",
+					"pathName": "pages/addressList/addressList",
+					"query": "appEncrypt=bGpNUHA5MTNkWGYzMWJBNWcxMjI5",
+					"scene": "1001"
+				},
+				{
+					"id": 8,
+					"name": "新增地址",
+					"pathName": "pages/addAddress/addAddress",
+					"query": "pageType=edit&addressId=6145",
+					"scene": "1001"
+				},
+				{
+					"id": 8,
+					"name": "活动详情",
+					"pathName": "pages/activityDetail/activityDetail",
+					"query": "appEncrypt=bGpNUHA5MTNkWGYzMWJBNWcxMjQ5&marketingId=34",
+					"scene": "1001"
+				},
+				{
+					"id": -1,
+					"name": "页面测试",
+					"pathName": "pages/test/test",
+					"query": "",
+					"scene": "1001"
+				}
+			]
+		}
+	}
+}

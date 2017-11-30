@@ -1,0 +1,181 @@
+.oc-title {
+  display: flex;
+  justify-content: space-between;
+  height: 80rpx;
+  line-height: 80rpx;
+  padding: 0 24rpx;
+}
+.oc-goods {
+  display: flex;
+  padding: 24rpx;
+  font-size: 24rpx;
+  background-color: #fcfcfc;
+}
+.oc-goods .ocg-mainpic {
+  width: 164rpx;
+  height: 164rpx;
+  background-color: #fff;
+}
+.oc-goods .og-info {
+  position: relative;
+  width: 514rpx;
+  padding: 2rpx 0 2rpx 24rpx;
+}
+.oc-goods .og-info .ogi-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.oc-goods .og-info .ogi-info {
+  margin-top: 10rpx;
+  color: #979797;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.oc-goods .og-info .ogi-price {
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  left: 24rpx;
+  right: 0;
+  justify-content: space-between;
+}
+.ol-state {
+  color: #2caef8;
+}
+.oa-address {
+  display: flex;
+  height: 145rpx;
+  margin-bottom: 10rpx;
+  padding: 0 24rpx;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+}
+.oa-address .oaa-unit {
+  display: flex;
+  flex-direction: column;
+  width: 720rpx;
+}
+.oa-address .ocma-icon {
+  width: 30rpx;
+}
+.oa-address .oaa-info {
+  position: relative;
+  padding-left: 30rpx;
+}
+.oa-address .oaa-info .oaai-person {
+  margin-bottom: 5rpx;
+  font-size: 28rpx;
+  font-weight: bold;
+}
+.oa-address .oaa-info .oaai-person .oaai-phone {
+  margin: 0 15rpx;
+}
+.oa-address .oaa-info .oaai-person .oaai-state {
+  position: relative;
+  top: -1rpx;
+  padding: 0 8rpx;
+  border: 1rpx solid #2caef8;
+  border-radius: 6rpx;
+  font-size: 20rpx;
+  line-height: 0;
+  color: #2caef8;
+}
+.oa-address .oaa-info .oaai-detail {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.oa-address .oaa-info image {
+  position: absolute;
+  top: 50rpx;
+  left: 0;
+}
+page {
+  background-color: #f1f1f1;
+}
+.ol-main .olm-order {
+  margin-bottom: 14rpx;
+  background-color: #fff;
+}
+.ol-main .olm-status {
+  padding: 15rpx 24rpx;
+  font-size: 24rpx;
+  line-height: 38rpx;
+  color: #666;
+  margin-bottom: 14rpx;
+  background-color: #fff;
+}
+.ol-main .olm-service {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15rpx 24rpx;
+  font-size: 24rpx;
+  line-height: 38rpx;
+  color: #666;
+  margin-bottom: 14rpx;
+  background-color: #fff;
+}
+.ol-main .olm-service button {
+  background-color: transparent;
+  width: 146rpx;
+  height: 58rpx;
+  padding: 0;
+  border: 1rpx solid #666;
+  border-radius: 6rpx;
+  font-size: 24rpx;
+  line-height: 58rpx;
+  color: #666;
+}
+.ol-main .olm-service button:after {
+  border: 0;
+}
+.ol-footer {
+  position: absolute;
+  width: 100%;
+  border-top: 1rpx solid #f9f9f9;
+  line-height: 88rpx;
+  background-color: #f9f9f9;
+}
+.ol-footer .olf-text {
+  margin-left: 24rpx;
+  flex: 1;
+}
+.ol-footer .olf-text .olfp-price {
+  color: #2caef8;
+}
+.ol-footer button {
+  width: 240rpx;
+  margin: 0;
+  border-radius: 0;
+  font-size: 32rpx;
+  line-height: 88rpx;
+}
+.ol-footer button.olf-btn-left {
+  color: #666;
+  background-color: #fff;
+}
+.ol-footer button.olf-btn-right {
+  color: #fff;
+  background-color: #2caef8;
+}
+.ol-footer button.olf-cancel,
+.ol-footer button.olf-del {
+  background-color: #fff;
+}
+.ol-footer button.olf-pay {
+  color: #fff;
+  background-color: #2caef8;
+}
+.ol-footer button::after {
+  border: 0;
+}

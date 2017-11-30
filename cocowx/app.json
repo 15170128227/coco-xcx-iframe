@@ -1,0 +1,24 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/demo/demo",
+    "pages/goodsDetail/goodsDetail",
+    "pages/orderConfirm/orderConfirm",
+    "components/orderInfoList/orderInfoList",
+    "pages/orderList/orderList",
+    "pages/logistics/logistics",
+    "pages/addressList/addressList",
+    "pages/orderDetail/orderDetail",
+    "components/orderAddress/orderAddress",
+    "pages/addAddress/addAddress",
+    "pages/activityDetail/activityDetail"
+  ],
+  "window": {
+    "backgroundTextStyle": "white",
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTitleText": "WeChat",
+    "backgroundColor": "#f1f1f1",
+    "navigationBarTextStyle": "black"
+  }
+}

@@ -1,0 +1,30 @@
+<!--pages/logistics /logistics .wxml-->
+<view class="logistics-main"  >
+  <view class="lm-order" wx:if="{{logisticsInfo.returnStateDesc}}">
+    <image src="{{mainPic}}"></image>
+    <view class="lmo-info">
+      <view>物流状态：{{logisticsInfo.returnStateDesc}}</view>
+      <view>物流公司：{{logisticsInfo.companyName}}</view>
+      <view>快递单号：{{logisticsInfo.expressNu}}</view>
+    </view>
+  </view>
+  <view class="cut-line"></view>
+  <view class="lm-detail" wx:if="{{!isEmptyList}}">
+    <view wx:for="{{logisticsInfo.expressContent}}" wx:key="{{index}}" class="lmd-single {{item.active}}">
+      <view class="lmd-time">
+        <text>{{item.day}}</text>
+        <text>{{item.time}}</text>
+        <image class="lmdt-circular active" src="{{item.active && '../../images/logistics-info.png'}}"></image>
+      </view>
+      <view class="lmd-info">
+        <text>{{item.context}}X</text>
+      </view>
+    </view>
+  </view>
+  <!-- 物流信息页空状态页面 -->
+  <block wx:else>
+    <view class="lm-es">
+      <image src="/images/empty-state/es-logistics.png"></image>
+    </view>
+  </block>
+</view>

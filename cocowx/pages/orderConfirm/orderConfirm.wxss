@@ -1,0 +1,169 @@
+.bnq-quantity {
+  display: flex;
+  padding: 0 24rpx;
+  background-color: #fff;
+}
+.bnq-title {
+  width: 70vw;
+}
+.bnq-num {
+  display: flex;
+  box-sizing: border-box;
+  border: 1rpx solid #ccc;
+  border-radius: 6rpx;
+  text-align: center;
+  background-color: #fff;
+}
+.bnq-unit {
+  box-sizing: border-box;
+  width: 54rpx;
+  height: 54rpx;
+  line-height: 52rpx;
+}
+.bnq-unit.disabled {
+  border-color: #ccc;
+  color: #ccc;
+}
+.bnq-reduce {
+  border-right: 1rpx solid #ccc;
+  border-top-left-radius: 6rpx;
+  border-bottom-left-radius: 6rpx;
+}
+.bnq-add {
+  border-left: 1rpx solid #ccc;
+  border-top-right-radius: 6rpx;
+  border-bottom-right-radius: 6rpx;
+}
+.bnq-input {
+  box-sizing: border-box;
+  width: 80rpx;
+  height: 54rpx;
+  border-width: 0;
+  border-color: #ccc;
+  border-style: solid;
+  font-size: 24rpx;
+}
+.oc-title {
+  display: flex;
+  justify-content: space-between;
+  height: 80rpx;
+  line-height: 80rpx;
+  padding: 0 24rpx;
+}
+.oc-goods {
+  display: flex;
+  padding: 24rpx;
+  font-size: 24rpx;
+  background-color: #fcfcfc;
+}
+.oc-goods .ocg-mainpic {
+  width: 164rpx;
+  height: 164rpx;
+  background-color: #fff;
+}
+.oc-goods .og-info {
+  position: relative;
+  width: 514rpx;
+  padding: 2rpx 0 2rpx 24rpx;
+}
+.oc-goods .og-info .ogi-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.oc-goods .og-info .ogi-info {
+  margin-top: 10rpx;
+  color: #979797;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.oc-goods .og-info .ogi-price {
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  left: 24rpx;
+  right: 0;
+  justify-content: space-between;
+}
+.ol-state {
+  color: #2caef8;
+}
+.oa-address {
+  display: flex;
+  height: 145rpx;
+  margin-bottom: 10rpx;
+  padding: 0 24rpx;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+}
+.oa-address .oaa-unit {
+  display: flex;
+  flex-direction: column;
+  width: 720rpx;
+}
+.oa-address .ocma-icon {
+  width: 30rpx;
+}
+.oa-address .oaa-info {
+  position: relative;
+  padding-left: 30rpx;
+}
+.oa-address .oaa-info .oaai-person {
+  margin-bottom: 5rpx;
+  font-size: 28rpx;
+  font-weight: bold;
+}
+.oa-address .oaa-info .oaai-person .oaai-phone {
+  margin: 0 15rpx;
+}
+.oa-address .oaa-info .oaai-person .oaai-state {
+  position: relative;
+  top: -1rpx;
+  padding: 0 8rpx;
+  border: 1rpx solid #2caef8;
+  border-radius: 6rpx;
+  font-size: 20rpx;
+  line-height: 0;
+  color: #2caef8;
+}
+.oa-address .oaa-info .oaai-detail {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.oa-address .oaa-info image {
+  position: absolute;
+  top: 50rpx;
+  left: 0;
+}
+page {
+  background-color: #f1f1f1;
+}
+.ocm-order {
+  background-color: #fff;
+}
+.ocm-quantity {
+  display: flex;
+  align-items: center;
+  height: 100rpx;
+  border-bottom: 1rpx solid #f1f1f1;
+}
+.oc-footer {
+  box-sizing: border-box;
+  color: #666;
+}
+.ocf-text {
+  box-sizing: border-box;
+  padding-left: 24rpx;
+}
+.ocf-price {
+  color: #2caef8;
+}

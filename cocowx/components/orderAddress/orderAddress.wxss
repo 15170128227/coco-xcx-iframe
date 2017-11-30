@@ -1,0 +1,124 @@
+.singleOverflows {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.baseFlex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.flexVCenter {
+  display: flex;
+  align-items: center;
+}
+.minorColor {
+  color: #cdcdcd;
+}
+.clearButton {
+  background-color: transparent;
+}
+.clearButton:after {
+  border: 0;
+}
+.dt-color {
+  color: #2caef8;
+}
+.dbg-color {
+  color: #fff;
+  background-color: #2caef8;
+}
+.pc-color {
+  color: #cdcdcd;
+}
+.popup-layer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+/******************************   animations   ***************************/
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes showFromBottom {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+@keyframes showFromRight {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+.oa-address {
+  height: 145rpx;
+  margin-bottom: 10rpx;
+  padding: 0 24rpx;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+}
+.oa-address .oaa-unit {
+  display: flex;
+  flex-direction: column;
+  width: 720rpx;
+}
+.oa-address .ocma-icon {
+  width: 30rpx;
+}
+.oa-address .oaa-info {
+  position: relative;
+  padding-left: 30rpx;
+}
+.oa-address .oaa-info .oaai-person {
+  margin-bottom: 5rpx;
+  font-size: 28rpx;
+  font-weight: bold;
+}
+.oa-address .oaa-info .oaai-person .oaai-phone {
+  margin: 0 15rpx;
+}
+.oa-address .oaa-info .oaai-person .oaai-state {
+  position: relative;
+  top: -1rpx;
+  padding: 0 8rpx;
+  border: 1rpx solid #2caef8;
+  border-radius: 6rpx;
+  font-size: 20rpx;
+  line-height: 0;
+  color: #2caef8;
+}
+.oa-address .oaa-info .oaai-detail {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.oa-address .oaa-info image {
+  position: absolute;
+  top: 50rpx;
+  left: 0;
+}

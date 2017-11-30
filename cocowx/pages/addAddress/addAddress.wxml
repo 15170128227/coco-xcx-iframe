@@ -1,0 +1,37 @@
+<!--pages/addAddress/addAddress.wxml-->
+
+<view class="aa-mian">
+  <view class="aam-unit" data-active="{{active}}" bindtap="showAddress">{{addressInfoBase}}</view>
+  <view class="aam-unit"><input type="text" bindinput="bingAddressDetail" value="{{addressInfoDetail}}" placeholder-class="pc-color" placeholder="详细地址，如街道、楼牌号等"/></view>
+   <view class="aam-unit"><input type="text" bindinput="bingName"  value="{{receiveName}}" placeholder-class="pc-color" placeholder="姓名"/></view>
+  <view class="aam-unit"><input type="number" maxlength="11" bindinput="bindPhone" value="{{telphone}}" placeholder-class="pc-color" placeholder="手机号码"/></view>
+  <view class="aam-default-address">
+    <text>设为默认地址</text>
+    <view class="aamd-icon" bindtap="setDefaultAddress"><image data-active="{{selecting ? 'active' : ''}}" src="{{selecting ? '../../images/selecting.png' : ''}}"></image></view>
+  </view>
+</view>
+<!-- footer -->
+<view class="aa-footer footer">
+  <!-- <button class="aaf-btn" bindtap="cancel">取消</button> -->
+  <button class="aaf-btn dbg-color" bindtap="save" disabled="{{disabled}}">保存</button>
+</view>
+<!-- 地址列表选择组件 -->
+<view class="address-module" wx:if="{{addressShow}}">
+  <view class="popup-layer" bindtap="closeAddressList"></view>
+  <view class="am-main">
+    <view class="amm-header">
+      <view class="ammh-left">
+        <text class="ammh-unit ammh-select" wx:if="{{addressState}}">请选择</text>
+        <block wx:else>
+          <text class="ammh-unit ammh-province" data-active="{{provActive}}" bindtap="selectPro" data-curProId="{{curProvId}}">{{province}}</text>
+          <text class="ammh-unit ammh-city" data-active="{{cityActive}}" bindtap="selectCity" data-curCityId="{{curCityId}}">{{city || '城市'}}</text>
+          <text class="ammh-unit ammh-area" data-active="{{areaActive}}" bindtap="selectArea" data-curAreaId="{{curAreaId}}">{{area || '市区'}}</text>
+        </block>
+      </view>
+      <text class="ammh-unit ammh-confirm" bindtap="saveAddress">确认</text>
+    </view>
+    <view class="amm-body">
+      <view class="ammb-li" wx:for="{{currentAdsList}}" data-parId="{{item.parId}}" data-id="{{item.id}}" data-name="{{item.name}}" bindtap="selectAddress">{{item.name}}</view>
+    </view>
+  </view>
+</view>

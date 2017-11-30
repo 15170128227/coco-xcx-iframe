@@ -1,0 +1,113 @@
+@import '/cocowx/stylus/global'
+@import '/cocowx/components/orderInfoList/orderInfoList'
+
+$titleHei = 70rpx
+
+page 
+  height 100%
+  background-color: $gray
+
+.order-list-main 
+  height 100%
+  // 顶部
+  .olm-header 
+    display: flex
+    position: fixed
+    top: 0
+    z-index: 2
+    width: 750rpx
+    height: $titleHei
+    margin-bottom: $moduleSpacing
+    background-color: $white
+    button 
+      flex: 1
+      clearButton()
+      font-size: $fontSize28
+      &.active 
+        color: $defaultColor
+    &::after 
+      content: ' '
+      position: absolute
+      bottom: 0
+      height: 2rpx
+      background-color: $defaultColor
+      transition: transform .3s
+    &.type1::after 
+      transform: translateX(65rpx)
+      width: 60rpx
+    &.type2::after 
+      transform: translateX(235rpx)
+      width: 88rpx
+    &.type3::after 
+      transform: translateX(426rpx)
+      width: 88rpx
+    &.type4::after 
+      transform: translateX(616rpx)
+      width: 88rpx
+
+  // 空状态
+  .ol-es
+    display: flex
+    justify-content: center
+    align-items: center
+    height: 100%
+    image 
+      width: 369rpx
+      height: 344rpx   
+      margin-top: -200rpx   
+      
+  // 列表信息
+  .olm-list 
+    position: relative
+    width: $screenWidth
+    padding-top: $titleHei + $moduleSpacing
+    .olml-unit 
+      position: relative
+      width: 750rpx
+      left: 0
+      &.olml-all 
+        transform: translateX(0)
+      &.olml-penddingPay 
+        transform: translateX($screenWidth)
+      &.olml-penddingSend 
+        transform: translateX($screenWidth * 2)
+      &.olml-penddingReceive 
+        transform: translateX($screenWidth * 3)
+      .olml-single 
+        margin-bottom: $moduleSpacing
+        background-color: $white
+        .olmls-footer 
+          display: flex
+          justify-content: space-between
+          align-items: center
+          height: 120rpx
+          padding: 0 $paddingPage
+          .lomlsf-price 
+            flex: 1
+            color: $defaultColor
+          .lomlsf-btns 
+            display: flex
+            flex: 2
+            justify-content: flex-end
+            button 
+              clearButton()
+              width: 146rpx
+              height: 58rpx
+              padding: 0
+              margin: 0 0 0 28rpx
+              font-size: $fontSize24
+              line-height: 58rpx
+              border: 1rpx solid $textDefaultColor
+              border-radius: $radiusBase
+              &.default-color 
+                border: 0
+                color: $white
+                background-color: $defaultColor
+              
+            
+          
+        
+      
+    
+  
+

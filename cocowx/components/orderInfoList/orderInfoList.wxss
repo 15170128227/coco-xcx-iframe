@@ -1,0 +1,124 @@
+.singleOverflows {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.baseFlex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.flexVCenter {
+  display: flex;
+  align-items: center;
+}
+.minorColor {
+  color: #cdcdcd;
+}
+.clearButton {
+  background-color: transparent;
+}
+.clearButton:after {
+  border: 0;
+}
+.dt-color {
+  color: #2caef8;
+}
+.dbg-color {
+  color: #fff;
+  background-color: #2caef8;
+}
+.pc-color {
+  color: #cdcdcd;
+}
+.popup-layer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+/******************************   animations   ***************************/
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes showFromBottom {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+@keyframes showFromRight {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+.oc-title {
+  display: flex;
+  justify-content: space-between;
+  height: 80rpx;
+  line-height: 80rpx;
+  padding: 0 24rpx;
+}
+.oc-goods {
+  display: flex;
+  padding: 24rpx;
+  font-size: 24rpx;
+  background-color: #f1f1f1;
+}
+.oc-goods .ocg-mainpic {
+  width: 164rpx;
+  height: 164rpx;
+  background-color: #fff;
+}
+.oc-goods .og-info {
+  position: relative;
+  width: 514rpx;
+  padding: 2rpx 0 2rpx 24rpx;
+}
+.oc-goods .og-info .ogi-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.oc-goods .og-info .ogi-info {
+  margin-top: 10rpx;
+  color: #979797;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.oc-goods .og-info .ogi-price {
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  left: 24rpx;
+  right: 0;
+  justify-content: space-between;
+}
+.ol-state {
+  color: #2caef8;
+}

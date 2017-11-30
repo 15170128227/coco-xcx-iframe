@@ -1,0 +1,19 @@
+<!--components/orderAddress/orderAddress.wxml-->
+<!-- 订单地址 -->
+<template name="orderAddress">
+  <view class="oa-address" wx:if="{{data}}">
+    <view class="oaa-add oaa-unit" wx:if="{{data.isFirst}}">
+      添加收货地址
+    </view>
+    <view class="oaa-info oaa-unit" wx:else>
+      <view class="oaai-person">
+        收件人： <text>{{data.userName}}</text><text class="oaai-phone">{{data.telNumber}}</text><text class="oaai-state" wx:if="{{true}}">默认</text>
+      </view>
+      <view class="oaai-icon">
+        <image class="icon-address-little" src="../../images/address.png"></image>
+        <text class="oaai-detail">{{data.address}}</text>
+      </view>
+    </view>
+    <view class="ocma-icon" wx:if="{{!data.hasArrow}}"><image class="icon-right-arrow" src="../../images/right-arrow.png"></image></view>
+  </view>
+</template>

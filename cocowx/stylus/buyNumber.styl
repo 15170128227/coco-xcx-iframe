@@ -1,0 +1,47 @@
+@import "global"
+$heightT1 = 54rpx
+
+.bnq-quantity 
+  display: flex
+  padding: 0 $paddingPage
+  background-color: $white
+
+.bnq-title
+  width: 70vw
+
+.bnq-num
+  display: flex
+  box-sizing: border-box
+  border: 1rpx solid $borderDefault
+  border-radius: $radiusBase
+  text-align: center
+  background-color: $white
+
+.bnq-unit
+  box-sizing: border-box
+  // padding: 0 12rpx
+  width: $heightT1
+  height: $heightT1
+  line-height: $heightT1 - 2rpx
+  &.disabled
+    border-color: $disabledColor
+    color: $disabledColor
+  
+.bnq-reduce
+  border-right: 1rpx solid $borderDefault
+  border-top-left-radius: $radiusBase
+  border-bottom-left-radius: $radiusBase
+
+.bnq-add
+  border-left: 1rpx solid $borderDefault
+  border-top-right-radius: $radiusBase
+  border-bottom-right-radius: $radiusBase
+
+.bnq-input
+  box-sizing: border-box
+  width: 80rpx
+  height: $heightT1
+  border-width: 0
+  border-color: $borderDefault
+  border-style: solid
+  font-size: $fontSize24

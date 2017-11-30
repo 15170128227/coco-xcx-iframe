@@ -1,0 +1,100 @@
+page {
+  background-color: #f1f1f1;
+}
+.borderBt {
+  border-top: 1rpx solid #f1f1f1;
+}
+.aa-mian .aam-unit {
+  padding: 0 24rpx;
+  height: 92rpx;
+  border-top: 1rpx solid #f1f1f1;
+  line-height: 92rpx;
+  background-color: #fff;
+}
+.aa-mian .aam-unit[data-active=active] {
+  color: #cdcdcd;
+}
+.aa-mian .aam-unit input {
+  height: 92rpx;
+  border-top: 1rpx solid #f1f1f1;
+  line-height: 92rpx;
+  background-color: #fff;
+}
+.aa-mian .aam-default-address {
+  display: flex;
+  justify-content: space-between;
+  height: 92rpx;
+  border-top: 1rpx solid #f1f1f1;
+  line-height: 92rpx;
+  background-color: #fff;
+  padding: 0 24rpx;
+  margin-top: 14rpx;
+  color: #333;
+}
+.aa-mian .aam-default-address .aamd-icon {
+  display: flex;
+  align-items: center;
+}
+.aa-mian .aam-default-address .aamd-icon image {
+  box-sizing: border-box;
+  width: 36rpx;
+  height: 36rpx;
+  border: 2rpx solid #afafaf;
+  border-radius: 100%;
+}
+.aa-mian .aam-default-address .aamd-icon image[data-active=active] {
+  border: 0;
+}
+.aa-footer {
+  width: 100%;
+  display: flex;
+}
+.aa-footer button {
+  flex: 1;
+  border-radius: 0;
+  font-size: 32rpx;
+}
+.aa-footer button::after {
+  border: 0;
+  border-radius: 0;
+}
+.address-module {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 99;
+}
+.address-module .am-main {
+  box-sizing: border-box;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 800rpx;
+  background-color: #fff;
+}
+.address-module .am-main .amm-header {
+  display: flex;
+  justify-content: space-between;
+  height: 100rpx;
+  padding: 0 24rpx;
+  line-height: 100rpx;
+  color: #979797;
+}
+.address-module .am-main .amm-header .ammh-left .ammh-unit {
+  margin-right: 30rpx;
+}
+.address-module .am-main .amm-header .ammh-left .ammh-unit[data-active*=active] {
+  color: #333;
+}
+.address-module .am-main .amm-body {
+  overflow-y: auto;
+  height: 700rpx;
+  padding-left: 24rpx;
+  color: #979797;
+}
+.address-module .am-main .amm-body .ammb-li {
+  height: 90rpx;
+  line-height: 90rpx;
+}

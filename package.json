@@ -1,0 +1,19 @@
+{
+  "name": "cocowx-pro",
+  "version": "1.0.0",
+  "description": "cocowx",
+  "main": "gulpfile.js",
+  "dependencies": {},
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "stylus": "^0.54.5",
+    "webpack": "^3.5.5"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "node config/webpack.config.js",
+    "stylus": "node config/stylus-compile.js"
+  },
+  "author": "Alinc",
+  "license": "ISC"
+}

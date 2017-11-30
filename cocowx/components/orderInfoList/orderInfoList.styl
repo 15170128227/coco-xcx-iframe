@@ -1,0 +1,42 @@
+@import '/cocowx/stylus/global'
+
+$imgSize = 164rpx
+
+.oc-title 
+  display: flex
+  justify-content: space-between
+  height: 80rpx
+  line-height:80rpx
+  padding: 0 $paddingPage
+
+.oc-goods 
+  display: flex
+  padding: $paddingPage
+  font-size: $fontSize24
+  background-color: $grayLittle
+  .ocg-mainpic 
+    width: $imgSize
+    height: $imgSize
+    background-color: #fff
+  .og-info 
+    position: relative
+    width: 750rpx - $paddingPage * 3 - $imgSize
+    padding: 2rpx 0 2rpx  $paddingPage
+    .ogi-title 
+      textOverflowEs(2)
+    .ogi-info 
+      margin-top: 10rpx
+      color: $textGrayColor
+      textOverflowEs(2)
+    .ogi-price 
+      display: flex
+      position: absolute
+      bottom: 0
+      left: $paddingPage
+      right: 0
+      justify-content: space-between
+			
+.ol-state 
+  color: $defaultColor
+
+

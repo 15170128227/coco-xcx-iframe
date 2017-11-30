@@ -1,0 +1,17 @@
+<!--pages/activityDetail/activityDetail.wxml-->
+<import src="../../wxParse/wxParse.wxml"/> 
+<view class="ad-main">
+  <block wx:if="{{!isEmptyList}}">
+    <view class="adm-banner"><image src="{{marketingDetail.marketingDetailsImg + imgQuery}}"></image></view>
+    <view class="adm-title" wx:if="{{marketingDetail.marketingName}}"><text>{{marketingDetail.marketingName}}</text></view>
+    <view class="adm-desc">
+      <template is="wxParse" data="{{wxParseData: article.nodes}}"/> <!-- 商品详情desc -->
+    </view>
+  </block>
+  <!-- 物流空状态页面 -->
+  <block wx:else>
+    <view class="adm-es">
+      <image src="/images/empty-state/invalid-activityDetail.png"></image>
+    </view>
+  </block>
+</view>

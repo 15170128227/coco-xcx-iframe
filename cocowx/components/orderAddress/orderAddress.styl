@@ -1,0 +1,44 @@
+@import '/cocowx/stylus/global'
+
+baseStyle() 
+  padding: 0 $paddingPage
+  background-color: $white
+  flexVCenter()
+
+.oa-address 
+  display: flex
+  height: 145rpx
+  margin-bottom: $marginBtm10
+  baseStyle()
+  .oaa-unit 
+    display: flex
+    flex-direction: column
+    width: 720rpx
+  .ocma-icon 
+    width: 30rpx
+  .oaa-info 
+    position: relative
+    padding-left: 30rpx
+    .oaai-person 
+      margin-bottom: 5rpx
+      font-size: $fontSize28
+      font-weight: bold
+      .oaai-phone 
+        margin: 0 15rpx
+      .oaai-state 
+        position: relative
+        top: -1rpx
+        padding: 0 8rpx
+        border: 1rpx solid $defaultColor
+        border-radius: $radiusBase
+        font-size: $fontSize20
+        line-height: 0
+        color: $defaultColor
+    .oaai-detail 
+      textOverflowEs(2)
+    image 
+      position: absolute
+      top: 50rpx
+      left: 0
+    
+  

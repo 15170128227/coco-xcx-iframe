@@ -1,0 +1,69 @@
+<!--index.wxml-->
+
+<!--<view scroll-y style="height: {{scrollEleHeight}}px" lower-threshold="150" bindscrolltolower="loadMore" scroll-into-view="{{toView}}">-->
+<view class="home-main">
+  <!-- 首页banner -->
+  <swiper indicator-dots="{{indicatorDots}}" circular="circular" indicator-color="{{indicatorColor}}" indicator-active-color="{{indicatorActiveColor}}" class="banner_contain">
+    <block wx:for="{{bannerList}}" wx:key="{{index}}">
+      <swiper-item>
+        <navigator url="{{item.linkUrl}}"><image lazy-load src="https:{{item.bannerPic + bannerImageQuery}}" class="slide-image"/></navigator>
+      </swiper-item>
+    </block>
+  </swiper>
+  <!-- 商品列表 -->
+  <block wx:if="{{goodsList}}">
+    <block wx:for="{{goodsList}}" wx:key="index" class="goods-list_contain">
+      <navigator url="/pages/goodsDetail/goodsDetail?productId={{item.displayId}}" class="goods-single_contain" wx:if="{{item.displayType === 1}}">
+        <view class="goods-single_img" ><image src="https:{{item.mainPic + imageQuery}}" /></view>
+        <view class="goods-single_content">
+          <text class="goods-single_content__title" wx:if="{{item.displayName}}">{{item.displayName}}</text>
+          <text class="goods-single_content__text" wx:if="{{item.displayDesc}}">{{item.displayDesc}}</text>
+          <view class="goods-smile"><view class="goods-smile-unit"><image src="/images/smile-active.png"></image>{{item.pvNumber}}人说好</view></view>
+        </view>
+      </navigator>
+      <navigator url="/pages/goodsDetail/goodsDetail?productId={{item.displayId}}" class="goods-single_contain" wx:elif="{{item.displayType === 11}}">
+        <view class="goods-single_img type-{{item.displayType}}" ><image lazy-load src="https:{{item.mainPic + imageQuery}}" /></view>
+      </navigator >
+      <navigator url="/pages/activityDetail/activityDetail?marketingId={{item.displayId}}" class="goods-single_contain" wx:elif="{{item.displayType === 12}}">
+        <view class="goods-single_img" ><image src="https:{{item.mainPic + imageQuery}}" /></view>
+        <view class="goods-single_content">
+          <image class="gsc-quot" src="/images/quot.png"></image>
+          <text class="goods-single_content__title gsc-title12" wx:if="{{item.displayName}}">{{item.displayName}}</text>
+        </view>
+      </navigator>
+    </block>
+    <view class="tips-contain" wx:if="{{!hideTip}}">
+      <view wx:if="{{hasMore && goodsList}}" class="tips-loading">
+        <text>玩命的加载中...</text></view>
+      <view class="tips-load-all" wx:else><text>我也是有底线的</text></view>
+    </view>
+  </block>
+  <!-- 商品列表空状态页面 -->
+  <block wx:if="{{isEmptyList}}">
+    <view class="hmg-es">
+      <image src="/images/empty-state/es-goodsList.png"></image>
+    </view>
+  </block>
+</view>
+<!-- 我的btn -->
+<view class="fixed-my" bindtap="showAsideFn"><image src="../../images/my.png"></image></view>
+<!-- person list 右侧aside -->
+<view class="person-list-aside" wx:if="{{showAside}}">
+  <view class="popup-layer" bindtap="hideAsideFn"></view>
+  <view class="plm-body">
+    <view class="plmb-header">
+      <view class="plmbh-img" bindtap="login"><image src="{{userInfo.avatarUrl || '/images/my.png'}}"></image></view>
+      <text class="plmbh-name">{{userInfo.nickName || '请登录'}}</text>
+    </view>
+    <view class="plmb-order plmb-list">
+      <button class="plmbo-single" id="all" bindtap="toOrderList"><view class="plmbs-icon"><image class="icon-my-order" src="../../images/my-order.png"></image></view><text>全部订单</text></button>
+      <button class="plmbo-single" id="noPay" bindtap="toOrderList"><view class="plmbs-icon"><image class="icon-pending-pay" src="../../images/pending-pay.png"></image></view><text>待付款</text><text class="plmbos-tip {{orderCount.noPay.style}}" wx:if="{{orderCount.noPay.hide}}">{{orderCount.noPay.count}}</text></button>
+      <button class="plmbo-single" id="waitToSend" bindtap="toOrderList"><view class="plmbs-icon"><image class="icon-pending-shipment" src="../../images/pending-shipment.png"></image></view><text>待发货</text><text class="plmbos-tip {{orderCount.waitToSend.style}}"  wx:if="{{orderCount.waitToSend.hide}}">{{orderCount.waitToSend.count}}</text></button>
+      <button class="plmbo-single" id="sendOut" bindtap="toOrderList"><view class="plmbs-icon"><image class="icon-pending-received" src="../../images/pending-received.png"></image></view><text>待收货</text><text class="plmbos-tip {{orderCount.sendOut.style}}"  wx:if="{{orderCount.sendOut.hide}}">{{orderCount.sendOut.count}}</text></button>
+    </view>
+    <view class="plmb-other plmb-list">
+      <button class="plmbo-single" open-type="contact"><view class="plmbs-icon"><image class="icon-service-line" src="../../images/customer-service-line.png"></image></view><text>在线客服</text></button>
+      <button class="plmbo-single" bindtap="toAddressList"><view class="plmbs-icon"><image class="icon-address-manage" src="../../images/address-manage.png"></image></view><text>收货地址管理</text></button>
+    </view>
+  </view>
+</view>

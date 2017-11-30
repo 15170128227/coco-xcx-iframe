@@ -1,0 +1,263 @@
+@import '/cocowx/stylus/global'
+@import '/cocowx/stylus/buyNumber'
+@import '/cocowx/wxParse/wxParse'
+
+$littleImg = 160rpx
+$marginBase = 20rpx
+$marginBt = 30rpx
+$heightT1 = 54rpx
+$bannerHei = 600rpx
+/* base */
+.marginTb 
+  margin: $marginBase 0
+  
+page 
+  background-color: $pageBg
+  height: 100vh
+
+/* 主题 */
+.gd-main 
+  display: flex
+  flex-direction: column
+  min-height: 100%
+  padding-bottom: 100rpx
+  font-size: $fontSize28
+  background-color: $white
+  image 
+    display: block
+    width: 100%!important
+    // height: 100%
+  .gdm-content
+    background-color: $white
+    view 
+      overflow: hidden
+      line-height: 44rpx
+    .wxParse-p
+      margin: 5rpx 0  
+    /* 标题|价格 */
+    .gd-title, .gd-price 
+      font-weight: bold
+      font-size: $fontSize36
+
+    .gd-title 
+      padding: 30rpx 0 20rpx 0
+      line-height: 52rpx
+      font-weight: bold
+
+    .gd-price 
+      padding-bottom: 50rpx
+      margin-bottom: 30rpx
+      border-bottom: 1rpx solid $gray
+  
+.gdm-close 
+  display: flex
+  position: absolute
+  top: 0
+  right: 0
+  z-index: 2
+  width: 66rpx
+  height: 66rpx
+  justify-content: center
+  align-items: center
+  image 
+    width: 24rpx
+    height: 24rpx
+
+/* 广告位 */
+.gd-banner 
+  width: 100%
+  height: $bannerHei
+
+
+/* 商品规格弹窗 */
+.gd-modal 
+  position: fixed
+  top: 0
+  left: 0
+  z-index: 99
+  width: 100vw
+  height: 100vh
+  font-size: $fontSize28
+
+.gdm-main 
+  overflow: hidden
+  position: absolute
+  right: 0
+  left: 0
+  bottom: 0
+  padding-top: $paddingPage
+  background-color: $white
+  animation: showFromBottom .3s
+
+.gdm-head 
+  position: relative
+  display: flex
+  paddingBase()
+
+.gdm-img 
+  width: $littleImg
+  height: $littleImg
+  overflow: hidden
+  border-radius: $radiusBase
+  image 
+    width: $littleImg
+    height: $littleImg
+  
+.gdm-text 
+  position: absolute
+  left: $littleImg+$paddingPage+30rpx
+  bottom: 10rpx
+  font-size: $fontSize28
+  .gdmt-price
+    font-weight: bold
+  .gdmt-stock 
+    font-size: $fontSize24
+    color: $textGrayColor
+
+.gdm-serviceinfo 
+  display: flex
+  flex-direction: column
+  justify-content: center
+  height: 134rpx
+  padding: 18rpx $paddingPage
+  margin: $marginBt 0
+  box-sizing: border-box
+  background-color: $grayLittle
+  image 
+    width: 40rpx
+    height: 40rpx
+  
+.gmds-title 
+  font-size: $fontSize24
+  color: $tct666
+
+.gdms-group 
+  display: flex
+  margin-top: 10rpx
+
+.gdmsg-unit 
+  margin-right: 30rpx
+  color: $textGrayColor
+  image 
+    position: relative
+    top: 2px
+    margin-right: 8rpx
+    width: 26rpx
+    height: 26rpx
+  
+.gdm-specification 
+  margin-bottom: $marginBt
+  paddingBase()
+  .gdmsp-title 
+    margin-bottom: 10rpx
+    color: $tct666
+
+.gdmsp-unit 
+  display: inline-block
+  padding: 15rpx
+  min-width: 40rpx
+  margin-right: 14rpx
+  margin-bottom: 14rpx
+  text-align: center
+  border: 1rpx solid $borderColorGrayT1
+  border-radius: $radiusBase
+  font-size: $fontSize24
+  color: #333
+  &.disabled 
+    border: 1rpx dashed $borderColorGrayT1
+    color: $textGrayColor
+  
+.gdm-quantity 
+  margin-bottom: $marginBt
+  .bnqt-limit 
+    font-size: $fontSize24
+    color: $textGrayColor
+
+.submit-btn 
+  height: $footerHei
+  border-radius: 0
+  font-size: $fontSize32
+  line-height: $footerHei
+  letter-spacing: 2rpx
+// 空状态
+.lm-es
+  display: flex
+  justify-content: center
+  align-items: center
+  height: 100%
+  image 
+    width: 326rpx
+    height: 369rpx   
+    margin-top: -200rpx   
+      
+
+/* 底部 */
+.gd-footer 
+  display: flex
+  position: fixed
+  bottom: 0
+  left: 0
+  right: 0
+  height: $footerHei
+  border-top: 1rpx solid $gray
+  text-align: center
+  button
+    line-height: 88rpx
+    &.footer-btn 
+      font-size: $fontSize32
+  
+.gd-cs 
+  display: flex
+  width: 750rpx - $footerBtnWidth
+  font-size: $fontSize28
+  background-color: $white
+  justify-content: center
+  align-content: center
+  color: $textDefaultColor
+  button 
+    display: flex
+    justify-content: center
+    align-content: center
+    height: 100%
+    border-radius: 0
+    font-size: $fontSize28
+    background-color: #fff
+    
+    image 
+      top: 20rpx
+
+  .gdfc-unit 
+    flex: 1
+    position: relative
+    button 
+      border-radius: 0
+      &::after 
+        border: 0
+    
+    image 
+      position: relative
+      top: 10rpx
+      right: 8rpx
+    
+    .icon-smile-big 
+      width: 40rpx
+      height: 40rpx
+    
+    .icon-share 
+      top: 24rpx
+      width: 32rpx
+      height: 38rpx
+  .gdfc-smile
+    &::after 
+      content: ' '
+      position: absolute
+      top: 28rpx
+      right: 0
+      width: 2rpx
+      height: 32rpx
+      background-color: $borderColorGray
+    &.dc-color
+      color: $defaultColor
+
+  
+

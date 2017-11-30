@@ -1,0 +1,92 @@
+// default color
+$defaultColor = rgb(44, 174, 248)
+$white = #fff
+$black = #010101
+$gray = #f1f1f1
+$grayLittle = #fcfcfc
+$red = rgb(255, 71, 71)
+$disabledColor = #ccc
+$pageBg = rgb(241, 241, 241)
+$footBg = rgb(249, 249, 249)
+$borderColorBase = rgb(241, 241, 241)
+$borderColorBase249 = rgb(249, 249, 249)
+$borderColorGray = #afafaf
+$borderColorGrayT1 = rgb(175, 175, 175)
+$textDefaultColor = rgb(51,51,51)
+$textGrayColor = rgb(151,151,151)
+$tct666 = rgb(102, 102, 102) // textColorTitle #666
+$minorColor = rgb(205, 205, 205)
+
+
+// 皮肤模块
+// $themeNum
+// 1.less-default 默认皮肤
+// 2.less-red 红色主题
+$themeNum = 2 // 主题数量
+
+$skin-color-default = $defaultColor // 默认主题
+$skin-default = 'theme-default' // 默认主题容器class
+
+$skin-color-red = 'red' // 红色主题
+$skin-red = 'theme-red' // 红色主题容器class
+
+// ****************************** 基本样式变量 *****************************
+$width100 = 100%
+$screenWidth = 750rpx
+$mainPicSize = 150rpx
+$bannerHei = 380rpx // 380rpx
+$footerHei = 88rpx
+$moduleSpacing = 14rpx
+
+$marginBtm10 = 10rpx
+
+$paddingPage = 24rpx // 页面边界值
+$padding10 = 10rpx
+
+$borderDefault = #ccc
+$radiusBase = 6rpx
+
+$fontSize36 = 36rpx // 18px
+$fontSize32 = 32rpx // 16px
+$fontSize30 = 30rpx // 15px
+$fontSize28 = 28rpx // 14px
+$fontSize24 = 24rpx // 12px
+$fontSize20 = 20rpx // 10px
+
+$footerBtnWidth = 280rpx
+//$footerBtnWidth1 = 250rpx;
+
+// 多行省略号
+// $params $rows 行数
+textOverflowEs(rows) 
+  overflow: hidden
+  text-overflow: ellipsis
+  display: -webkit-box
+  -webkit-line-clamp: rows
+  -webkit-box-orient: vertical
+
+// 单行省略号
+singleOverflows()
+  overflow: hidden
+  white-space: nowrap
+  text-overflow: ellipsis
+
+baseFlex()
+  display: flex
+  justify-content: space-between
+  align-items: center
+
+flexVCenter()
+  display: flex
+  align-items: center
+
+minorColor()
+  color: $minorColor
+
+clearButton()
+  background-color: transparent
+  &:after 
+    border: 0
+
+paddingBase()
+  padding: 0 $paddingPage

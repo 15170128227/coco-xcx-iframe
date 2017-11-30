@@ -1,0 +1,41 @@
+.bnq-quantity {
+  display: flex;
+  padding: 0 24rpx;
+  background-color: #fff;
+}
+.bnq-title {
+  width: 70vw;
+}
+.bnq-num {
+  display: flex;
+  text-align: center;
+}
+.bnq-unit {
+  box-sizing: border-box;
+  padding: 0 12rpx;
+  width: 54rpx;
+  height: 54rpx;
+  line-height: 52rpx;
+  border: 1rpx solid #ccc;
+}
+.bnq-unit.disabled {
+  border-color: #ccc;
+  color: #ccc;
+}
+.bnq-reduce {
+  border-top-left-radius: 6rpx;
+  border-bottom-left-radius: 6rpx;
+}
+.bnq-add {
+  border-top-right-radius: 6rpx;
+  border-bottom-right-radius: 6rpx;
+}
+.bnq-input {
+  box-sizing: border-box;
+  width: 80rpx;
+  height: 54rpx;
+  border-width: 1rpx 0 1rpx 0;
+  border-color: #ccc;
+  border-style: solid;
+  font-size: 24rpx;
+}

@@ -1,0 +1,37 @@
+@import 'global'
+
+theme-base(themeNum)
+  if (themeNum = 1)
+    base($skin-default, $skin-color-default);
+  else if (themeNum = 2)
+    base($skin-red, $skin-color-red)
+    theme-base(1)
+
+base(themeType, color) 
+  // 商品详情
+  .{themeType}-price 
+    color: color
+  
+  .{themeType}-btn 
+    color: $white
+    background-color: color
+    &[disabled] 
+      color: $disabledColor
+      background-color: $disabledColor!important
+      &::after 
+        border: 0
+    &:active 
+      background-color: color * 0.8;
+  
+  .{themeType}-gdm-price 
+    color: color;
+  
+  .{themeType}-gdmsp-unit 
+    color: color;
+    &.active 
+      border: 1rpx solid $defaultColor;
+      color: $defaultColor;
+    
+  
+
+

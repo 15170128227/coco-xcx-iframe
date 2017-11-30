@@ -1,0 +1,191 @@
+@import "/cocowx/stylus/global"
+@import "/cocowx/stylus/theme"
+
+theme-base($themeNum) // loading主题样式到全局
+
+page 
+  font-size: $fontSize28
+  line-height: 38rpx
+  color: $textDefaultColor
+  -webkit-overflow-scrolling: touch
+
+input[disabled] 
+  color:$disabledColor
+
+.font-size12 
+  font-size: $fontSize24
+
+.font-size14 
+  font-size: $fontSize28
+
+.font-size16 
+  font-size: $fontSize32
+
+.paddingLr 
+  paddingBase()
+
+// 滚动加载tip提示语
+.tips-contain 
+  font-size: $fontSize24
+  text-align: center
+  &.pos-page
+    position: absolute
+    top: 280rpx
+    left: 50%
+    transform: translateX(-50%)
+    background-color: transparent
+
+.tips-loading 
+  display: flex
+  flex-direction: row
+  align-items: center
+  align-self: center
+  justify-content: center
+
+.tips-load-all 
+  padding: 10rpx 0
+  background-color: $gray
+
+.flex-col-1 
+  flex: 1
+
+// 遮罩层
+.popup-layer 
+  position: absolute
+  top: 0
+  right: 0
+  bottom: 0
+  left: 0
+  background-color: rgba(0, 0, 0, .4)
+  animation: fadeIn .3s
+
+// icon
+.icon-address-little 
+  width: 18rpx
+  height: 22rpx
+
+.icon-address 
+  width: 31rpx
+  height: 40rpx
+
+.icon-right-arrow 
+  width: 13rpx
+  height: 26rpx
+
+// 订单
+baseStyle() 
+  padding: 0 $paddingPage
+  background-color: $white
+  flexVCenter()
+
+.order-fare 
+  baseStyle()
+  justify-content: space-between
+  height: 90rpx
+  border-bottom: 1rpx solid $borderColorBase
+
+.order-remarks 
+  position: relative
+  padding: 0 $paddingPage
+  background-color: $white
+  margin-top: 30rpx
+  height: 150rpx
+  .or-name
+    position: absolute
+    left: $paddingPage
+    top: 10rpx
+  textarea 
+    padding-top: 12rpx
+    padding-left: 70rpx
+    box-sizing: border-box
+    
+// 分割线
+.cut-line 
+  width: 100%
+  height: $moduleSpacing
+  background-color: $gray
+
+.dt-color 
+  color: $defaultColor // 默认文本颜色
+
+
+.dbg-color 
+  color: $white
+  background-color: $defaultColor // 默认背景颜色
+
+.pc-color 
+  color: $minorColor
+
+.minorColor 
+  minorColor() 
+
+.textarea-style
+  padding: 10rpx
+
+// 遮罩层
+.popup-layer {
+  position: absolute
+  top: 0
+  right: 0
+  bottom: 0
+  left: 0
+  background-color: rgba(0, 0, 0, .4)
+}
+
+// footer
+.footer 
+  position: fixed
+  bottom: 0
+  display: flex
+  height: $footerHei
+  line-height: $footerHei
+  background-color: $footBg
+  .footer-left 
+    width: 750rpx - $footerBtnWidth
+  button.footer-btn 
+    box-sizing: border-box
+    width: $footerBtnWidth
+    padding-left: 0
+    padding-right: 0
+    border: 0
+    border-radius: 0
+    font-size: $fontSize32
+    line-height: $footerHei
+    color: $white
+    background-color: $defaultColor
+    &::after 
+      border: 0
+    &[disabled] 
+      color: rgba(0, 0, 0, .6)
+      background-color: $disabledColor
+
+
+/******************************   animations   ***************************/
+vendors = official // 关闭自动补全
+@keyframes fadeIn 
+  0% 
+    opacity: 0
+  100% 
+    opacity: 1
+
+@keyframes fadeOut 
+  0% 
+    opacity: 1
+  100% 
+    opacity: 0
+  
+@keyframes showFromBottom 
+  0% 
+    transform: translateY(100%)
+  100% 
+    transform: translateY(0)
+  
+@keyframes showFromRight
+  0% 
+    transform: translateX(100%)
+  100% 
+    transform: translateX(0)
+  
+    
+  
+

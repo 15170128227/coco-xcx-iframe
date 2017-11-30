@@ -1,0 +1,27 @@
+<!--pages/orderConfirm/orderConfirm.wxml-->
+<import src="../../components/orderInfoList/orderInfoList.wxml"/> 
+<import src="../../components/orderAddress/orderAddress.wxml"/> 
+<view class="oc-main">
+  <view bindtap="address"><template is="orderAddress" data="{{data: addressInfo}}"/></view>
+  <view class="ocm-order">
+    <template is="orderConfirm" data="{{data: orderBaseInfo}}"/>
+  </view>
+  <!--<view class="bnq-quantity ocm-quantity">
+    <text class="bnq-title">购买数量</text>
+    <view class="bnq-num">
+      <view class="bnq-unit bnq-reduce {{disabled.reduce}}" bindtap="reduceQuantity">-</view><input class="bnq-input" bindchange="bindQuantity" type="number" value="{{quantity}}"/><view class="bnq-unit bnq-add {{disabled.add}}" bindtap="addQuantity">+</view>
+    </view>
+  </view>-->
+  <view class="order-fare">
+    <text>运费 <text class="minorColor">（新、藏、港澳台等地不包邮）</text></text>
+    <text>¥0</text>  
+  </view>
+  <view class="order-remarks">
+    <text class="or-name">备注:</text>
+    <textarea placeholder="给商家的留言(45字以内）" placeholder-class="minorColor textarea-style" style="top:{{rextareaTop}}rpx" placeholder-style="" bindinput="updateRemarks" value="{{remarks}}" maxlength="45" />
+  </view>
+</view>
+<view class="footer oc-footer">
+  <text class="footer-left ocf-text">合计金额： <text class="ocf-price">¥{{totalPrice}}</text></text>
+  <button class="footer-btn" disabled="{{disabled.submit}}" bindtap="paySubmit">去结算</button>
+</view>

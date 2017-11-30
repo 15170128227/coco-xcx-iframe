@@ -1,0 +1,78 @@
+@import '/cocowx/stylus/global'
+@import '/cocowx/components/orderInfoList/orderInfoList'
+@import '/cocowx/components/orderAddress/orderAddress'
+
+$freightHei = 90rpx // 运费栏高度
+$remarksHei = 120rpx // 备注栏高度
+
+orderBse()
+  margin-bottom: $moduleSpacing
+  background-color: $white
+
+orderbase2()
+  padding: 15rpx $paddingPage
+  font-size: $fontSize24
+  line-height: 38rpx
+  color: $tct666
+  orderBse()
+
+page 
+  background-color: $gray
+
+.ol-main 
+  // 订单信息
+  .olm-order 
+    orderBse()
+  
+  // 订单状态
+  .olm-status 
+    orderbase2()
+  
+  // 客服
+  .olm-service 
+    baseFlex()
+    orderbase2()
+    button 
+      clearButton()
+      width: 146rpx
+      height: 58rpx
+      padding: 0
+      border: 1rpx solid $tct666
+      border-radius: $radiusBase
+      font-size: $fontSize24
+      line-height: 58rpx
+      color: $tct666
+    
+.ol-footer 
+  position: absolute
+  width: 100%
+  border-top: 1rpx solid $borderColorBase249
+  line-height: $footerHei
+  background-color: $borderColorBase249
+  .olf-text 
+    margin-left: $paddingPage
+    flex: 1
+    .olfp-price 
+      color: $defaultColor
+    
+  button 
+    width: 240rpx
+    margin: 0
+    border-radius: 0
+    font-size: $fontSize32
+    line-height: $footerHei
+    &.olf-btn-left 
+      color: $tct666
+      background-color: $white
+    &.olf-btn-right 
+      color: $white
+      background-color: $defaultColor
+    &.olf-cancel, &.olf-del 
+      background-color: $white
+    &.olf-pay 
+      color: $white
+      background-color: $defaultColor
+    &::after 
+      border: 0
+    
+  

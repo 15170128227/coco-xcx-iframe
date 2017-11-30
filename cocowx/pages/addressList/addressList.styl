@@ -1,0 +1,104 @@
+@import '/cocowx/stylus/global'
+    
+$imgSize = 38rpx
+$nameWidth = 128rpx
+$iconWidth = 120rpx
+
+page 
+  position: absolute
+  overflow: hidden
+  top: 0
+  width: 750rpx
+  bottom: 0
+  background-color: $gray
+
+.al-main 
+  position: absolute
+  overflow-x: hidden
+  overflow-y: auto
+  top: 0
+  bottom: 0
+  width: 750rpx
+  height: 100vh
+  overflow-x: hidden
+  box-sizing: border-box
+  margin-top: $moduleSpacing
+  padding-bottom: $footerHei
+  .alm-single 
+    display: flex
+    justify-content: flex-start
+    width: 750rpx
+    height: 150rpx
+    border-bottom: 2rpx solid $gray
+    background-color: $white
+    .alms-main 
+      display: flex
+      flex-direction: column
+      justify-content: center
+      width: 750rpx - $iconWidth
+      padding-left: $paddingPage
+      .alms-unit 
+        box-sizing: border-box
+        position: relative
+        padding-left: $nameWidth + $paddingPage
+      .alms-name 
+        display: flex
+        padding-right: $paddingPage
+        .almsn-text 
+          position: absolute
+          left: 0
+          width: $nameWidth
+          singleOverflows()
+      .alms-info 
+        display: flex
+        .almsn-default 
+          position: absolute
+          left: 0
+        .almsn-icon 
+          position: relative
+          padding: 0 8rpx
+          border: 1rpx solid $defaultColor
+          border-radius: $radiusBase
+          font-size: $fontSize20
+        .almsi-address 
+          font-size: $fontSize24
+          color: $textGrayColor
+
+    .alms-icon 
+      display: flex
+      flex-direction: row
+      justify-content: center
+      position: relative
+      width: $iconWidth
+      .alms-unit 
+        display: flex
+        justify-content: center
+        align-items: center
+        width: $iconWidth
+        height: 150rpx
+      image 
+        width: $imgSize
+        height: $imgSize
+// 空状态
+.al-es
+  display: flex
+  justify-content: center
+  align-items: center
+  height: 100%
+  image 
+    width: 341rpx
+    height: 330rpx   
+    margin-top: -200rpx   
+      
+.al-footer.footer 
+  width: 100%
+  navigator 
+    width: 100%
+    button 
+      width: 100%
+      border-radius: 0
+      color: $white
+    
+  
+
+
