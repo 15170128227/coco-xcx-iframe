@@ -302,7 +302,7 @@ page {
 .gd-main .gdm-content .gd-title,
 .gd-main .gdm-content .gd-price {
   font-weight: bold;
-  font-size: 36rpx;
+  font-size: 40rpx;
 }
 .gd-main .gdm-content .gd-title {
   padding: 30rpx 0 20rpx 0;
@@ -310,7 +310,6 @@ page {
   font-weight: bold;
 }
 .gd-main .gdm-content .gd-price {
-  padding-bottom: 50rpx;
   margin-bottom: 30rpx;
   border-bottom: 1rpx solid #f1f1f1;
 }

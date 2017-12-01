@@ -56,6 +56,10 @@ page {
   line-height: 44rpx;
   font-weight: bold;
   color: #010101;
+  color: #010101;
+}
+.goods-single_content__title.gsct-activity {
+  font-size: 36rpx;
 }
 .goods-single_content__title.gsc-title12 {
   margin-top: 10rpx;
