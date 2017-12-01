@@ -96,7 +96,7 @@
 }
 .oa-address .oaa-info image {
   position: absolute;
-  top: 50rpx;
+  top: 48rpx;
   left: 0;
 }
 page {
@@ -138,6 +138,16 @@ page {
 }
 .ol-main .olm-service button:after {
   border: 0;
+}
+.ol-main .olmo-remrks {
+  display: flex;
+}
+.ol-main .olmo-remrks .or-name {
+  width: 70rpx;
+}
+.ol-main .olmo-remrks .olmor-text {
+  flex: 1;
+  padding: 12rpx 0 0 80rpx;
 }
 .ol-footer {
   position: absolute;

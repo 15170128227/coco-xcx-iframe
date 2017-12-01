@@ -7,7 +7,7 @@
       <image class="ocg-mainpic" src="{{data.mainPic}}"></image>
       <view class="og-info">
         <text class="ogi-title">{{data.title}}</text>
-        <text class="ogi-info">{{(data.normFirstSelect || '红色') + ' ' + (data.normSecondSelect || '大码')}}</text>
+        <text class="ogi-info">{{(data.normFirstSelect ? data.normFirstSelect : '') + ' ' + (data.normSecondSelect ? data.normSecondSelect : '')}}</text>
         <view class="ogi-price">
           <text>¥ {{data.price}}</text><text class="ogip-num">X{{data.quantity}}</text>
         </view>

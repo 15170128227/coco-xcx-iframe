@@ -7,13 +7,13 @@
   <swiper indicator-dots="{{indicatorDots}}" circular="circular" indicator-color="{{indicatorColor}}" indicator-active-color="{{indicatorActiveColor}}" class="banner_contain">
     <block wx:for="{{bannerList}}" wx:key="{{index}}">
       <swiper-item>
-        <navigator url="{{item.linkUrl}}"><image lazy-load src="https:{{item.bannerPic + bannerImageQuery}}" class="slide-image"/></navigator>
+        <navigator url="{{item.linkUrl}}"><image src="https:{{item.bannerPic + bannerImageQuery}}" class="slide-image"/></navigator>
       </swiper-item>
     </block>
   </swiper>
   <!-- 商品列表 -->
-  <block wx:if="{{goodsList}}">
-    <block wx:for="{{goodsList}}" wx:key="index" class="goods-list_contain">
+  <view wx:if="{{goodsList}}"  class="goods-list_contain">
+    <block wx:for="{{goodsList}}" wx:key="index">
       <navigator url="/pages/goodsDetail/goodsDetail?productId={{item.displayId}}" class="goods-single_contain" wx:if="{{item.displayType === 1}}">
         <view class="goods-single_img" ><image src="https:{{item.mainPic + imageQuery}}" /></view>
         <view class="goods-single_content">
@@ -38,7 +38,7 @@
         <text>玩命的加载中...</text></view>
       <view class="tips-load-all" wx:else><text>我也是有底线的</text></view>
     </view>
-  </block>
+  </view>
   <!-- 商品列表空状态页面 -->
   <block wx:if="{{isEmptyList}}">
     <view class="hmg-es">
@@ -53,7 +53,7 @@
   <view class="popup-layer" bindtap="hideAsideFn"></view>
   <view class="plm-body">
     <view class="plmb-header">
-      <view class="plmbh-img" bindtap="login"><image src="{{userInfo.avatarUrl || '/images/my.png'}}"></image></view>
+      <view class="plmbh-img" bindtap="login"><image src="{{userInfo.avatarUrl || '/images/tourist.png'}}"></image></view>
       <text class="plmbh-name">{{userInfo.nickName || '请登录'}}</text>
     </view>
     <view class="plmb-order plmb-list">

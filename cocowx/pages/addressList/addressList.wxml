@@ -35,7 +35,7 @@
 </view>
 <!-- 底部 -->
 <view class="al-footer footer">
-  <navigator open-type="navigate" url="../addAddress/addAddress"><button class="dbg-color">+<text>新增地址</text></button></navigator>
+  <navigator url="/pages/addAddress/addAddress"><button class="dbg-color">+<text>新增地址</text></button></navigator>
 </view>
 
 

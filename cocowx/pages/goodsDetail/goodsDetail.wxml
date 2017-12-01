@@ -12,7 +12,7 @@
     <swiper indicator-dots="{{indicatorDots}}" circular="circular" class="gd-banner">
       <block wx:for="{{goodsDetailInfo.imageList}}" wx:key="">
         <swiper-item>
-          <image lazy-load mode="widthFix" src="{{protocol + item.imagePath + '/' + item.imageName + item.imageType + imgQuery}}" class="slide-image"/>
+          <image mode="widthFix" src="{{protocol + item.imagePath + '/' + item.imageName + item.imageType + imgQuery}}" class="slide-image"/>
         </swiper-item>
       </block>
     </swiper>

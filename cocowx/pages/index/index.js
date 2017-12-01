@@ -8,7 +8,7 @@ Page({
     hidden: true,
     // banner
     bannerList: null, // banner列表
-    bannerImageQuery: '?x-oss-process=image/resize,m_fill,w_375,h_190,q_60', // 图片服务器banner图片截取参数
+    bannerImageQuery: '', // 图片服务器banner图片截取参数 ?x-oss-process=image/resize,m_fill,w_375,h_190,q_60
     indicatorDots: true, // swiper组件参数
     circular: true, // swiper组件参数
     indicatorColor: app.globalData.swiperCurColor, // swiper圆点颜色
@@ -16,7 +16,7 @@ Page({
     // 商品列表
     goodsList: null, // 商品列表
     isEmptyList: null, // 商品列表为空--空状态页面
-    imageQuery: '?x-oss-process=image/resize,m_fill,w_300,h_300,q_60', // 图片服务器商品列表图片截取参数
+    imageQuery: '', // 图片服务器商品列表图片截取参数 ?x-oss-process=image/resize,m_fill,w_300,h_300,q_60
     // 滚动加载参数
     scrollEleHeight: '', // 滚动元素的高度
     scrollTop: 0, // 滚动元素的滚动高度
