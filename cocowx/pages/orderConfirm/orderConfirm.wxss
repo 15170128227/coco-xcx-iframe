@@ -141,7 +141,7 @@
 }
 .oa-address .oaa-info image {
   position: absolute;
-  top: 50rpx;
+  top: 48rpx;
   left: 0;
 }
 page {

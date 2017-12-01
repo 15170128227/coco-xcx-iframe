@@ -474,7 +474,7 @@ Page({
           content: '请选择' + this.data.goodsNormList.normFirst,
           showCancel: false
         })
-        this.data.disabled.submit = true
+        this.data.disabled.submit = false
         this.setData({
           disabled: this.data.disabled
         })
@@ -485,7 +485,7 @@ Page({
           content: '请选择' + this.data.goodsNormList.normSecond,
           showCancel: false
         })
-        this.data.disabled.submit = true
+        this.data.disabled.submit = false
         this.setData({
           disabled: this.data.disabled
         })
@@ -515,7 +515,7 @@ Page({
           url: `/pages/orderConfirm/orderConfirm`,
           success: res => {
             this.closeModal() // 关闭弹窗
-            this.data.disabled.submit = true
+            this.data.disabled.submit = false
             this.setData({
               disabled: this.data.disabled
             })

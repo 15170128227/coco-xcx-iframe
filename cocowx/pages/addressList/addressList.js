@@ -81,13 +81,12 @@ Page({
         telNumber: telNumber,
         address: address
       }
-      // 写入选中的地址信息,方便订单确认更新收货地址
-      wx.setStorage({
-        key: 'notWxCurAddress',
-        data: addressInfo
-      })
-      wx.navigateTo({
-        url: '/pages/orderConfirm/orderConfirm'
+      try {
+        wx.setStorageSync('notWxCurAddress', addressInfo) // 写入选中的地址信息,方便订单确认更新收货地址
+        wx.setStorageSync('refreshCurAdds', true)
+      } catch(e) {}
+      wx.navigateBack({ // 返回订单确认页
+        delta: 1
       })
     }
   },
@@ -168,9 +167,9 @@ Page({
   // 点击隐藏删除弹窗
   hideTipModal (e) {
     console.log('e', e)
-      this.setData({
-        tipPosition: ``
-      })
+    this.setData({
+      tipPosition: ``
+    })
   },
   // 长按删除弹窗
   delModal (e) {

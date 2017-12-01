@@ -235,11 +235,11 @@ page {
 }
 .ad-main .adm-banner {
   overflow: hidden;
-  height: 380rpx;
+  height: 328rpx;
 }
 .ad-main .adm-banner image {
   width: 100%;
-  height: 380rpx;
+  height: 328rpx;
 }
 .ad-main .adm-title {
   padding: 30rpx 24rpx;

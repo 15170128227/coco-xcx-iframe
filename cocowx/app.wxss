@@ -47,8 +47,10 @@ input[disabled] {
   padding: 0 24rpx;
 }
 .tips-contain {
+  padding: 10rpx 0;
   font-size: 24rpx;
   text-align: center;
+  background-color: #f1f1f1;
 }
 .tips-contain.pos-page {
   position: absolute;
@@ -63,10 +65,6 @@ input[disabled] {
   align-items: center;
   align-self: center;
   justify-content: center;
-}
-.tips-load-all {
-  padding: 10rpx 0;
-  background-color: #f1f1f1;
 }
 .flex-col-1 {
   flex: 1;

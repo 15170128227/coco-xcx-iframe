@@ -1,21 +1,26 @@
 page {
   background-color: #f1f1f1;
   height: 100vh;
+  font-family: 'Microsoft Yahei';
 }
 .banner_contain {
-  height: 380rpx;
-  margin-bottom: 10rpx;
+  height: 328rpx;
 }
 .banner_contain image {
   width: 100%;
-  height: 380rpx;
+  height: 328rpx;
+}
+.goods-list_contain {
+  background-color: #fff;
 }
 .goods-single_contain {
   display: flex;
   box-sizing: border-box;
   padding: 10rpx 24rpx;
   border-bottom: 1rpx solid #f1f1f1;
-  background-color: #fff;
+}
+.goods-single_contain:first-child {
+  padding-top: 24rpx;
 }
 .goods-single_img {
   width: 274rpx;
@@ -147,7 +152,7 @@ page {
 .person-list-aside .plm-body .plmb-header .plmbh-img image {
   width: 98rpx;
   height: 98rpx;
-  background-color: #afafaf;
+  background-color: #bfbcbc;
 }
 .person-list-aside .plm-body .plmb-header .plmbh-name {
   width: 184rpx;
@@ -160,6 +165,9 @@ page {
 }
 .person-list-aside .plm-body .plmb-list {
   padding: 0 48rpx;
+}
+.person-list-aside .plm-body .plmb-list button {
+  padding: 0;
 }
 .person-list-aside .plm-body .plmb-list.plmb-order {
   padding-bottom: 13rpx;
@@ -183,6 +191,7 @@ page {
 .person-list-aside .plm-body .plmb-list .plmbo-single .plmbs-icon {
   display: flex;
   align-items: center;
+  justify-content: center;
   width: 60rpx;
 }
 .person-list-aside .plm-body .plmb-list .plmbo-single .plmbos-tip {
@@ -225,7 +234,4 @@ page {
 .person-list-aside .plm-body .plmb-list .plmbo-single .icon-address-manage {
   width: 28rpx;
   height: 34rpx;
-}
-.person-list-aside .plm-body .plmb-list .plmbo-single image {
-  margin-right: 20rpx;
 }

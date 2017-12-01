@@ -29,6 +29,17 @@ Page({
     this.init()
     app.statistics({url: 'orderConfirm', cUrlName: '订单确认'}) // 统计
   },
+  onShow () {
+    let that = this
+    wx.getStorage({
+      key: 'refreshCurAdds',
+      success(res) {
+        console.log('refreshCurAdds')
+        if (res.data) that.getAddressInfo() // 刷新当前地址
+        wx.removeStorageSync('refreshCurAdds')
+      }
+    })
+  },
   // 初始化
   init () {
     this.getSysInfo()
@@ -57,9 +68,9 @@ Page({
   getAddressInfo () {
     let that = this
     wx.getSetting({
-      success (res) { // 成功获取用户所有授权状态scope
+      success(res) { // 成功获取用户所有授权状态scope
         let addressBarState = that.data.addressBarState = res.authSetting['scope.address']
-        console.log('addressBarState', addressBarState)
+        console.log('addressBarState111', addressBarState)
         if (addressBarState === undefined) { // 微信地址授权(未允许|未拒绝)
           that.data.addressInfo.isFirst= true // 新增
         } else if (addressBarState === true) { // 微信地址授权
@@ -76,7 +87,7 @@ Page({
           }
         } else if (addressBarState === false){ // 微信地址未授权
           let notWxCurAddress = wx.getStorageSync('notWxCurAddress') // 非微信下的当前地址
-          wx.removeStorage('notWxCurAddress') // 异步移除缓存
+          wx.removeStorageSync('notWxCurAddress') // 异步移除缓存
           if (notWxCurAddress) { // 地址列表某个地址选中后的跳转/新增地址保存的跳转
             that.data.addressInfo.isFirst = false // 显示地址信息
             that.data.addressInfo.userName = notWxCurAddress.userName // 收货人姓名

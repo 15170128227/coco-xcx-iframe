@@ -5,19 +5,21 @@ $listImgWid = 274rpx
 page 
   background-color: $pageBg
   height: 100vh
+  font-family: 'Microsoft Yahei'
 .banner_contain 
   height: $bannerHei
-  margin-bottom: 10rpx
   image 
     width: $width100
     height: $bannerHei
-  
+.goods-list_contain
+  background-color: $white
 .goods-single_contain 
   display: flex
   box-sizing: border-box
   padding: 10rpx $paddingPage 
   border-bottom: 1rpx solid $borderColorBase
-  background-color: $white
+  &:first-child
+    padding-top: $paddingPage
 .goods-single_img  
   width: $listImgWid
   height: $listImgWid
@@ -131,7 +133,7 @@ page
         image 
           width: 98rpx
           height: 98rpx
-          background-color: $borderColorGrayT1
+          background-color: $headPorBg
       .plmbh-name 
         width: 430rpx - 44rpx - 64rpx - 40rpx - 98rpx
         font-size: $fontSize32
@@ -139,6 +141,8 @@ page
     
     .plmb-list 
       padding: 0 48rpx
+      button 
+        padding 0
       &.plmb-order
         padding-bottom 13rpx
       &.plmb-other 
@@ -157,6 +161,7 @@ page
         .plmbs-icon
           display: flex
           align-items: center
+          justify-content: center
           width: 60rpx
         .plmbos-tip 
           position: absolute
@@ -192,8 +197,6 @@ page
         .icon-address-manage 
           width: 28rpx
           height: 34rpx
-        image 
-          margin-right: 20rpx
         
       
 

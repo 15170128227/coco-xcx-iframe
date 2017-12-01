@@ -12,10 +12,14 @@
         <text>运费 <text class="minorColor">（新、藏、港澳台等地不包邮）</text></text>
         <text>¥0</text>
       </view>
-      <view class="order-remarks">
-        <text>备注:</text>
-        <view>{{orderInfo.buyerMessage}}</view>
+      <view class="order-remarks olmo-remrks">
+        <text class="or-name">备注:</text>
+        <view class="olmor-text">{{orderInfo.buyerMessage}}</view>
       </view>
+      <!-- <view class="order-remarks">
+        <text class="or-name">备注:</text>
+        <textarea placeholder="给商家的留言(45字以内）" placeholder-class="minorColor textarea-style" style="top:{{rextareaTop}}rpx" placeholder-style="" bindinput="updateRemarks" value="{{remarks}}" maxlength="45" />
+      </view> -->
     </view>
     <!-- 订单状态 -->
     <view class="olm-status">
