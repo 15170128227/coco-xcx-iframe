@@ -1,5 +1,4 @@
 <!--index.wxml-->
-
 <!--<view scroll-y style="height: {{scrollEleHeight}}px" lower-threshold="150" bindscrolltolower="loadMore" scroll-into-view="{{toView}}">-->
 <view class="home-main">
   <!-- 首页banner -->
