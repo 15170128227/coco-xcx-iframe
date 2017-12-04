@@ -7,26 +7,21 @@ const common = require('./common'); // 公共函数
  * @param  {String} api    api 根地址
  * @param  {Objece} params 参数
  */
-const request = function (method, urls, param) {
+const request = function (method, url, param) {
   'use strict'
-  let url = '';
-  let methods = method.toLowerCase();
-  let params
+  method = method.toLowerCase();
   // if (methods !== 'get' || methods !== 'post') return
-  if (methods === 'get') {
-    params = common.serialize(param);
-    params = params ? '?' + params : ''
-    // url = `$(urls)/?$(params)`
-    url = urls + params;
-  } else {
-    url = urls;
+  if (method === 'get') {
+    param = common.serialize(param);
+    param = param ? '?' + param : ''
+    url = url + param;
   }
   return new Promise((resolve, reject) => {
     let appEncrypt = wx.getStorageSync('appEncrypt')
     wx.request({
       url: url,
       method: method,
-      data: methods === 'get' ? {} : Object.assign({}, param),
+      data: method === 'get' ? {} : Object.assign({}, param),
       header: {
         'appEncrypt': appEncrypt, // 小程序新增请求头
         // 'x-auth-token': '1130c789-8005-4539-9a51-0af51b068d57', // 原接口请求必须（小程序后期需删掉）
@@ -38,4 +33,42 @@ const request = function (method, urls, param) {
   })
 } 
 
-module.exports = { request }
+// reWrite
+const base = ({url, method, data, header}) => {
+  return new Promise((resolve, reject) => {
+    let appEncrypt = wx.getStorageSync('appEncrypt')
+    wx.request({
+      url: url,
+      method: method,
+      data: data,
+      header: Object.assign({
+        'appEncrypt': appEncrypt // 小程序新增请求头
+      }, header),
+      success: resolve, // Promose 的resolve方法
+      fail: reject // Promose 的reject方法
+    })
+  })
+}
+const get = function (url, param) {
+  'use strict'
+  param = common.serialize(param) ? '?' + common.serialize(param) : ''
+  url = url + param
+  return base({
+    url: url ,
+    method: 'get',
+    data: {}
+  })
+} 
+const post = function (url, param) {
+  'use strict'
+  return base({
+    url: url ,
+    method: 'post',
+    data: param,
+    header: {
+      'Content-Type': 'application/json;charset=utf-8' // 定义公共请求头 Content-Type
+    }
+  })
+} 
+
+module.exports = { request, get, post}
