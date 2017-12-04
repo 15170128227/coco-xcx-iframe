@@ -2,8 +2,8 @@
  * 接口对象 api.js
  * 
 */
-const xcxBaseApi = 'https://www.cocosurprise.com/tsh-api'; // 正式 appEncrypt=bGpNUHA5MTNkWGYzMWJBNWcxMjQ4  bGpNUHA5MTNkWGYzMWJBNWcxMjQ5
-const xcxBaseApi5 = 'https://www.stage.cocosurprise.com/tsh-api'; // 预发布 appEncrypt=bGpNUHA5MTNkWGYzMWJBNWcxMjI5
+const xcxBaseApi5 = 'https://www.cocosurprise.com/tsh-api'; // 正式 appEncrypt=bGpNUHA5MTNkWGYzMWJBNWcxMjQ4  bGpNUHA5MTNkWGYzMWJBNWcxMjQ5
+const xcxBaseApi = 'https://www.stage.cocosurprise.com/tsh-api'; // 预发布 appEncrypt=bGpNUHA5MTNkWGYzMWJBNWcxMjI5
 const baseApi = 'https://www.test.cocosurprise.com/tsh-api'; // 测试 appEncrypt=bGpNUHA5MTNkWGYzMWJBNWcxMjM0
 const xcxBaseApi3 = 'https://www.test.cocosurprise.com/tsh-api'; // 测试 appEncrypt=bGpNUHA5MTNkWGYzMWJBNWcxMjM0
 const baseApi5 = 'http://192.168.1.180:8005/tsh-api'; // 测试

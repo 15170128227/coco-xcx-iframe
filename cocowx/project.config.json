@@ -27,14 +27,14 @@
 					"id": 0,
 					"name": "首页",
 					"pathName": "pages/index/index",
-					"query": "",
+					"query": "appEncrypt=bGpNUHA5MTNkWGYzMWJBNWcxMjI5",
 					"scene": "1001"
 				},
 				{
 					"id": 1,
 					"name": "商品详情",
 					"pathName": "pages/goodsDetail/goodsDetail",
-					"query": "appEncrypt=bGpNUHA5MTNkWGYzMWJBNWcxMjI5&productId=364908&isOperation=1",
+					"query": "productId=370720&isOperation=1",
 					"scene": "1001"
 				},
 				{

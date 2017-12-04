@@ -1,10 +1,11 @@
 .bnq-quantity {
   display: flex;
+  justify-content: space-between;
   padding: 0 24rpx;
   background-color: #fff;
 }
 .bnq-title {
-  width: 70vw;
+  width: 60vw;
 }
 .bnq-num {
   display: flex;
@@ -423,15 +424,18 @@ page {
   color: #666;
 }
 .gdmsp-unit {
+  box-sizing: border-box;
   display: inline-block;
-  padding: 15rpx;
-  min-width: 40rpx;
-  margin-right: 14rpx;
-  margin-bottom: 14rpx;
+  padding: 16rpx;
+  min-width: 76rpx;
+  height: 68rpx;
+  margin-right: 16rpx;
+  margin-bottom: 16rpx;
   text-align: center;
   border: 1rpx solid #afafaf;
   border-radius: 6rpx;
   font-size: 24rpx;
+  line-height: -84rpx;
   color: #333;
 }
 .gdmsp-unit.disabled {

@@ -151,15 +151,18 @@ page
     color: $tct666
 
 .gdmsp-unit 
+  box-sizing: border-box
   display: inline-block
-  padding: 15rpx
-  min-width: 40rpx
-  margin-right: 14rpx
-  margin-bottom: 14rpx
+  padding: 16rpx
+  min-width: 76rpx
+  height: 68rpx
+  margin-right: 16rpx
+  margin-bottom: 16rpx
   text-align: center
   border: 1rpx solid $borderColorGrayT1
   border-radius: $radiusBase
   font-size: $fontSize24
+  line-height: @height - @min-width * 2
   color: #333
   &.disabled 
     border: 1rpx dashed $borderColorGrayT1
