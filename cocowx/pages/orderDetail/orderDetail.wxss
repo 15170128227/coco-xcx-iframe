@@ -67,7 +67,7 @@
 }
 .oa-address .oaa-info {
   position: relative;
-  padding-left: 30rpx;
+  padding: 0 30rpx;
 }
 .oa-address .oaa-info .oaai-person {
   margin-bottom: 5rpx;

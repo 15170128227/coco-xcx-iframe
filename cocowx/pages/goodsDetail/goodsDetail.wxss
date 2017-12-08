@@ -287,31 +287,41 @@ page {
   padding-bottom: 100rpx;
   font-size: 28rpx;
   background-color: #fff;
+/* 标题|价格 */
 }
 .gd-main image {
   display: block;
   width: 100% !important;
 }
 .gd-main .gdm-content {
+  padding-top: 30rpx;
   background-color: #fff;
-/* 标题|价格 */
 }
 .gd-main .gdm-content view {
   overflow: hidden;
-  line-height: 44rpx;
+  font-size: 16px !important;
+  line-height: 48rpx;
 }
-.gd-main .gdm-content .gd-title,
-.gd-main .gdm-content .gd-price {
+.gd-main .gdm-content image {
+  margin-bottom: 16rpx;
+}
+.gd-main .gd-title,
+.gd-main .gd-price {
   font-weight: bold;
   font-size: 40rpx;
 }
-.gd-main .gdm-content .gd-title {
-  padding: 30rpx 0 20rpx 0;
-  line-height: 52rpx;
+.gd-main .gd-title {
+  margin: 30rpx 0 20rpx 0;
+  line-height: 56rpx;
   font-weight: bold;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
-.gd-main .gdm-content .gd-price {
-  margin-bottom: 30rpx;
+.gd-main .gd-price {
+  padding-bottom: 24rpx;
   border-bottom: 1rpx solid #f1f1f1;
 }
 .gdm-close {
@@ -527,7 +537,7 @@ page {
 .gd-cs .gdfc-unit .icon-share {
   top: 24rpx;
   width: 32rpx;
-  height: 38rpx;
+  height: 37rpx;
 }
 .gd-cs .gdfc-smile::after {
   content: ' ';

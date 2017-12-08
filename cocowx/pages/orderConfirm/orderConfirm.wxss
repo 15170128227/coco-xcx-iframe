@@ -1,10 +1,11 @@
 .bnq-quantity {
   display: flex;
+  justify-content: space-between;
   padding: 0 24rpx;
   background-color: #fff;
 }
 .bnq-title {
-  width: 70vw;
+  width: 60vw;
 }
 .bnq-num {
   display: flex;
@@ -112,7 +113,7 @@
 }
 .oa-address .oaa-info {
   position: relative;
-  padding-left: 30rpx;
+  padding: 0 30rpx;
 }
 .oa-address .oaa-info .oaai-person {
   margin-bottom: 5rpx;
@@ -157,7 +158,9 @@ page {
   border-bottom: 1rpx solid #f1f1f1;
 }
 .oc-footer {
+  width: 100%;
   box-sizing: border-box;
+  justify-content: space-between;
   color: #666;
 }
 .ocf-text {

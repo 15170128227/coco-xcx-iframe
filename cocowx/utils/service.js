@@ -64,7 +64,7 @@ export const bannerList = () => get(api.queryMainList) // banner列表
  * params pageSize String 必须 每页数量
  * return get(api.queryList, {pageNo, pageSize}) Promise Function
 */
-export const goodsList = (pageNo = '1', pageSize = '10') => get(api.queryList, {pageNo, pageSize}) // 商品列表
+export const goodsList = (pageNo = '1', pageSize = '20') => get(api.queryList, {pageNo, pageSize}) // 商品列表
 
 /*************************************************************  商品详情  *************************************************************/ 
 /**
@@ -147,7 +147,7 @@ export const createdAndPayOrder = params => post(api.createdAndPayOrder, params)
  * return get(api.orderList, {buyerId, orderStatus})  Promise Function
  * result data Array|null|'' (空值待定)
 */
-export const orderList = ({buyerId, orderStatus, pageNo = '1', pageSize = '20', hasNextPage = true}) => get(api.orderList, {buyerId, orderStatus, pageNo, pageSize, hasNextPage}) // 订单列表
+export const orderList = ({buyerId, orderStatus, pageNo = '1', pageSize = '10', hasNextPage = true}) => get(api.orderList, {buyerId, orderStatus, pageNo, pageSize, hasNextPage}) // 订单列表
 
 /**
  * 订单详情
@@ -268,3 +268,4 @@ export const updateAddress = params => post(api.updateAddress, params)
  * result data null|'' (空值待定)
 */
 export const deleteAddress = id => post(api.deleteAddress, {id}) // 地址删除
+                                                                                                                                            

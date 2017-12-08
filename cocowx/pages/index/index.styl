@@ -5,7 +5,6 @@ $listImgWid = 274rpx
 page 
   background-color: $pageBg
   height: 100vh
-  font-family: 'Microsoft Yahei'
 .banner_contain 
   height: $bannerHei
   image 
@@ -16,8 +15,7 @@ page
 .goods-single_contain 
   display: flex
   box-sizing: border-box
-  padding: 10rpx $paddingPage 
-  border-bottom: 1rpx solid $borderColorBase
+  padding: 10rpx 0 10rpx $paddingPage 
   &:first-child
     padding-top: $paddingPage
 .goods-single_img  
@@ -35,31 +33,39 @@ page
   box-sizing: border-box
   position: relative
   width: 750rpx - $paddingPage * 2 - $listImgWid
-  padding-left: 26rpx
+  margin-left: 26rpx
+  padding-right: $paddingPage
+  // border-bottom: 1rpx solid $borderColorBase
+  &::after
+    content: ' '
+    position: absolute
+    bottom: -12rpx
+    width: 100%
+    height: 2rpx
+    transform: scaleY(.5)
+    background-color: $borderColorBase
 
 .gsc-quot 
-  width: 29rpx
-  height: 24rpx
-  margin-top: 36rpx
+  width: 38rpx
+  height: 26rpx
+  margin: 42rpx 0 0 10rpx
 
 .goods-single_content__title 
-  margin-top: 30rpx
+  margin-top: 20rpx
   textOverflowEs(2)
   font-size: $fontSize32
-  line-height: 44rpx
+  line-height: 40rpx
   font-weight: bold
-  color: $black
-  color: $black
+  color: $textDefaultColor
   &.gsct-activity
     font-size: $fontSize36
   &.gsc-title12 
-    margin-top: 10rpx
+    margin-top: 22rpx
 
 .goods-single_content__text 
   textOverflowEs(2)
-  padding-top: 16rpx
+  padding-top: 14rpx
   font-size: $fontSize28
-  letter-spacing: 1px
   color: $textGrayColor
 
 .goods-smile 
@@ -67,8 +73,8 @@ page
   justify-content: flex-end
   align-items: center
   position: absolute
-  bottom: 10rpx
-  right: 12rpx
+  bottom: 16rpx
+  right: 24rpx
   width: 100%
   height: 38rpx
   font-size: $fontSize24
@@ -79,10 +85,10 @@ page
   image 
     position: absolute
     top: 50%
-    left: -36rpx
-    transform: translateY(-50%)
-    width: 32rpx
-    height: 32rpx
+    left: -38rpx
+    width: 34rpx
+    height: 34rpx
+    transform: translateY(-(@height/2 + 1rpx))
     margin-right: 8rpx
 
 .hmg-es
@@ -102,6 +108,7 @@ page
   height: 100rpx
   border-radius: 100%
   z-index 2
+  opacity: .98
   image 
     width: 100rpx
     height: 100rpx
@@ -200,7 +207,24 @@ page
         .icon-address-manage 
           width: 28rpx
           height: 34rpx
-        
+.pdr-text
+  display: flex
+  justify-content: center
+  align-items: center
+  position: fixed
+  top: 10rpx
+  left: 50%
+  transform: translateX(-50%)
+  z-index: 2
+  width: 352rpx
+  height: 48rpx
+  border-radius: @height
+  font-size: $fontSize24
+  text-align: center
+  color: $white
+  background-color: $defaultColor
+  animation: fadeIn 1s
+
       
 
     

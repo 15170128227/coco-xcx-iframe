@@ -55,20 +55,14 @@ function wxParse(bindName = 'wxParseData', type='html', data='<div class="color:
 var isPreviewImg = true;
 // a标签跳转（小程序内部跳转）
 function wxParseTagATap (e) {
-  console.log('isPreviewImg5555')
   let url = e.currentTarget.dataset.src
   let query = wx.createSelectorQuery()
   let image = query.select('image')
-  console.log('image', image)
   if (image) isPreviewImg = false
-  console.log('isPreviewImg111', isPreviewImg)
-  
   wx.navigateTo({
     url: url,
     success () {
-  console.log('isPreviewImg333', isPreviewImg)
       isPreviewImg = true
-  console.log('isPreviewImg4444', isPreviewImg)
     }
   })
 }
@@ -77,9 +71,7 @@ function wxParseImgTap(e) {
   var that = this;
   var nowImgUrl = e.target.dataset.src;
   var tagFrom = e.target.dataset.from;
-  console.log('tagFrom',tagFrom)
   if (typeof (tagFrom) != 'undefined' && tagFrom.length > 0) {
-    console.log('isPreviewImg222', isPreviewImg)
     if (!isPreviewImg) return
     wx.previewImage({
       current: nowImgUrl, // 当前显示图片的http链接

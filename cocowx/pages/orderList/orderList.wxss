@@ -137,6 +137,9 @@ page {
   margin-bottom: 14rpx;
   background-color: #fff;
 }
+.order-list-main .olm-list .olml-unit .olml-single:last-child {
+  margin-bottom: 0;
+}
 .order-list-main .olm-list .olml-unit .olml-single .olmls-footer {
   display: flex;
   justify-content: space-between;

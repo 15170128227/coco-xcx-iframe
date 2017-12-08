@@ -200,13 +200,12 @@ Page({
               telNumber: telNumber,
               address: address
             }
-            // 写入选中的地址信息,方便订单确认更新收货地址
-            wx.setStorage({
-              key: 'notWxCurAddress',
-              data: addressInfo
-            })
-            wx.redirectTo({
-              url: '/pages/orderConfirm/orderConfirm',
+            try {
+              wx.setStorageSync('notWxCurAddress', addressInfo) // 写入选中的地址信息,方便订单确认更新收货地址
+              wx.setStorageSync('refreshCurAdds', true)
+            } catch(e) {}
+            wx.navigateBack({ // 返回订单确认页
+              delta: 1
             })
           } else { // 前路由是地址列表页，保存后返回地址列表页
             wx.setStorage({

@@ -28,7 +28,18 @@ const request = function (method, url, param) {
         'Content-Type': 'application/json;charset=utf-8' // 定义公共请求头 Content-Type
       },
       success: resolve, // Promose 的resolve方法
-      fail: reject // Promose 的reject方法
+      fail: function () {
+        wx.showModal({
+          content: '网络超时！',
+          showCancel: false,
+          success () {
+            wx.reLaunch({
+              url: `/pages/index/index?appEncrypt=${appEncrypt}`
+            })
+          }
+        })
+        reject()
+      } // Promose 的reject方法
     })
   })
 } 

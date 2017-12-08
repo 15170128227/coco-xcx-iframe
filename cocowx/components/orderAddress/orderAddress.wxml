@@ -7,7 +7,7 @@
     </view>
     <view class="oaa-info oaa-unit" wx:else>
       <view class="oaai-person">
-        收件人： <text>{{data.userName}}</text><text class="oaai-phone">{{data.telNumber}}</text><text class="oaai-state" wx:if="{{true}}">默认</text>
+        <text>收件人：</text><text>{{data.userName}}</text><text class="oaai-phone">{{data.telNumber}}</text><text class="oaai-state" wx:if="{{true}}">默认</text>
       </view>
       <view class="oaai-icon">
         <image class="icon-address-little" src="../../images/address.png"></image>

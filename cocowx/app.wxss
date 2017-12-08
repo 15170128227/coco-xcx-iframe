@@ -26,6 +26,7 @@
   color: #2caef8;
 }
 page {
+  font-family: 'Microsoft Yahei';
   font-size: 28rpx;
   line-height: 38rpx;
   color: #333;
@@ -47,7 +48,6 @@ input[disabled] {
   padding: 0 24rpx;
 }
 .tips-contain {
-  padding: 10rpx 0;
   font-size: 24rpx;
   text-align: center;
   background-color: #f1f1f1;
@@ -61,10 +61,17 @@ input[disabled] {
 }
 .tips-loading {
   display: flex;
-  flex-direction: row;
   align-items: center;
-  align-self: center;
   justify-content: center;
+}
+.tips-loading .icon-loading {
+  width: 44rpx;
+  height: 44rpx;
+  padding: 12rpx 0;
+  margin-right: 6rpx;
+}
+.tips-load-all {
+  padding: 12rpx 0;
 }
 .flex-col-1 {
   flex: 1;

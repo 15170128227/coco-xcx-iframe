@@ -13,9 +13,11 @@ Page({
     buyBtnTextArr: ['去购买', '已售罄', ''], // 去购买按钮文本状态
     skuList: null, // skuList列表
     protocol: 'https:', // app.globalData.protocol
-    imgQuery: '', // banner图自图片服务器裁切参数 ?x-oss-process=image/resize,m_fill,w_375,h_250,q_60
+    imgQuery: '?x-oss-process=image/resize,m_fill,w_600,h_600,q_60', // banner图自图片服务器裁切参数 ?x-oss-process=image/resize,m_fill,w_375,h_250,q_60
     indicatorDots: true, // swiper组件参数
     circular: true, // swiper组件参数
+    indicatorColor: app.globalData.swiperCurColor, // swiper圆点颜色
+    indicatorActiveColor: app.globalData.swiperCurActiveColor, // swiper圆点选中的颜色
     // 按钮禁用状态
     disabled: {
       buy: true, // 去购买btn状态
@@ -34,7 +36,8 @@ Page({
     limitNum: null, // 当前商品的限购数
     limitTextShow: '', // 当前商品限购书文本
     // bar
-    smileActive: false
+    smileActive: false,
+    bannerPreviewImgs: [] // banner栏预览图片数组
   },
   // 生命周期函数--监听页面初始化加载
   onLoad (options) {
@@ -87,6 +90,13 @@ Page({
       goodsDetailInfo: that.data.goodsDetailInfo
     })
   },
+  previewImg (e) {
+    let src = e.target.dataset.src
+    wx.previewImage({
+      current: src, // 当前显示图片的http链接
+      urls: this.data.bannerPreviewImgs // 需要预览的图片http链接列表
+    })
+  },
   // 获取商品详情信息
   getGoodsDetailInfo (productId) {
     var that = this; // 保存this指针到that变量，方便之后指针改变调用
@@ -94,6 +104,12 @@ Page({
     // 商品详情接口
     app.http.request('GET', app.api.goodsDetail, { productId: productId}).then(({data: {code, message, data}}) => {
       if (code === '200' && message === '0101' && data) {
+        wx.setNavigationBarTitle({ // 动态设置标题
+          title: data.productName
+        })
+        data.imageList.forEach(o => {
+          this.data.bannerPreviewImgs.push(this.data.protocol + o.imagePath + '/' + o.imageName + o.imageType + this.data.imgQuery) // 需要预览的banner图片添加到预览图数组
+        })
         let article = decodeURIComponent(data.productDesc).replace(/%20/g, ' ').replace(/<style[^>]*>[^<]*<\/style>/i, '') // 替换掉代码中style样式
         let butBtnDisabled = null // 购买按钮禁用状态
         if (data.buyFlag === 0 && data.recentlyBuyTime === null) { // 已售罄
@@ -158,7 +174,7 @@ Page({
         // 记录首页列表刷新态，返回刷新列表
         wx.setStorage({
           key: 'fromGoodsDetailRrefsh',
-          data: true
+          data: that.data.productId
         })
       }
     })
@@ -169,7 +185,6 @@ Page({
     /* this.setData({
       disabled: this.data.disabled
     }) */
-    console.log('skuCode',skuCode)
     app.http.request('GET', app.api.goodsStock, { skuCode: skuCode}).then(({data: {code, message, data}}) => {
       if (code === '200' && message === '0101' && data) {
         let mainPic = ''
@@ -221,62 +236,79 @@ Page({
     let skuList = this.data.skuList // 此商品的全部skuList列表
     let text = e.target.dataset.value // 当前选中元素的文本
     if (normFirstSelect === text) { // 当前元素处于选中状态点击则取消点击状态
+      // 第一类
       normFirstList.forEach(o => {
-        o.state = 'default'
+        if (o.text === text) o.state = 'default'
       })
       this.data.goodsNormList.normFirstList = normFirstList
       this.data.goodsNormList.normFirstSelect = '' // 清空第一类规格列表选中状态
+      // 第二类
+      normSecondList.forEach(o => {
+        if (o.state === 'disabled') {
+          o.state = 'default'
+        }
+      })
+      this.data.goodsNormList.normSecondList = normSecondList
       this.setData({
         goodsNormList: this.data.goodsNormList
       })
       return
-    } else {
+    } else { // 禁用状态禁止事件往后执行
       let state = e.currentTarget.dataset.state
       if (state === 'disabled') return
     }
-    // 当前元素非选中状态
+    // 当前元素处于非选中状态
     normFirstList.forEach(o => {
       if (text === o.text) {
-        o.state = 'active'
-        this.data.goodsNormList.normFirstSelect = normFirstSelect = text
-      } else {
-        o.state = 'default'
+        o.state = 'active' // 设置当前元素选中样式
+        this.data.goodsNormList.normFirstSelect = normFirstSelect = text // 记录元素选中的值+状态
+      } else { // 非当前点击元素
+        if (o.state === 'active') o.state = 'default' // 非当前点击元素中处于激活样式active的还原默认default样式
       }
     })
-    this.data.goodsNormList.normFirstList = normFirstList
+    this.data.goodsNormList.normFirstList = normFirstList // 更新第一类规格列表
 
-    if (!normSecondSelect && normSecond) { // 第二类规格列表非选中状态
-      normSecondList.forEach(k => {
-        let state = skuList.some(o => {
-          if (o.skuAttributeValue1 === text && o.skuAttributeValue2 === k.text) {
-            return true
+    if (!normSecond) { // 无第二类规格
+      skuList.forEach(o => {
+        if (o.skuAttributeValue1 === normFirstSelect) { // 匹配与第一类规格选中元素的值相等的商品
+          this.data.curSkuId = o.skuId
+          this.data.curSkuCode = o.skuCode
+          this.getStockInfo(o.skuCode)
+        }
+      })
+    } else { // 第二类规格存在
+      if (normSecondSelect) { // 第二类规格存在选中元素
+        normSecondList.forEach(k => {
+          let state = skuList.some(o => {
+            if (o.skuAttributeValue1 === text && o.skuAttributeValue2 === k.text) { // 匹配skuList列表中复合第二类规格
+              return true
+            }
+          })
+          if (k.state !== 'active') k.state = state ? 'default': 'disabled'
+        })
+        skuList.forEach(o => {
+          if (o.skuAttributeValue1 === normFirstSelect && o.skuAttributeValue2 === normSecondSelect) { // 匹配与第一类第二类规格选中元素的值相等的商品
+            this.data.curSkuId = o.skuId
+            this.data.curSkuCode = o.skuCode
+            this.getStockInfo(o.skuCode)
           }
         })
-        k.state = state ? 'default': 'disabled'
-      })
-      console.log('test1', normSecondList)
-      this.data.goodsNormList.normSecondList = normSecondList
-      this.data.goodsNormList.normSecondSelect = ''
-      this.setData({
-        goodsNormList: this.data.goodsNormList
-      })
-    } else if (normSecondSelect && normSecond) { // 第二类规格列表选中状态
-      skuList.forEach(o => {
-        if (o.skuAttributeValue1 === normFirstSelect && o.skuAttributeValue2 === normSecondSelect) {
-          this.data.curSkuId = o.skuId
-          this.data.curSkuCode = o.skuCode
-          this.getStockInfo(o.skuCode)
-        }
-      })
-    } else if (!normSecond) { // 无第二类规格
-      skuList.forEach(o => {
-        if (o.skuAttributeValue1 === normFirstSelect) {
-          this.data.curSkuId = o.skuId
-          this.data.curSkuCode = o.skuCode
-          this.getStockInfo(o.skuCode)
-        }
-      })
-    }
+      } else { // 第二类规格无选中元素
+        normSecondList.forEach(k => {
+          let state = skuList.some(o => {
+            if (o.skuAttributeValue1 === text && o.skuAttributeValue2 === k.text) { // 匹配skuList列表中复合第二类规格
+              return true
+            }
+          })
+          k.state = state ? 'default': 'disabled'
+        })
+        this.data.goodsNormList.normSecondList = normSecondList
+        this.data.goodsNormList.normSecondSelect = ''
+        this.setData({
+          goodsNormList: this.data.goodsNormList
+        })
+      }
+    } 
   },
   // 第二类规格选择
   selectNormSecond (e) {
@@ -286,12 +318,26 @@ Page({
     let normSecondSelect = this.data.goodsNormList.normSecondSelect // 第二类规格元素选中状态
     let skuList = this.data.skuList // 此商品的全部skuList列表
     let text = e.target.dataset.value // 当前选中元素的文本
+    console.log('normSecondList111', normSecondSelect, text)
+    
     if (normSecondSelect === text) { // 当前元素处于选中状态点击则取消点击状态
+      // 第一类
+      console.log('normSecondList333', normSecondList)
       normSecondList.forEach(o => {
-        o.state = 'default'
+        if (o.text === text) {
+          console.log('normSecondList222', text,o.state)
+          o.state = 'default'
+        }
       })
       this.data.goodsNormList.normSecondList = normSecondList
       this.data.goodsNormList.normSecondSelect = '' // 清空第二类规格列表选中状态
+      // 第一类
+      normFirstList.forEach(o => {
+        if (o.state === 'disabled') {
+          o.state = 'default'
+        }
+      })
+      this.data.goodsNormList.normFirstList = normFirstList
       this.setData({
         goodsNormList: this.data.goodsNormList
       })
@@ -300,19 +346,20 @@ Page({
       let state = e.target.dataset.state
       if (state === 'disabled') return
     }
+
     // 当前元素非选中状态
     normSecondList.forEach(o => {
       if (text === o.text) {
         o.state = 'active'
         this.data.goodsNormList.normSecondSelect = normSecondSelect = text
       } else {
-        o.state = 'default'
+        if (o.state === 'active') o.state = 'default'
       }
     })
     this.data.goodsNormList.normSecondList = normSecondList
 
     if (!normFirstSelect) { // 第一类规格列表非选中状态
-      normFirstList.forEach(k => {
+      normFirstList.forEach((k, index) => {
         let state = skuList.some(o => {
           if (o.skuAttributeValue2 === text && o.skuAttributeValue1 === k.text) {
             return true
@@ -325,7 +372,15 @@ Page({
       this.setData({
         goodsNormList: this.data.goodsNormList
       })
-    } else { // 第二类规格列表选中状态
+    } else { // 第一类规格列表选中状态
+      normFirstList.forEach((k, index) => {
+        let state = skuList.some(o => {
+          if (o.skuAttributeValue2 === text && o.skuAttributeValue1 === k.text) {
+            return true
+          }
+        })
+        if (k.state !== 'active') k.state = state ? 'default': 'disabled'
+      })
       skuList.forEach(o => {
         if (o.skuAttributeValue1 === normFirstSelect && o.skuAttributeValue2 === normSecondSelect) {
           this.data.curSkuId = o.skuId
@@ -435,6 +490,7 @@ Page({
   },
   // 校验商品是否失效/下架
   verifyProduct (productId, cb) {
+    let that = this
     app.http.request('GET', app.api.verifyProduct, { productId: productId, skuCode: this.data.curSkuCode}).then(({ data: { code, message}}) => {
       if (code === '400' && message === '0217') {
         // this.data.productLose = true
@@ -446,10 +502,10 @@ Page({
              // 确认后返回到首页，同时刷新商品列表
              wx.setStorage({
                key: 'fromGoodsDetailRrefsh',
-               data: true,
+               data: that.data.productId,
                success() {
                 wx.navigateBack({
-                  url: '/pages/index/index'
+                  delta: 1
                 })
                }
              })

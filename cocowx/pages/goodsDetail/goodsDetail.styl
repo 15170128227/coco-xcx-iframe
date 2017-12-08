@@ -28,24 +28,29 @@ page
     width: 100%!important
     // height: 100%
   .gdm-content
+    padding-top: 30rpx
     background-color: $white
     view 
       overflow: hidden
-      line-height: 44rpx
-    /* 标题|价格 */
-    .gd-title, .gd-price 
-      font-weight: bold
-      font-size: $fontSize40
+      font-size: $fontSize32Im
+      line-height: $detailLineHei
+    image 
+      margin-bottom: 16rpx  
+  /* 标题|价格 */
+  .gd-title, .gd-price 
+    font-weight: bold
+    font-size: $fontSize40
 
-    .gd-title 
-      padding: 30rpx 0 20rpx 0
-      line-height: 52rpx
-      font-weight: bold
+  .gd-title 
+    margin: 30rpx 0 20rpx 0
+    line-height: $detTitleLineHei
+    font-weight: bold
+    textOverflowEs(2)
 
-    .gd-price 
-      // padding-bottom: 50rpx
-      margin-bottom: 30rpx
-      border-bottom: 1rpx solid $gray
+  .gd-price 
+    // padding-bottom: 50rpx
+    padding-bottom: 24rpx
+    border-bottom: 1rpx solid $gray
   
 .gdm-close 
   display: flex
@@ -247,7 +252,7 @@ page
     .icon-share 
       top: 24rpx
       width: 32rpx
-      height: 38rpx
+      height: 37rpx
   .gdfc-smile
     &::after 
       content: ' '

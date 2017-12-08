@@ -245,7 +245,7 @@ page {
   padding: 30rpx 24rpx;
   font-size: 40rpx;
   font-weight: bold;
-  line-height: 52rpx;
+  line-height: 56rpx;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
@@ -259,7 +259,11 @@ page {
 }
 .ad-main .adm-desc view {
   overflow: hidden;
-  line-height: 44rpx;
+  font-size: 16px !important;
+  line-height: 48rpx;
+}
+.ad-main .adm-desc image {
+  margin-bottom: 16rpx;
 }
 .ad-main .adm-es {
   display: flex;

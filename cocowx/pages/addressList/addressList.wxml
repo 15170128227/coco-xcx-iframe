@@ -1,7 +1,7 @@
 <!--pages/addressList/addressList.wxml-->
 <view class="al-main" style="{{pageStyle}}" wx:if="{{!isEmptyList}}" bindtap="hideTipModal">
   <!--<view class="alm-single" wx:for="{{addressList}}" animation="{{item.animationData}}" data-index="{{index}}" data-username="{{item.receiverName}}" data-telnumber="{{item.receiverMobile}}" data-address="{{item.receiverAddress}}" bindtap="backOrderConfirm" bindtouchstart="touchstart"  bindtouchmove="touchmove"  bindtouchend="touchend">l-->
-  <view class="alm-single" wx:for="{{addressList}}"
+  <view class="alm-single" wx:for="{{addressList}}" wx:key="index"
    data-index="{{index}}" data-username="{{item.receiverName}}" data-telnumber="{{item.receiverMobile}}" 
    data-address="{{item.receiverAddress}}" data-curaddressid="{{item.id}}" bindtap="backOrderConfirm" bindlongpress="delModal">
     <view class="alms-main">

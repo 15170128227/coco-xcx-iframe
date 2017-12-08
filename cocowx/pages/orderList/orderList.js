@@ -118,7 +118,6 @@ Page({
     /* wx.showLoading({
       title: '加载中',
     }) */
-    console.log('this.data.toggleOrderList',this.data.toggleOrderList,this.data.hasMore)
     if (!this.data.hasMore) return
     this.data.scrollLoadDis = false // 触发上拉加载，状态false
     if (!this.data.toggleOrderList) return

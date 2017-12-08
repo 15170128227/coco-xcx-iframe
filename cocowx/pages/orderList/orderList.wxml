@@ -47,7 +47,8 @@
     </view> -->
     <view class="tips-contain" wx:if="{{!hideTip}}">
       <view wx:if="{{hasMore && orderList}}" class="tips-loading">
-        <text>玩命的加载中...</text></view>
+        <image src="/images/loading.gif" class="icon-loading"></image>
+        <text>加载中...</text></view>
       <view class="tips-load-all" wx:else><text>我也是有底线的</text></view>
     </view>
   </view>

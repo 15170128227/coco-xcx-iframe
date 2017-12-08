@@ -6,9 +6,13 @@ const common = {};
 common.serialize = function (obj) {
   if (Object.prototype.toString.call(obj).slice(8, -1).toLowerCase() === 'object') {
     let str = '';
-    for (var k in obj) {
+    /* for (var k in obj) {
       if (obj[k].toString()) str += k + '=' + obj[k] + '&';
-    }
+    } */
+    if (!obj) return
+    Object.keys(obj).forEach(v => {
+      str += v + '=' + obj[v] + '&'
+    })
     return str.replace(/&$/g, '')
   }
 }

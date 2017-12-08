@@ -2,7 +2,6 @@
   "pages": [
     "pages/index/index",
     "pages/logs/logs",
-    "pages/demo/demo",
     "pages/goodsDetail/goodsDetail",
     "pages/orderConfirm/orderConfirm",
     "components/orderInfoList/orderInfoList",
@@ -20,5 +19,8 @@
     "navigationBarTitleText": "WeChat",
     "backgroundColor": "#f1f1f1",
     "navigationBarTextStyle": "black"
+  },
+  "networkTimeout": {
+    "request": 30000
   }
 }

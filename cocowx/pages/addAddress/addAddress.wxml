@@ -31,7 +31,7 @@
       <text class="ammh-unit ammh-confirm" bindtap="saveAddress">确认</text>
     </view>
     <view class="amm-body">
-      <view class="ammb-li" wx:for="{{currentAdsList}}" data-parId="{{item.parId}}" data-id="{{item.id}}" data-name="{{item.name}}" bindtap="selectAddress">{{item.name}}</view>
+      <view class="ammb-li" wx:for="{{currentAdsList}}" wx:key="index" data-parId="{{item.parId}}" data-id="{{item.id}}" data-name="{{item.name}}" bindtap="selectAddress">{{item.name}}</view>
     </view>
   </view>
 </view>

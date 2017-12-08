@@ -1,41 +1,49 @@
 //gulpfile.js
 //获取应用实例
+import {bannerList, goodsList}  from '../../utils/service'
+
 let app = getApp()
 let scrollTimeState = null
 Page({
   data: {
-    hasRefesh: false,
-    hidden: true,
+    isPullDownRefresh: false,
+    pullDownRefreshState: false, // 下拉刷新之后的弹出信息状态
+    pullDownRefreshText: '与品质生活不期而遇 更新10件', // '刷新失败了 换个姿势再来一次'
     // banner
     bannerList: null, // banner列表
     bannerImageQuery: '', // 图片服务器banner图片截取参数 ?x-oss-process=image/resize,m_fill,w_375,h_190,q_60
-    indicatorDots: true, // swiper组件参数
-    circular: true, // swiper组件参数
-    indicatorColor: app.globalData.swiperCurColor, // swiper圆点颜色
-    indicatorActiveColor: '#ffffff', // swiper圆点选中的颜色
+    indicatorDots: true, // swiper 是否显示面板指示点
+    autoplay: true, // swiper 自动轮播
+    circular: true, // swiper 是否采用衔接滑动
+    interval: 3000, // swiper 自动切换时间间隔
+    indicatorColor: app.globalData.swiperCurColor, // swiper 圆点颜色
+    indicatorActiveColor: app.globalData.swiperCurActiveColor, // swiper 圆点选中的颜色
     // 商品列表
     goodsList: null, // 商品列表
     isEmptyList: null, // 商品列表为空--空状态页面
-    imageQuery: '', // 图片服务器商品列表图片截取参数 ?x-oss-process=image/resize,m_fill,w_300,h_300,q_60
+    imageQuery: '?x-oss-process=image/resize,m_fill,w_275,h_275,q_60', // 图片服务器商品列表图片截取参数 ?x-oss-process=image/resize,m_fill,w_300,h_300,q_60
     // 滚动加载参数
     scrollEleHeight: '', // 滚动元素的高度
     scrollTop: 0, // 滚动元素的滚动高度
     scrollLoadDis: true, // true允许加载，false禁止加载
     timeState: null, // 定时器状态
     pageNo: 1, // 商品列表页码
-    pageSize: '10', // 商品列表每页商品数量
+    pageSize: '100', // 商品列表每页商品数量
     hasMore: true, // 是否还有下一页数据
     hideTip: false, // 列表元素总长度小于3个，隐藏底部的 我是有底线的元素 false:显示  true:隐藏
     // 个人中心列表--抽屉式列表
     showAside: false, // 个人中心显示状态 false:隐藏 true:显示
     loginState: null,
     userInfo: null, // 用户信息
-    userName:'', // 用户名
+    userName: '', // 用户名
     orderCount: null, // 订单数量
     selectState: false,
     selectStateTime: null,
     selectStateNum: 0,
-    shareTitle: '西柚集 - 让你与品质生活不期而遇'
+    shareTitle: '西柚集 - 让你与品质生活不期而遇',
+    indexTitle: '西柚集 - 精选好货',
+
+    listArr: []
   },
   //事件处理函数
   onLoad (options) {
@@ -50,17 +58,20 @@ Page({
       key: 'fromGoodsDetailRrefsh', // 商品详情|活动详情失效标识
       success (res) {
         wx.removeStorageSync('fromGoodsDetailRrefsh') // 移除当前本地存储的key:fromGoodsDetailRrefsh 避免后续其他订单详情的同类操作冲突
-        // 刷新前重置列表参数
-        that.data.goodsList = [] // 重置商品列表数据
-        that.data.pageNo = 1 // 重置页码
-        that.data.hasMore = true
-        that.data.hideTip = false
-        // 刷新列表
-        that.getGoodsList()
+        if (res.data) {
+          that.data.goodsList.forEach((o, index) => {
+            if (o.displayId === Number(res.data)) {
+              that.data.goodsList.splice(index, 1)
+            }
+          })
+          that.setData({
+            goodsList: that.data.goodsList
+          })
+        }
       } 
     })
     wx.getStorage({
-      key: 'fromGoodsDetailRrefshSmile', // 商品详情|活动详情失效标识
+      key: 'fromGoodsDetailRrefshSmile', // 商品详情|活动详情 点赞次数刷新
       success (res) {
         wx.removeStorageSync('fromGoodsDetailRrefshSmile') // 移除当前本地存储的key:fromGoodsDetailRrefsh 避免后续其他订单详情的同类操作冲突
         if (res.data) {
@@ -100,10 +111,12 @@ Page({
   },
   // 初始化
   init () {
+    let that = this
     app.statistics({url: 'home', cUrlName: '首页'}) // 统计
     app.getAppInfo(function () {
       wx.setNavigationBarTitle({ // 动态设置标题
-        title: app.globalData.appTitle
+        // title: app.globalData.appTitle
+        title: that.data.indexTitle // 
       })
     })
     // 刷新前重置列表参数
@@ -118,31 +131,31 @@ Page({
   },
   // 获取banner列表数据
   getBannerList () {
-    app.http.request('GET', app.api.queryMainList).then(({ data: { code, message, data}}) => {
-      console.log('code', code, message, data)
+    bannerList().then(({ data: { code, message, data}}) => {
       if (code === '200' && message === '0101') {
-        console.log('res', data)
         // 遍历过滤出 1.活动详情 2.商品详情链接（后续需要衡量是否开启更多的不同方式的链接跳转）
         if (!data.listDistThemeBanner) return
         data.listDistThemeBanner.forEach(v => {
-            if (v.linkUrl && v.linkUrl.indexOf('marketingId') > -1) {
-              let url = v.linkUrl.split('marketingId')[1]
-              let linkUrl = ''
-              if (url.indexOf('=') > -1) linkUrl = url.replace('=', '')
-              else linkUrl = decodeURIComponent(url).replace('=', '')
-              v.linkUrl = `/pages/activityDetail/activityDetail?marketingId=${linkUrl}`
-            } else if (v.linkUrl && v.linkUrl.indexOf('productId') > -1) {
-              let url = v.linkUrl.split('productId')[1]
-              let linkUrl = ''
-              if (url.indexOf('=') > -1) linkUrl = url.replace('=', '')
-              v.linkUrl = `/pages/goodsDetail/goodsDetail?productId=${linkUrl}`
-            } else { // 非配置项清空该链接
-              v.linkUrl = ''
-            }
+          if (v.linkUrl && v.linkUrl.indexOf('marketingId') > -1) {
+            let url = v.linkUrl.split('marketingId')[1]
+            let linkUrl = ''
+            if (url.indexOf('=') > -1) linkUrl = url.replace('=', '')
+            else linkUrl = decodeURIComponent(url).replace('=', '')
+            v.linkUrl = `/pages/activityDetail/activityDetail?marketingId=${linkUrl}`
+          } else if (v.linkUrl && v.linkUrl.indexOf('productId') > -1) {
+            let url = v.linkUrl.split('productId')[1]
+            let linkUrl = ''
+            if (url.indexOf('=') > -1) linkUrl = url.replace('=', '')
+            v.linkUrl = `/pages/goodsDetail/goodsDetail?productId=${linkUrl}`
+          } else { // 非配置项清空该链接
+            v.linkUrl = ''
+          }
         })
         wx.stopPullDownRefresh() // 停止下拉刷新
+        this.data.indicatorDots = data.listDistThemeBanner && data.listDistThemeBanner.length === 1 ? false : true // banner列表数量为1时，隐藏banner面板圆点
         this.setData({
-          bannerList: data.listDistThemeBanner
+          bannerList: data.listDistThemeBanner,
+          indicatorDots: this.data.indicatorDots
         })
       }
     }).catch(e => {
@@ -153,11 +166,16 @@ Page({
   getGoodsList () {
     if (!this.data.hasMore) return // 最后一页则返回
     this.data.scrollLoadDis = false // 触发上拉加载，状态false
-    app.http.request('GET', app.api.queryList, {
-      pageNo: this.data.pageNo,
-      pageSize: this.data.pageSize
-    }).then(({data: {code, message, data}}) => {
+    goodsList(this.data.pageNo).then(({data: {code, message, data}}) => {
+      let hasData = false
       if (code === '200' && message === '0101' && data.distGoods.pageView.dataList) {
+        hasData = true
+        /* //------ start 数据重复
+        data.distGoods.pageView.dataList.forEach(o => {
+          this.data.listArr.push(o.displayId)
+        })
+        let list = new Set(this.data.listArr) 
+        console.log('list', list) //------ end 数据重复  */
         if (data.distGoods.pageView.dataList.length < 3 && this.data.pageNo === 2) { // 当前页为第一页，且列表数只有1-2个，隐藏列表底部的信息提示栏
           this.data.hideTip = true
         }
@@ -179,6 +197,8 @@ Page({
           hideTip: this.data.hideTip,
           goodsList: this.data.goodsList
         })
+      } else {
+        hasData = false
       }
       if (!data.distGoods.pageView.dataList) { // 列表数据为空-空状态
         this.setData({
@@ -187,11 +207,24 @@ Page({
         })
       }
       this.data.scrollLoadDis = true // 数据加载完成，状态为true
-      wx.stopPullDownRefresh() // 停止下拉刷新
+      if (this.data.isPullDownRefresh) {
+        wx.stopPullDownRefresh() // 停止下拉刷新
+        this.data.isPullDownRefresh = false // 重置状态
+        this.setData({
+          pullDownRefreshState: true,
+          pullDownRefreshText: hasData ? '与品质生活不期而遇 更新10件': '刷新失败了 换个姿势再来一次'
+        })
+        setTimeout(() => { // 2s后自动隐藏弹窗提示
+          this.setData({
+            pullDownRefreshState: false,
+          })
+        }, 2000)
+      }
     })
   },
   // 下拉
-  onPullDownRefresh () {  
+  onPullDownRefresh () { 
+    // this.data.isPullDownRefresh = true // 刷新后的文本模块状态 true执行，默认：false 不执行相应事件
     this.init()
   }, 
   // 上拉
@@ -213,7 +246,6 @@ Page({
     this.setData({
       showAside: true
     })
-    console.log('app.globalData.loginState', app.globalData.loginState,app.globalData.userInfo)
     this.login('init')
   },
   // 隐藏个人中心
@@ -224,7 +256,6 @@ Page({
   },
   login (cb, option) {
     var that = this
-    console.log('app.globalData.loginState', app.globalData.loginState,app.globalData.userInfo)
     if (app.globalData.loginState) {
       app.getLoginState(() => {
         that.setData({
@@ -233,26 +264,6 @@ Page({
         that.getOrderCount() // 获取订单数量
         typeof cb == "function" && cb()
       })
-      /* if (!app.globalData.userInfo) {
-        app.getLoginState(() => {
-          that.setData({
-            userInfo: app.globalData.userInfo
-          })
-          that.getOrderCount() // 获取订单数量
-          typeof cb == "function" && cb()
-        })
-      } else {
-        if (option === 'toAddress') {
-          typeof cb == "function" && cb()
-        } else {
-          this.setData({
-            userInfo: app.globalData.userInfo
-          })
-          this.getOrderCount() // 获取订单数量
-          typeof cb == "function" && cb()
-        }
-        
-      } */
     } else {
       if (cb === 'init') return
       app.getLoginState(() => {
@@ -305,13 +316,9 @@ Page({
         })
       } 
     })
-
-
-    
   },
   // 跳转到订单列表
   toOrderList(e) {
-    console.log('selectStateNum',this.data.selectStateNum)
     if (this.data.selectStateNum === 1) return // 次数为1返回
     this.data.selectStateNum = 1 // 第一次点击后记录次数为1
     let that = this
@@ -344,7 +351,6 @@ Page({
     }, 5000)
     let that = this
     this.login(() => {
-      console.log('app.globalData.scopeAddress',app.globalData.scopeAddress)
       if (app.globalData.scopeAddress === false) { // 微信地址授权
         wx.navigateTo({
           url: '/pages/addressList/addressList',
@@ -354,11 +360,6 @@ Page({
         })
       } else { // 微信地址未授权
         wx.chooseAddress({
-         /*  fail (res) {
-            if (res.data.indexOf('cancel') !== -1) {
-
-            }
-          }, */
           complete () {
             that.data.selectStateNum = 0
           }

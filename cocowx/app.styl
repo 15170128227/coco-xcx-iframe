@@ -4,6 +4,7 @@
 theme-base($themeNum) // loading主题样式到全局
 
 page 
+  font-family: 'Microsoft Yahei'
   font-size: $fontSize28
   line-height: 38rpx
   color: $textDefaultColor
@@ -26,7 +27,6 @@ input[disabled]
 
 // 滚动加载tip提示语
 .tips-contain 
-  padding: 10rpx 0
   font-size: $fontSize24
   text-align: center
   background-color: $gray
@@ -39,12 +39,15 @@ input[disabled]
 
 .tips-loading 
   display: flex
-  flex-direction: row
   align-items: center
-  align-self: center
   justify-content: center
-// .tips-load-all 
-
+  .icon-loading
+    width: 44rpx;
+    height: @width
+    padding: 12rpx 0
+    margin-right: 6rpx
+.tips-load-all 
+  padding: 12rpx 0
 .flex-col-1 
   flex: 1
 

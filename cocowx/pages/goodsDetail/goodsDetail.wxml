@@ -9,17 +9,20 @@
 <block wx:if="{{!isEmptyList}}">
   <view class="gd-main">
     <!-- 商品详情主图 -->
-    <swiper indicator-dots="{{indicatorDots}}" circular="circular" class="gd-banner">
+    <swiper indicator-dots="{{indicatorDots}}" circular="circular" class="gd-banner"
+    indicator-color="{{indicatorColor}}" indicator-active-color="{{indicatorActiveColor}}">
       <block wx:for="{{goodsDetailInfo.imageList}}" wx:key="">
         <swiper-item>
-          <image mode="widthFix" src="{{protocol + item.imagePath + '/' + item.imageName + item.imageType + imgQuery}}" class="slide-image"/>
+          <image mode="widthFix" bindtap="previewImg" data-src="{{protocol + item.imagePath + '/' + item.imageName + item.imageType + imgQuery}}" src="{{protocol + item.imagePath + '/' + item.imageName + item.imageType + imgQuery}}" class="slide-image"/>
         </swiper-item>
       </block>
     </swiper>
-    <view class="paddingLr gdm-content" wx:if="{{goodsDetailInfo.productName}}">
+    <view class="paddingLr" wx:if="{{goodsDetailInfo.productName}}">
       <view class="gd-title"><text>{{goodsDetailInfo.productName}}</text></view>
       <view class="gd-price {{themeType}}-price"><text>¥ {{goodsDetailInfo.tshPrice}}</text></view>
-      <template is="wxParse" data="{{wxParseData: article.nodes}}"/> <!-- 商品详情desc -->
+      <view class="gdm-content"s>
+        <template is="wxParse" data="{{wxParseData: article.nodes}}"/> <!-- 商品详情desc -->
+      </view>
     </view>
   </view>
   <!-- 底部 -->
@@ -62,13 +65,13 @@
     <view class="gdm-specification">
       <view class="gdmsp-title">{{goodsNormList.normFirst}}</view>
       <view>
-        <text class="{{themeType}}-gdmsp-unit gdmsp-unit {{item.state}}" bindtap="selectNormFirst" data-state="{{item.state}}" data-value="{{item.text}}" wx:for="{{goodsNormList.normFirstList}}">{{item.text}}</text>
+        <text class="{{themeType}}-gdmsp-unit gdmsp-unit {{item.state}}" bindtap="selectNormFirst" data-state="{{item.state}}" data-value="{{item.text}}" wx:for="{{goodsNormList.normFirstList}}" wx:key="index">{{item.text}}</text>
       </view>
     </view>
     <view class="gdm-specification" wx:if="{{goodsNormList.normSecond}}">
       <view class="gdmsp-title">{{goodsNormList.normSecond}}</view>
       <view>
-        <text class="{{themeType}}-gdmsp-unit gdmsp-unit {{item.state}}" bindtap="selectNormSecond" data-state="{{item.state}}" data-value="{{item.text}}" wx:for="{{goodsNormList.normSecondList}}">{{item.text}}</text>
+        <text class="{{themeType}}-gdmsp-unit gdmsp-unit {{item.state}}" bindtap="selectNormSecond" data-state="{{item.state}}" data-value="{{item.text}}" wx:for="{{goodsNormList.normSecondList}}" wx:key="index">{{item.text}}</text>
       </view>
     </view>
     <view class="bnq-quantity gdm-quantity">

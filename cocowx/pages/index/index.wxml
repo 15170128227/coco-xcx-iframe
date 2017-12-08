@@ -2,7 +2,8 @@
 <!--<view scroll-y style="height: {{scrollEleHeight}}px" lower-threshold="150" bindscrolltolower="loadMore" scroll-into-view="{{toView}}">-->
 <view class="home-main">
   <!-- 首页banner -->
-  <swiper indicator-dots="{{indicatorDots}}" circular="circular" indicator-color="{{indicatorColor}}" indicator-active-color="{{indicatorActiveColor}}" class="banner_contain">
+  <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" 
+  circular="circular" indicator-color="{{indicatorColor}}" indicator-active-color="{{indicatorActiveColor}}" class="banner_contain">
     <block wx:for="{{bannerList}}" wx:key="{{index}}">
       <swiper-item>
         <navigator url="{{item.linkUrl}}"><image src="https:{{item.bannerPic + bannerImageQuery}}" class="slide-image"/></navigator>
@@ -17,11 +18,11 @@
         <view class="goods-single_content">
           <text class="goods-single_content__title" wx:if="{{item.displayName}}">{{item.displayName}}</text>
           <text class="goods-single_content__text" wx:if="{{item.displayDesc}}">{{item.displayDesc}}</text>
-          <view class="goods-smile"><view class="goods-smile-unit"><image src="/images/smile-active.png"></image>{{item.pvNumber}}人说好</view></view>
+          <view class="goods-smile"><view class="goods-smile-unit"><image src="/images/smile.png"></image>{{item.pvNumber}}人说好</view></view>
         </view>
       </navigator>
       <navigator url="/pages/goodsDetail/goodsDetail?productId={{item.displayId}}" class="goods-single_contain" wx:elif="{{item.displayType === 11}}">
-        <view class="goods-single_img type-{{item.displayType}}" ><image lazy-load src="https:{{item.mainPic + imageQuery}}" /></view>
+        <view class="goods-single_img type-{{item.displayType}}" ><image src="https:{{item.mainPic + imageQuery}}" /></view>
       </navigator >
       <navigator url="/pages/activityDetail/activityDetail?marketingId={{item.displayId}}" class="goods-single_contain" wx:elif="{{item.displayType === 12}}">
         <view class="goods-single_img" ><image src="https:{{item.mainPic + imageQuery}}" /></view>
@@ -33,7 +34,8 @@
     </block>
     <view class="tips-contain" wx:if="{{!hideTip}}">
       <view wx:if="{{hasMore && goodsList}}" class="tips-loading">
-        <text>玩命的加载中...</text></view>
+        <image src="/images/loading.gif" class="icon-loading"></image>
+        <text>加载中...</text></view>
       <view class="tips-load-all" wx:else><text>我也是有底线的</text></view>
     </view>
   </view>
@@ -66,3 +68,4 @@
     </view>
   </view>
 </view>
+<view class="pdr-text" wx:if="{{pullDownRefreshState}}">{{pullDownRefreshText}}</view>
