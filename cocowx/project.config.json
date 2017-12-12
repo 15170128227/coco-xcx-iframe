@@ -27,7 +27,7 @@
 					"id": 0,
 					"name": "首页",
 					"pathName": "pages/index/index",
-					"query": "",
+					"query": "appEncrypt=bGpNUHA5MTNkWGYzMWJBNWcxMjM0",
 					"scene": "1001"
 				},
 				{

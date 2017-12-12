@@ -36,11 +36,13 @@ Page({
     limitNum: null, // 当前商品的限购数
     limitTextShow: '', // 当前商品限购书文本
     // bar
-    smileActive: false,
-    bannerPreviewImgs: [] // banner栏预览图片数组
+    // smileActive: false,
+    bannerPreviewImgs: [], // banner栏预览图片数组
+    showModal: true, // 判断是否显示内容里的价格
+    pageData: {showBtn: [], tshPrice:'', pvNumber:'', buyBtnText: '', isShow: false, smileActive: false, isShowText: false, collectActive: false} // 传入底部的参数
   },
   // 生命周期函数--监听页面初始化加载
-  onLoad (options) {
+  onLoad (options) {  
     let productId = this.data.productId = options.productId // 当前页面商品id
     wx.setStorage({
       key: 'fromGoodsDetailRrefshSmile',
@@ -84,11 +86,31 @@ Page({
   // 点赞/取消点赞
   toggleSmileState () {
     let that = this
-    if (!that.data.smileActive) that.data.goodsDetailInfo.pvNumber = Number(that.data.goodsDetailInfo.pvNumber) + 1
-    that.setData({
-      smileActive: true,
-      goodsDetailInfo: that.data.goodsDetailInfo
-    })
+    // if (!that.data.smileActive) that.data.goodsDetailInfo.pvNumber = Number(that.data.goodsDetailInfo.pvNumber) + 1
+    // that.setData({
+    //   smileActive: true,
+    //   goodsDetailInfo: that.data.goodsDetailInfo
+    // })
+    let currentNum = that.data.pageData.pvNumber + 1
+    if (!that.data.smileActive) {
+      that.data.pageData.pvNumber = Number(that.data.pageData.pvNumber) + 1
+      that.data.pageData.smileActive = true
+      if(currentNum !== that.data.pageData.pvNumber) {
+        that.setData({
+          pageData: that.data.pageData
+        })
+      }
+    }
+  },
+  // 收藏
+  toggleCollectState () {
+    let that = this
+    if (!that.data.collectActive) {
+      that.data.pageData.collectActive = true
+      that.setData({
+        pageData: that.data.pageData
+      })
+    }
   },
   previewImg (e) {
     let src = e.target.dataset.src
@@ -157,14 +179,40 @@ Page({
           this.getStockInfo(skuList[0].skuCode)
         }
         // 渲染
-        this.data.disabled.buy = butBtnDisabled  
-        this.setData({
-          goodsDetailInfo: newData,
-          buyBtnText: this.data.buyBtnText,
-          disabled: this.data.disabled,
-          isEmptyList: false
-        })
-
+        this.data.disabled.buy = butBtnDisabled
+        // 如果是默认值
+        let selectOne = 1
+        if ( selectOne === 0) {
+          this.setData({
+            goodsDetailInfo: newData,
+            buyBtnText: this.data.buyBtnText,
+            disabled: this.data.disabled,
+            isEmptyList: false,
+            isShowText: true, // 设置初始化的button和值
+            pageData: {
+              showBtn: ['1', '', '3','4' ,'5'],
+              tshPrice: data.tshPrice,
+              pvNumber: data.pvNumber,
+              buyBtnText: this.data.buyBtnText,
+              isShowText: false
+            }
+          })
+        } else if (selectOne === 1){
+          this.setData({
+            goodsDetailInfo: newData,
+            buyBtnText: this.data.buyBtnText,
+            disabled: this.data.disabled,
+            isEmptyList: false,
+            isShowText: false, // 设置初始化的button和值
+            pageData: {
+              showBtn: ['1', '', '3','4' ,'5'],
+              tshPrice: data.tshPrice,
+              pvNumber: data.pvNumber,
+              buyBtnText: this.data.buyBtnText,
+              isShowText: true
+            }
+          })
+        }
         app.statistics({url: 'goodsDetail', cUrlName: '商品详情', argument: data.productCode}) // 统计
     
       } else if (code === '200' && message === '0214') { // 查询商品数据为空--空状态页面

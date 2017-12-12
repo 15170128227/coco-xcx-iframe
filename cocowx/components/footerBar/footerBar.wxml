@@ -1,0 +1,15 @@
+  <template name="footerBar">
+    <view class="gd-footer footer">
+      <view class="gd-cs" style="width:{{data.gdWidth}}">
+      <!-- 点赞 -->
+      <view wx:if="{{data.showBtn[0] === '1'}}" class="gdfc-unit gdfc-smile {{data.smileActive ? 'dc-color' : ''}}" bindtap="toggleSmileState"><image class="icon-smile-big" src="{{data.smileActive ? '/images/smile-active.png' : '/images/smile-big.png'}}"></image>{{data.pvNumber}}</view>
+      <!-- 收藏 -->
+      <view wx:if="{{data.showBtn[1] === '2'}}" class="gdfc-unit gdfc-smile {{data.collectActive ? 'dc-color' : ''}}" bindtap="toggleCollectState"><image class="icon-smile-big" src="{{data.collectActive ? '/images/collect-active.png' : '/images/collect-big.png'}}"></image>收藏</view>
+      <!-- 分享 -->
+      <view wx:if="{{data.showBtn[2] === '3'}}" class="gdfc-unit"><button open-type="share"><image class="icon-share" src="../../images/share.png"></image>分享</button></view>
+      <!-- 客服 -->
+      <view wx:if="{{data.showBtn[3] === '4'}}" class="gdfc-unit"><button open-type="contact"><image class="icon-share" src="../../images/service.png"></image>客服</button></view>
+    </view>
+    <button wx:if="{{data.showBtn[4] === '5'}}" class="{{themeType}}-btn footer-btn" bindtap="showModal" disabled="{{disabled.buy}}"><text wx:if = '{{data.isShowText}}'>￥{{data.tshPrice}} </text>{{data.buyBtnText}}</button>
+  </view>  
+  </template>

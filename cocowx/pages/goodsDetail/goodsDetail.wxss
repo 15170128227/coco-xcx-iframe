@@ -271,9 +271,77 @@ view {
 .wxParse-figure {
   overflow: hidden;
 }
+.gd-footer {
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 88rpx;
+  border-top: 1rpx solid #f1f1f1;
+  text-align: center;
+}
+.gd-footer button {
+  line-height: 88rpx;
+}
+.gd-footer button.footer-btn {
+  font-size: 32rpx;
+}
+.gd-cs {
+  display: flex;
+  width: 470rpx;
+  font-size: 28rpx;
+  background-color: #fff;
+  justify-content: center;
+  align-content: center;
+  color: #333;
+}
+.gd-cs button {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  height: 100%;
+  border-radius: 0;
+  font-size: 28rpx;
+  background-color: #fff;
+}
+.gd-cs button image {
+  top: 20rpx;
+}
+.gd-cs .gdfc-unit {
+  flex: 1;
+  position: relative;
+  color: #000;
+}
+.gd-cs .gdfc-unit button {
+  border-radius: 0;
+}
+.gd-cs .gdfc-unit button::after {
+  border: 0;
+}
+.gd-cs .gdfc-unit image {
+  position: relative;
+  top: 6rpx;
+  right: 8rpx;
+}
+.gd-cs .gdfc-unit .icon-smile-big {
+  width: 36rpx;
+  height: 36rpx;
+}
+.gd-cs .gdfc-unit .icon-share {
+  top: 26rpx;
+  width: 32rpx;
+  height: 36rpx;
+}
+.gd-cs .gdfc-smile.dc-color {
+  color: #2caef8;
+}
 /* base */
 .marginTb {
   margin: 20rpx 0;
+}
+.marginLr {
+  margin: 0 24rpx;
 }
 page {
   background-color: #f1f1f1;
@@ -305,15 +373,28 @@ page {
 .gd-main .gdm-content image {
   margin-bottom: 16rpx;
 }
+.gd-main .gd-desc {
+  padding: 36rpx 0 38rpx 0;
+  font-size: 32rpx;
+  color: #999;
+  border-bottom: 6rpx solid #f1f1f1;
+}
+.gd-main .gd-desc text {
+  padding: 0 24rpx;
+  display: block;
+  line-height: 46rpx;
+}
 .gd-main .gd-title,
 .gd-main .gd-price {
   font-weight: bold;
   font-size: 40rpx;
 }
 .gd-main .gd-title {
-  margin: 30rpx 0 20rpx 0;
+  margin-top: 30rpx;
+  padding-bottom: 24rpx;
   line-height: 56rpx;
   font-weight: bold;
+  border-bottom: 1rpx solid #f1f1f1;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
@@ -321,8 +402,7 @@ page {
   -webkit-box-orient: vertical;
 }
 .gd-main .gd-price {
-  padding-bottom: 24rpx;
-  border-bottom: 1rpx solid #f1f1f1;
+  padding-top: 24rpx;
 }
 .gdm-close {
   display: flex;
@@ -476,78 +556,4 @@ page {
   width: 326rpx;
   height: 369rpx;
   margin-top: -200rpx;
-}
-/* 底部 */
-.gd-footer {
-  display: flex;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 88rpx;
-  border-top: 1rpx solid #f1f1f1;
-  text-align: center;
-}
-.gd-footer button {
-  line-height: 88rpx;
-}
-.gd-footer button.footer-btn {
-  font-size: 32rpx;
-}
-.gd-cs {
-  display: flex;
-  width: 470rpx;
-  font-size: 28rpx;
-  background-color: #fff;
-  justify-content: center;
-  align-content: center;
-  color: #333;
-}
-.gd-cs button {
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  height: 100%;
-  border-radius: 0;
-  font-size: 28rpx;
-  background-color: #fff;
-}
-.gd-cs button image {
-  top: 20rpx;
-}
-.gd-cs .gdfc-unit {
-  flex: 1;
-  position: relative;
-}
-.gd-cs .gdfc-unit button {
-  border-radius: 0;
-}
-.gd-cs .gdfc-unit button::after {
-  border: 0;
-}
-.gd-cs .gdfc-unit image {
-  position: relative;
-  top: 10rpx;
-  right: 8rpx;
-}
-.gd-cs .gdfc-unit .icon-smile-big {
-  width: 40rpx;
-  height: 40rpx;
-}
-.gd-cs .gdfc-unit .icon-share {
-  top: 24rpx;
-  width: 32rpx;
-  height: 37rpx;
-}
-.gd-cs .gdfc-smile::after {
-  content: ' ';
-  position: absolute;
-  top: 28rpx;
-  right: 0;
-  width: 2rpx;
-  height: 32rpx;
-  background-color: #afafaf;
-}
-.gd-cs .gdfc-smile.dc-color {
-  color: #2caef8;
 }

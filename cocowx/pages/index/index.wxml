@@ -26,6 +26,9 @@
       </navigator >
       <navigator url="/pages/activityDetail/activityDetail?marketingId={{item.displayId}}" class="goods-single_contain" wx:elif="{{item.displayType === 12}}">
         <view class="goods-single_img" ><image src="https:{{item.mainPic + imageQuery}}" /></view>
+        <view class="goods-spec_tip" style="background-color:{{goodsSpecColor[0].bgColor}}">
+          <text>{{goodsSpecColor[0].text}}</text>
+        </view>
         <view class="goods-single_content">
           <image class="gsc-quot" src="/images/quot.png"></image>
           <text class="goods-single_content__title gsc-title12" wx:if="{{item.displayName}}">{{item.displayName}}</text>

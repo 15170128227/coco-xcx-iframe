@@ -1,0 +1,71 @@
+/* 底部 */
+.gd-footer 
+  display: flex
+  position: fixed
+  bottom: 0
+  left: 0
+  right: 0
+  height: $footerHei
+  border-top: 1rpx solid $gray
+  text-align: center
+  button
+    line-height: 88rpx
+    &.footer-btn 
+      font-size: $fontSize32
+  
+.gd-cs 
+  display: flex
+  width: 750rpx - $footerBtnWidth
+  font-size: $fontSize28
+  background-color: $white
+  justify-content: center
+  align-content: center
+  color: $textDefaultColor
+  button 
+    display: flex
+    justify-content: center
+    align-content: center
+    height: 100%
+    border-radius: 0
+    font-size: $fontSize28
+    background-color: #fff
+    
+    image 
+      top: 20rpx
+
+  .gdfc-unit 
+    flex: 1
+    position: relative
+    color:#000000
+    button 
+      border-radius: 0
+      &::after 
+        border: 0
+    
+    image 
+      position: relative
+      top: 6rpx
+      right: 8rpx
+    
+    .icon-smile-big 
+      width: 36rpx
+      height: 36rpx
+    
+    .icon-share 
+      top: 26rpx
+      width: 32rpx
+      height: 36rpx
+  .gdfc-smile
+    // &::after 
+    //   content: ' '
+    //   position: absolute
+    //   top: 28rpx
+    //   right: 0
+    //   width: 2rpx
+    //   height: 32rpx
+    //   background-color: $borderColorGray
+    &.dc-color
+      color: $defaultColor
+
+  
+

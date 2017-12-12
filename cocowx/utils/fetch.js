@@ -18,28 +18,43 @@ const request = function (method, url, param) {
   }
   return new Promise((resolve, reject) => {
     let appEncrypt = wx.getStorageSync('appEncrypt')
-    wx.request({
-      url: url,
-      method: method,
-      data: method === 'get' ? {} : Object.assign({}, param),
-      header: {
-        'appEncrypt': appEncrypt, // 小程序新增请求头
-        // 'x-auth-token': '1130c789-8005-4539-9a51-0af51b068d57', // 原接口请求必须（小程序后期需删掉）
-        'Content-Type': 'application/json;charset=utf-8' // 定义公共请求头 Content-Type
-      },
-      success: resolve, // Promose 的resolve方法
-      fail: function () {
-        wx.showModal({
-          content: '网络超时！',
-          showCancel: false,
-          success () {
-            wx.reLaunch({
-              url: `/pages/index/index?appEncrypt=${appEncrypt}`
-            })
-          }
-        })
-        reject()
-      } // Promose 的reject方法
+    wx.getNetworkType({
+      success: function(res) {
+        // 返回网络类型, 有效值：
+        // wifi/2g/3g/4g/unknown(Android下不常见的网络类型)/none(无网络)
+        const networkType = res.networkType
+        if (networkType === "none") {
+          wx.showModal({
+            content: '无法连接网络',
+            showCancel: false
+          })
+          reject()
+        } else {
+          wx.request({
+            url: url,
+            method: method,
+            data: method === 'get' ? {} : Object.assign({}, param),
+            header: {
+              'appEncrypt': appEncrypt, // 小程序新增请求头
+              // 'x-auth-token': '1130c789-8005-4539-9a51-0af51b068d57', // 原接口请求必须（小程序后期需删掉）
+              'Content-Type': 'application/json;charset=utf-8' // 定义公共请求头 Content-Type
+            },
+            success: resolve, // Promose 的resolve方法
+            fail: function () {
+              wx.showModal({
+                content: '网络超时！',
+                showCancel: false,
+                success () {
+                  wx.reLaunch({
+                    url: `/pages/index/index?appEncrypt=${appEncrypt}`
+                  })
+                }
+              })
+              reject()
+            } // Promose 的reject方法
+          })
+        }
+      }
     })
   })
 } 

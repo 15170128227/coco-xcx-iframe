@@ -2,13 +2,13 @@
  * 接口对象 api.js
  * 
 */
-const xcxBaseApi = 'https://www.cocosurprise.com/tsh-api'; // 正式 appEncrypt=bGpNUHA5MTNkWGYzMWJBNWcxMjQ4  bGpNUHA5MTNkWGYzMWJBNWcxMjQ5
-const xcxBaseApi5 = 'https://www.stage.cocosurprise.com/tsh-api'; // 预发布 appEncrypt=bGpNUHA5MTNkWGYzMWJBNWcxMjI5
+const xcxBaseApi5 = 'https://www.cocosurprise.com/tsh-api'; // 正式 appEncrypt=bGpNUHA5MTNkWGYzMWJBNWcxMjQ4  bGpNUHA5MTNkWGYzMWJBNWcxMjQ5
+const xcxBaseApi2 = 'https://www.stage.cocosurprise.com/tsh-api'; // 预发布 appEncrypt=bGpNUHA5MTNkWGYzMWJBNWcxMjI5
 const baseApi = 'https://www.test.cocosurprise.com/tsh-api'; // 测试 appEncrypt=bGpNUHA5MTNkWGYzMWJBNWcxMjM0
 const xcxBaseApi3 = 'https://www.test.cocosurprise.com/tsh-api'; // 测试 appEncrypt=bGpNUHA5MTNkWGYzMWJBNWcxMjM0
 const baseApi5 = 'http://192.168.1.180:8005/tsh-api'; // 测试
 const baseApi3 = 'https://wxapi.cocosurprise.com'; // 支付
-const xcxBaseApi2 = 'http://192.168.1.25:8005/tsh-api'; // 后端测试
+const xcxBaseApi = 'http://192.168.1.25:8005/tsh-api'; // 后端测试
 const xcxBaseApi4 = 'http://192.168.1.29:8005/tsh-api'; // 后端测试
 const localhostApi = 'http://localhost'; // 本地
 // --------------- 原数据
@@ -64,7 +64,8 @@ const api = {
   // 首页
   queryMainList: xcxBaseApi + '/program/product/queryMainList', // 首页banner列表 + 推荐列表 method:'GET'
   queryProductList: xcxBaseApi + '/program/product/queryProductList', // 首页营销缓存商品列表 method:'GET'
-  queryList: xcxBaseApi + '/program/product/queryList', // 首页营销活动列表 method:'GET'
+  // queryList: xcxBaseApi + '/program/product/queryList', // 首页营销活动列表 method:'GET'
+  queryList: xcxBaseApi + '/program/product/queryRandomList', // 首页营销活动列表 method:'GET'
 
   // 商品详情
   goodsDetail: xcxBaseApi + '/program/product/queryGoodsDetail', // 商品详情 @params {productId:'商品id'} method:'GET'

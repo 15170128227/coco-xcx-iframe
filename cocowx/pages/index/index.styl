@@ -5,6 +5,7 @@ $listImgWid = 274rpx
 page 
   background-color: $pageBg
   height: 100vh
+  font-family: 'Microsoft Yahei'
 .banner_contain 
   height: $bannerHei
   image 
@@ -14,8 +15,10 @@ page
   background-color: $white
 .goods-single_contain 
   display: flex
+  position: relative
   box-sizing: border-box
-  padding: 10rpx 0 10rpx $paddingPage 
+  padding: 10rpx $paddingPage 
+  border-bottom: 1rpx solid $borderColorBase
   &:first-child
     padding-top: $paddingPage
 .goods-single_img  
@@ -24,7 +27,17 @@ page
   image 
     width: 100%
     height: 100%
-  
+.goods-spec_tip
+  position: absolute
+  width: 72rpx
+  height: 74rpx
+  top: 30rpx
+  left: 0
+  line-height: 74rpx
+  text-align: center
+  text
+    color: #ffffff
+    font-size: 24rpx
 .goods-single_img.type-12 
   width: 100vw
   height: 40vw
@@ -33,39 +46,28 @@ page
   box-sizing: border-box
   position: relative
   width: 750rpx - $paddingPage * 2 - $listImgWid
-  margin-left: 26rpx
-  padding-right: $paddingPage
-  // border-bottom: 1rpx solid $borderColorBase
-  &::after
-    content: ' '
-    position: absolute
-    bottom: -12rpx
-    width: 100%
-    height: 2rpx
-    transform: scaleY(.5)
-    background-color: $borderColorBase
+  padding-left: 26rpx
 
 .gsc-quot 
-  width: 38rpx
-  height: 26rpx
-  margin: 42rpx 0 0 10rpx
+  width: 29rpx
+  height: 24rpx
+  margin-top: 36rpx
 
 .goods-single_content__title 
-  margin-top: 20rpx
+  margin-top: 30rpx
   textOverflowEs(2)
   font-size: $fontSize32
-  line-height: 40rpx
+  line-height: 44rpx
   font-weight: bold
-  color: $textDefaultColor
-  &.gsct-activity
-    font-size: $fontSize36
+  color: $black
   &.gsc-title12 
-    margin-top: 22rpx
+    margin-top: 10rpx
 
 .goods-single_content__text 
   textOverflowEs(2)
-  padding-top: 14rpx
+  padding-top: 16rpx
   font-size: $fontSize28
+  letter-spacing: 1px
   color: $textGrayColor
 
 .goods-smile 
@@ -73,8 +75,8 @@ page
   justify-content: flex-end
   align-items: center
   position: absolute
-  bottom: 16rpx
-  right: 24rpx
+  bottom: 10rpx
+  right: 12rpx
   width: 100%
   height: 38rpx
   font-size: $fontSize24
@@ -85,10 +87,10 @@ page
   image 
     position: absolute
     top: 50%
-    left: -38rpx
-    width: 34rpx
-    height: 34rpx
-    transform: translateY(-(@height/2 + 1rpx))
+    left: -36rpx
+    transform: translateY(-50%)
+    width: 32rpx
+    height: 32rpx
     margin-right: 8rpx
 
 .hmg-es
@@ -108,7 +110,6 @@ page
   height: 100rpx
   border-radius: 100%
   z-index 2
-  opacity: .98
   image 
     width: 100rpx
     height: 100rpx
@@ -224,9 +225,3 @@ page
   color: $white
   background-color: $defaultColor
   animation: fadeIn 1s
-
-      
-
-    
-  
-

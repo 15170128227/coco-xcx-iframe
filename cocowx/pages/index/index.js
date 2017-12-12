@@ -27,8 +27,8 @@ Page({
     scrollTop: 0, // 滚动元素的滚动高度
     scrollLoadDis: true, // true允许加载，false禁止加载
     timeState: null, // 定时器状态
-    pageNo: 1, // 商品列表页码
-    pageSize: '100', // 商品列表每页商品数量
+    pageNumber: 1, // 商品列表页码
+    pageSize: 10, // 商品列表每页商品数量
     hasMore: true, // 是否还有下一页数据
     hideTip: false, // 列表元素总长度小于3个，隐藏底部的 我是有底线的元素 false:显示  true:隐藏
     // 个人中心列表--抽屉式列表
@@ -42,8 +42,13 @@ Page({
     selectStateNum: 0,
     shareTitle: '西柚集 - 让你与品质生活不期而遇',
     indexTitle: '西柚集 - 精选好货',
-
-    listArr: []
+    listArr: [],
+    goodsSpecColor: [
+      {text:'种草', bgColor: 'rgb(0, 223, 182)'},
+      {text:'攻略', bgColor: 'rgb(57, 172, 254)'},
+      {text:'推荐', bgColor: 'rgb(255, 105, 105)'},
+      {text:'活动', bgColor: 'rgb(255, 172, 0)'},
+    ]
   },
   //事件处理函数
   onLoad (options) {
@@ -121,7 +126,7 @@ Page({
     })
     // 刷新前重置列表参数
     this.data.goodsList = [] // 重置商品列表数据
-    this.data.pageNo = 1 // 重置页码
+    this.data.pageNumber = 2 // 重置页码
     this.data.hasMore = true
     this.data.hideTip = false
     this.getBannerList() // banner列表
@@ -162,37 +167,109 @@ Page({
       console.log('error', e)
     })
   },
-  // 获取商品列表数据
-  getGoodsList () {
-    if (!this.data.hasMore) return // 最后一页则返回
-    this.data.scrollLoadDis = false // 触发上拉加载，状态false
-    goodsList(this.data.pageNo).then(({data: {code, message, data}}) => {
-      let hasData = false
-      if (code === '200' && message === '0101' && data.distGoods.pageView.dataList) {
-        hasData = true
-        /* //------ start 数据重复
-        data.distGoods.pageView.dataList.forEach(o => {
-          this.data.listArr.push(o.displayId)
+ // 获取商品列表数据
+  // getGoodsList () {
+  //   if (!this.data.hasMore) return // 最后一页则返回
+  //   this.data.scrollLoadDis = false // 触发上拉加载，状态false
+  //   goodsList(this.data.pageNo).then(({data: {code, message, data}}) => {
+  //     let hasData = false
+  //     if (code === '200' && message === '0101' && data.distGoods.pageView.dataList) {
+  //       hasData = true
+  //       /* //------ start 数据重复
+  //       data.distGoods.pageView.dataList.forEach(o => {
+  //         this.data.listArr.push(o.displayId)
+  //       })
+  //       let list = new Set(this.data.listArr) 
+  //       console.log('list', list) //------ end 数据重复  */
+  //       if (data.distGoods.pageView.dataList.length < 3 && this.data.pageNo === 2) { // 当前页为第一页，且列表数只有1-2个，隐藏列表底部的信息提示栏
+  //         this.data.hideTip = true
+  //       }
+  //       if (this.data.pageNo === data.distGoods.pageView.totalPages) { // 当前页码大于商品列表总页数
+  //         this.data.hasMore = false
+  //       }
+  //       /* // 点赞
+  //       data.distGoods.pageView.dataList.forEach(o => {
+  //         o.pvNumber = Math.round(Math.random() * 80 + 1)
+  //       }) */
+  //       if (this.data.pageNo === 1) { // 第一页
+  //         this.data.goodsList = data.distGoods.pageView.dataList
+  //       } else { // 非第一页
+  //         this.data.goodsList = this.data.goodsList.concat(data.distGoods.pageView.dataList)
+  //       }
+  //       this.setData({
+  //         pageNo: this.data.pageNo + 1,
+  //         hasMore: this.data.hasMore,
+  //         hideTip: this.data.hideTip,
+  //         goodsList: this.data.goodsList
+  //       })
+  //     } else {
+  //       hasData = false
+  //     }
+  //     if (!data.distGoods.pageView.dataList) { // 列表数据为空-空状态
+  //       this.setData({
+  //         hideTip: true,
+  //         isEmptyList: true
+  //       })
+  //     }
+  //     this.data.scrollLoadDis = true // 数据加载完成，状态为true
+  //     if (this.data.isPullDownRefresh) {
+  //       wx.stopPullDownRefresh() // 停止下拉刷新
+  //       this.data.isPullDownRefresh = false // 重置状态
+  //       this.setData({
+  //         pullDownRefreshState: true,
+  //         pullDownRefreshText: hasData ? '与品质生活不期而遇 更新10件': '刷新失败了 换个姿势再来一次'
+  //       })
+  //       setTimeout(() => { // 2s后自动隐藏弹窗提示
+  //         this.setData({
+  //           pullDownRefreshState: false,
+  //         })
+  //       }, 2000)
+  //     }
+  //   })
+  // },
+  getGoodsList (number) {
+    if (!this.data.hasMore) {
+      this.setData({
+        pullDownRefreshState: true,
+        pullDownRefreshText: '数据已经全部加载'
+      })
+      setTimeout(() => { // 2s后自动隐藏弹窗提示
+        this.setData({
+          pullDownRefreshState: false,
         })
-        let list = new Set(this.data.listArr) 
-        console.log('list', list) //------ end 数据重复  */
-        if (data.distGoods.pageView.dataList.length < 3 && this.data.pageNo === 2) { // 当前页为第一页，且列表数只有1-2个，隐藏列表底部的信息提示栏
+      }, 3000)
+      // if (this.data.isPullDownRefresh) {
+      //   this.data.isPullDownRefresh = false // 重置状态
+      //   this.setData({
+      //     pullDownRefreshState: true,
+      //     pullDownRefreshText: '数据已经全部加载'
+      //   })
+      //   setTimeout(() => { // 2s后自动隐藏弹窗提示
+      //     this.setData({
+      //       pullDownRefreshState: false,
+      //     })
+      //   }, 3000)
+      // }
+      return
+    }
+    this.data.scrollLoadDis = false // 触发上拉加载，状态false
+    goodsList(number).then(({data: {code, message, data}}) => {
+      let hasData = false
+      this.data.hasMoreData = data.queue
+      if (code === '200' && message === '0101' && data.pageView.dataList) {
+        hasData = true
+        if (data.pageView.dataList.length < 3 && this.data.pageNumber === 2) { // 当前页为第一页，且列表数只有1-2个，隐藏列表底部的信息提示栏
           this.data.hideTip = true
         }
-        if (this.data.pageNo === data.distGoods.pageView.totalPages) { // 当前页码大于商品列表总页数
+        if (data.queue === 0) { // 判断是否最后一页
           this.data.hasMore = false
         }
-        /* // 点赞
-        data.distGoods.pageView.dataList.forEach(o => {
-          o.pvNumber = Math.round(Math.random() * 80 + 1)
-        }) */
-        if (this.data.pageNo === 1) { // 第一页
-          this.data.goodsList = data.distGoods.pageView.dataList
-        } else { // 非第一页
-          this.data.goodsList = this.data.goodsList.concat(data.distGoods.pageView.dataList)
+        if (number === 1) {
+          this.data.goodsList = data.pageView.dataList.concat(this.data.goodsList)
+        } else {
+          this.data.goodsList = this.data.goodsList.concat(data.pageView.dataList)
         }
         this.setData({
-          pageNo: this.data.pageNo + 1,
           hasMore: this.data.hasMore,
           hideTip: this.data.hideTip,
           goodsList: this.data.goodsList
@@ -200,7 +277,7 @@ Page({
       } else {
         hasData = false
       }
-      if (!data.distGoods.pageView.dataList) { // 列表数据为空-空状态
+      if (!data.pageView.dataList) { // 列表数据为空-空状态
         this.setData({
           hideTip: true,
           isEmptyList: true
@@ -224,8 +301,11 @@ Page({
   },
   // 下拉
   onPullDownRefresh () { 
-    // this.data.isPullDownRefresh = true // 刷新后的文本模块状态 true执行，默认：false 不执行相应事件
-    this.init()
+    this.data.isPullDownRefresh = true // 刷新后的文本模块状态 true执行，默认：false 不执行相应事件
+    // this.init()
+    scrollTimeState = setTimeout(() => {
+      this.getGoodsList(1)
+    }, 200)
   }, 
   // 上拉
   onReachBottom () {

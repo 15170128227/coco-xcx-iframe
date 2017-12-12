@@ -6,6 +6,7 @@
   gd-cs: goods-detail-customer-service
 -->
 <import src="../../wxParse/wxParse.wxml"/> 
+<import src="../../components/footerBar/footerBar.wxml"/>
 <block wx:if="{{!isEmptyList}}">
   <view class="gd-main">
     <!-- 商品详情主图 -->
@@ -17,22 +18,29 @@
         </swiper-item>
       </block>
     </swiper>
-    <view class="paddingLr" wx:if="{{goodsDetailInfo.productName}}">
-      <view class="gd-title"><text>{{goodsDetailInfo.productName}}</text></view>
-      <view class="gd-price {{themeType}}-price"><text>¥ {{goodsDetailInfo.tshPrice}}</text></view>
-      <view class="gdm-content"s>
+    <view class="" wx:if="{{goodsDetailInfo.productName}}">
+      <view class="gd-title marginLr">
+         <text>{{goodsDetailInfo.productName}}</text>
+         <view class="gd-price {{themeType}}-price" wx:if="{{isShowText}}"><text>¥ {{goodsDetailInfo.tshPrice}}</text></view>
+      </view>
+      <view class="gd-desc" wx:if="{{!isShowText}}">
+        <text>西柚小编说：
+        上海大花洒电话撒发的话大顺风好的啥好的哈是的哈哈上海大花洒电话撒发的话大顺风好的啥好的哈是的哈哈上海大花洒电话撒发的话大顺风好的啥好的哈是的哈哈上海大花洒电话撒发的话大顺风好的啥好的哈是的哈哈</text>
+      </view>
+      <view class="gdm-content marginLr">
         <template is="wxParse" data="{{wxParseData: article.nodes}}"/> <!-- 商品详情desc -->
       </view>
     </view>
   </view>
+  <template is="footerBar" data="{{data:pageData}}"/>
   <!-- 底部 -->
-  <view class="gd-footer footer">
+  <!--<view class="gd-footer footer">
     <view class="gd-cs">
       <view class="gdfc-unit gdfc-smile {{smileActive ? 'dc-color' : ''}}" bindtap="toggleSmileState"><image class="icon-smile-big" src="{{smileActive ? '/images/smile-active.png' : '/images/smile-big.png'}}"></image>{{goodsDetailInfo.pvNumber}}</view>
       <view class="gdfc-unit"><button open-type="share"><image class="icon-share" src="../../images/share.png"></image>分享</button></view>
     </view>
     <button class="{{themeType}}-btn footer-btn" bindtap="showModal" disabled="{{disabled.buy}}">{{buyBtnText}}</button>
-  </view>
+  </view>-->
 </block>
 <!-- 物流空状态页面 -->
 <block wx:else>

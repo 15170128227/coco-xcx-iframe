@@ -1,6 +1,7 @@
 page {
   background-color: #f1f1f1;
   height: 100vh;
+  font-family: 'Microsoft Yahei';
 }
 .banner_contain {
   height: 328rpx;
@@ -14,8 +15,10 @@ page {
 }
 .goods-single_contain {
   display: flex;
+  position: relative;
   box-sizing: border-box;
-  padding: 10rpx 0 10rpx 24rpx;
+  padding: 10rpx 24rpx;
+  border-bottom: 1rpx solid #f1f1f1;
 }
 .goods-single_contain:first-child {
   padding-top: 24rpx;
@@ -28,6 +31,19 @@ page {
   width: 100%;
   height: 100%;
 }
+.goods-spec_tip {
+  position: absolute;
+  width: 72rpx;
+  height: 74rpx;
+  top: 30rpx;
+  left: 0;
+  line-height: 74rpx;
+  text-align: center;
+}
+.goods-spec_tip text {
+  color: #fff;
+  font-size: 24rpx;
+}
 .goods-single_img.type-12 {
   width: 100vw;
   height: 40vw;
@@ -36,40 +52,27 @@ page {
   box-sizing: border-box;
   position: relative;
   width: 428rpx;
-  margin-left: 26rpx;
-  padding-right: 24rpx;
-}
-.goods-single_content::after {
-  content: ' ';
-  position: absolute;
-  bottom: -12rpx;
-  width: 100%;
-  height: 2rpx;
-  transform: scaleY(0.5);
-  background-color: #f1f1f1;
+  padding-left: 26rpx;
 }
 .gsc-quot {
-  width: 38rpx;
-  height: 26rpx;
-  margin: 42rpx 0 0 10rpx;
+  width: 29rpx;
+  height: 24rpx;
+  margin-top: 36rpx;
 }
 .goods-single_content__title {
-  margin-top: 20rpx;
+  margin-top: 30rpx;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   font-size: 32rpx;
-  line-height: 40rpx;
+  line-height: 44rpx;
   font-weight: bold;
-  color: #333;
-}
-.goods-single_content__title.gsct-activity {
-  font-size: 36rpx;
+  color: #010101;
 }
 .goods-single_content__title.gsc-title12 {
-  margin-top: 22rpx;
+  margin-top: 10rpx;
 }
 .goods-single_content__text {
   overflow: hidden;
@@ -77,8 +80,9 @@ page {
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
-  padding-top: 14rpx;
+  padding-top: 16rpx;
   font-size: 28rpx;
+  letter-spacing: 1px;
   color: #979797;
 }
 .goods-smile {
@@ -86,8 +90,8 @@ page {
   justify-content: flex-end;
   align-items: center;
   position: absolute;
-  bottom: 16rpx;
-  right: 24rpx;
+  bottom: 10rpx;
+  right: 12rpx;
   width: 100%;
   height: 38rpx;
   font-size: 24rpx;
@@ -100,10 +104,10 @@ page {
 .goods-smile image {
   position: absolute;
   top: 50%;
-  left: -38rpx;
-  width: 34rpx;
-  height: 34rpx;
-  transform: translateY(-18rpx);
+  left: -36rpx;
+  transform: translateY(-50%);
+  width: 32rpx;
+  height: 32rpx;
   margin-right: 8rpx;
 }
 .hmg-es {
@@ -124,7 +128,6 @@ page {
   height: 100rpx;
   border-radius: 100%;
   z-index: 2;
-  opacity: 0.98;
 }
 .fixed-my image {
   width: 100rpx;

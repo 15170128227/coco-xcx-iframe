@@ -1,6 +1,7 @@
 @import '/cocowx/stylus/global'
 @import '/cocowx/stylus/buyNumber'
 @import '/cocowx/wxParse/wxParse'
+@import '/cocowx/components/footerBar/footerBar'
 
 $littleImg = 160rpx
 $marginBase = 20rpx
@@ -10,7 +11,8 @@ $bannerHei = 750rpx
 /* base */
 .marginTb 
   margin: $marginBase 0
-  
+.marginLr
+  margin: 0 24rpx
 page 
   background-color: $pageBg
   height: 100vh
@@ -35,22 +37,33 @@ page
       font-size: $fontSize32Im
       line-height: $detailLineHei
     image 
-      margin-bottom: 16rpx  
+      margin-bottom: 16rpx
+  .gd-desc
+    padding: 36rpx 0 38rpx 0
+    font-size: 32rpx
+    color: rgb(153,153,153)
+    border-bottom: 6rpx solid rgb(241,241,241)
+    text
+      padding: 0 24rpx
+      display: block
+      line-height: 46rpx
   /* 标题|价格 */
   .gd-title, .gd-price 
     font-weight: bold
     font-size: $fontSize40
 
   .gd-title 
-    margin: 30rpx 0 20rpx 0
+    margin-top: 30rpx
+    padding-bottom: 24rpx
     line-height: $detTitleLineHei
     font-weight: bold
+    border-bottom: 1rpx solid $gray
     textOverflowEs(2)
 
   .gd-price 
     // padding-bottom: 50rpx
-    padding-bottom: 24rpx
-    border-bottom: 1rpx solid $gray
+    padding-top: 24rpx
+    // border-bottom: 1rpx solid $gray
   
 .gdm-close 
   display: flex
@@ -194,76 +207,5 @@ page
   image 
     width: 326rpx
     height: 369rpx   
-    margin-top: -200rpx   
-      
-
-/* 底部 */
-.gd-footer 
-  display: flex
-  position: fixed
-  bottom: 0
-  left: 0
-  right: 0
-  height: $footerHei
-  border-top: 1rpx solid $gray
-  text-align: center
-  button
-    line-height: 88rpx
-    &.footer-btn 
-      font-size: $fontSize32
-  
-.gd-cs 
-  display: flex
-  width: 750rpx - $footerBtnWidth
-  font-size: $fontSize28
-  background-color: $white
-  justify-content: center
-  align-content: center
-  color: $textDefaultColor
-  button 
-    display: flex
-    justify-content: center
-    align-content: center
-    height: 100%
-    border-radius: 0
-    font-size: $fontSize28
-    background-color: #fff
-    
-    image 
-      top: 20rpx
-
-  .gdfc-unit 
-    flex: 1
-    position: relative
-    button 
-      border-radius: 0
-      &::after 
-        border: 0
-    
-    image 
-      position: relative
-      top: 10rpx
-      right: 8rpx
-    
-    .icon-smile-big 
-      width: 40rpx
-      height: 40rpx
-    
-    .icon-share 
-      top: 24rpx
-      width: 32rpx
-      height: 37rpx
-  .gdfc-smile
-    &::after 
-      content: ' '
-      position: absolute
-      top: 28rpx
-      right: 0
-      width: 2rpx
-      height: 32rpx
-      background-color: $borderColorGray
-    &.dc-color
-      color: $defaultColor
-
-  
+    margin-top: -200rpx
 
