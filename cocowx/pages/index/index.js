@@ -223,7 +223,7 @@ Page({
       }
       this.data.scrollLoadDis = true // 数据加载完成，状态为true
       if (this.data.isPullDownRefresh) {
-        wx.stopPullDownRefresh() // 停止下拉刷新
+        wx.stopPullDownRefresh()
         this.data.isPullDownRefresh = false // 重置状态
         this.setData({
           pullDownRefreshState: true,
@@ -235,13 +235,14 @@ Page({
           })
         }, 2000)
       }
-      this.data.isload = true
+      setTimeout(() => {
+        this.data.isload = true
+      }, 1000)
     })
   },
   // 下拉
   onPullDownRefresh () { 
     this.data.isPullDownRefresh = true // 刷新后的文本模块状态 true执行，默认：false 不执行相应事件
-    // this.init()
     if (this.data.isload) {
       this.getGoodsList(1, 0)
     }
