@@ -3,12 +3,12 @@
  * 
 */
 const xcxBaseApi5 = 'https://www.cocosurprise.com/tsh-api'; // 正式 appEncrypt=bGpNUHA5MTNkWGYzMWJBNWcxMjQ4  bGpNUHA5MTNkWGYzMWJBNWcxMjQ5
-const xcxBaseApi2 = 'https://www.stage.cocosurprise.com/tsh-api'; // 预发布 appEncrypt=bGpNUHA5MTNkWGYzMWJBNWcxMjI5
+const xcxBaseApi3 = 'https://www.stage.cocosurprise.com/tsh-api'; // 预发布 appEncrypt=bGpNUHA5MTNkWGYzMWJBNWcxMjI5
 const baseApi = 'https://www.test.cocosurprise.com/tsh-api'; // 测试 appEncrypt=bGpNUHA5MTNkWGYzMWJBNWcxMjM0
-const xcxBaseApi3 = 'https://www.test.cocosurprise.com/tsh-api'; // 测试 appEncrypt=bGpNUHA5MTNkWGYzMWJBNWcxMjM0
+const xcxBaseApi = 'https://www.test.cocosurprise.com/tsh-api'; // 测试 appEncrypt=bGpNUHA5MTNkWGYzMWJBNWcxMjM0
 const baseApi5 = 'http://192.168.1.180:8005/tsh-api'; // 测试
 const baseApi3 = 'https://wxapi.cocosurprise.com'; // 支付
-const xcxBaseApi = 'http://192.168.1.25:8005/tsh-api'; // 后端测试
+const xcxBaseApi2 = 'http://192.168.1.25:8005/tsh-api'; // 后端测试
 const xcxBaseApi4 = 'http://192.168.1.29:8005/tsh-api'; // 后端测试
 const localhostApi = 'http://localhost'; // 本地
 // --------------- 原数据

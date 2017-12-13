@@ -325,13 +325,13 @@ view {
   right: 8rpx;
 }
 .gd-cs .gdfc-unit .icon-smile-big {
-  width: 36rpx;
-  height: 36rpx;
+  width: 34rpx;
+  height: 34rpx;
 }
 .gd-cs .gdfc-unit .icon-share {
   top: 26rpx;
   width: 32rpx;
-  height: 36rpx;
+  height: 37rpx;
 }
 .gd-cs .gdfc-smile.dc-color {
   color: #2caef8;
@@ -392,9 +392,11 @@ page {
 .gd-main .gd-title {
   margin-top: 30rpx;
   padding-bottom: 24rpx;
+  border-bottom: 1rpx solid #f1f1f1;
+}
+.gd-main .gd-title text {
   line-height: 56rpx;
   font-weight: bold;
-  border-bottom: 1rpx solid #f1f1f1;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;

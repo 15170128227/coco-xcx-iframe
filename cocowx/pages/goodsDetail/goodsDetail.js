@@ -39,11 +39,13 @@ Page({
     // smileActive: false,
     bannerPreviewImgs: [], // banner栏预览图片数组
     showModal: true, // 判断是否显示内容里的价格
-    pageData: {showBtn: [], tshPrice:'', pvNumber:'', buyBtnText: '', isShow: false, smileActive: false, isShowText: false, collectActive: false} // 传入底部的参数
+    pageData: {showBtn: [], tshPrice:'', pvNumber:'', buyBtnText: '', isShow: false, smileActive: false, isShowText: false, collectActive: false}, // 传入底部的参数
+    type: null,
   },
   // 生命周期函数--监听页面初始化加载
   onLoad (options) {  
     let productId = this.data.productId = options.productId // 当前页面商品id
+    this.data.type = options.type // 判断是否是详情页点击
     wx.setStorage({
       key: 'fromGoodsDetailRrefshSmile',
       data: productId
@@ -181,8 +183,7 @@ Page({
         // 渲染
         this.data.disabled.buy = butBtnDisabled
         // 如果是默认值
-        let selectOne = 1
-        if ( selectOne === 0) {
+        if (this.data.type !== 'details') {
           this.setData({
             goodsDetailInfo: newData,
             buyBtnText: this.data.buyBtnText,
@@ -197,7 +198,7 @@ Page({
               isShowText: false
             }
           })
-        } else if (selectOne === 1){
+        } else {
           this.setData({
             goodsDetailInfo: newData,
             buyBtnText: this.data.buyBtnText,

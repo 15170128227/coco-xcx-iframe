@@ -267,3 +267,15 @@ page {
   background-color: #2caef8;
   animation: fadeIn 1s;
 }
+.stateOne {
+  background-color: #00dfb6;
+}
+.stateTwo {
+  background-color: #39acfe;
+}
+.stateThree {
+  background-color: #ff6969;
+}
+.stateFour {
+  background-color: #ffac00;
+}

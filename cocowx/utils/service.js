@@ -64,7 +64,7 @@ export const bannerList = () => get(api.queryMainList) // banner列表
  * params pageSize String 必须 每页数量
  * return get(api.queryList, {pageNo, pageSize}) Promise Function
 */
-export const goodsList = (pageNumber = 2, pageSize = 10) => get(api.queryList, {pageNumber, pageSize}) // 商品列表
+export const goodsList = (pageNumber = 2, pageSize = 10, refresh = 0 ) => get(api.queryList, {pageNumber, pageSize, refresh}) // 商品列表
 
 /*************************************************************  商品详情  *************************************************************/ 
 /**

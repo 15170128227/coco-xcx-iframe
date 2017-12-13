@@ -18,16 +18,16 @@
         </swiper-item>
       </block>
     </swiper>
-    <view class="" wx:if="{{goodsDetailInfo.productName}}">
-      <view class="gd-title marginLr">
+    <view class="paddingLr" wx:if="{{goodsDetailInfo.productName}}">
+      <view class="gd-title">
          <text>{{goodsDetailInfo.productName}}</text>
          <view class="gd-price {{themeType}}-price" wx:if="{{isShowText}}"><text>¥ {{goodsDetailInfo.tshPrice}}</text></view>
       </view>
-      <view class="gd-desc" wx:if="{{!isShowText}}">
+      <!--<view class="gd-desc" wx:if="{{!isShowText}}">
         <text>西柚小编说：
         上海大花洒电话撒发的话大顺风好的啥好的哈是的哈哈上海大花洒电话撒发的话大顺风好的啥好的哈是的哈哈上海大花洒电话撒发的话大顺风好的啥好的哈是的哈哈上海大花洒电话撒发的话大顺风好的啥好的哈是的哈哈</text>
-      </view>
-      <view class="gdm-content marginLr">
+      </view>-->
+      <view class="gdm-content">
         <template is="wxParse" data="{{wxParseData: article.nodes}}"/> <!-- 商品详情desc -->
       </view>
     </view>
