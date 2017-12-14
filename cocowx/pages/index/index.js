@@ -55,7 +55,14 @@ Page({
       {text:'攻略', bgColor: 'stateTwo'},
     ],
     isload: true, // 数据请求完成继续加载
-    isPull: false
+    isPull: false,
+    // 过滤重复数据---test
+    listPage: 1,
+    activityNum: 1,
+    activityArr: [],
+    goodsTotal: 0,
+    goodsArr: [],
+
   },
   //事件处理函数
   onLoad (options) {
@@ -187,6 +194,52 @@ Page({
         this.data.queueList = data.queue
       }
       if (code === '200' && message === '0101' && data.pageView.dataList) {
+
+        //----------------- clear queue start
+          if (data.pageView.dataList) {
+            data.pageView.dataList.forEach(o => {
+              // 過濾活動專題數據
+              if(o.displayType == '13') console.log('displayType13', o)
+              if(o.displayType != '1') {
+                this.data.activityArr.push(o.displayId)
+                console.log('this.data.activityNum', this.data.activityNum)
+                this.data.activityNum++ 
+              } else if (o.displayType == '1') {
+                this.data.goodsArr.push(o.displayId)
+              }
+              
+            })
+            this.data.goodsTotal += data.pageView.dataList.length
+            // 过滤重复专题
+            let queueArr = [], queueObg = {}
+            this.data.activityArr.forEach(o => {
+              if (!queueObg[o]) {
+                queueArr.push(o)
+                queueObg[o] = 1
+              } else {
+                queueObg[o] += 1
+              }
+            })
+            // 过滤重复商品
+            let goodsQueueArr = [], goodsQueueObg = {}
+            this.data.goodsArr.forEach(o => {
+              if (!goodsQueueObg[o]) {
+                goodsQueueArr.push(o)
+                goodsQueueObg[o] = 1
+              } else {
+                console.log('重复的商品', o)
+                goodsQueueObg[o] += 1
+              }
+            })
+            console.log('活动列表', queueArr.length, this.data.activityArr.length, queueArr, this.data.activityArr)
+            console.log('商品列表', goodsQueueArr.length, this.data.goodsArr.length, goodsQueueArr, this.data.goodsArr)
+            console.log('当前页码', this.data.listPage)
+            console.log(`总商品数量${this.data.listPage}`, this.data.goodsTotal)
+            this.data.listPage++
+          }
+          // 过滤重复专题
+        //----------------- clear queue end
+
         hasData = true
         if (data.pageView.dataList.length < 3 && this.data.pageNumber === 2) { // 当前页为第一页，且列表数只有1-2个，隐藏列表底部的信息提示栏
           this.data.hideTip = true
@@ -248,6 +301,13 @@ Page({
   },
   // 下拉
   onPullDownRefresh () { 
+    // 重复数据过滤参数重置 start
+    this.data.listPage = 1,
+    this.data.activityNum = 1,
+    this.data.activityArr = [],
+    this.data.goodsTotal = 0
+    // 重复数据过滤参数重置 end
+
     this.data.isPullDownRefresh = true // 刷新后的文本模块状态 true执行，默认：false 不执行相应事件
     this.data.pageNumber = 2
     this.data.isPull = true

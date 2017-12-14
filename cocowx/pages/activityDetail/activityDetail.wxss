@@ -254,6 +254,7 @@ page {
   background-color: #fff;
 }
 .ad-main .adm-desc {
+  overflow: hidden;
   box-sizing: border-box;
   padding: 0 24rpx;
   background-color: #fff;

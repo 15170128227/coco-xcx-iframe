@@ -2,8 +2,8 @@
 <import src="../../wxParse/wxParse.wxml"/> 
 <view class="ad-main">
   <block wx:if="{{!isEmptyList}}">
-    <view class="adm-banner"><image bindtap="previewImg" data-src="{{marketingDetail.marketingDetailsImg + imgQuery}}" src="{{marketingDetail.marketingDetailsImg + imgQuery}}"></image></view>
-    <view class="adm-title" wx:if="{{marketingDetail.marketingName}}"><text>{{marketingDetail.marketingName}}</text></view>
+    <view class="adm-banner" wx:if="{{clearMb === 'true' ? false : true}}"><image bindtap="previewImg" data-src="{{marketingDetail.marketingDetailsImg + imgQuery}}" src="{{marketingDetail.marketingDetailsImg + imgQuery}}"></image></view>
+    <view class="adm-title" wx:if="{{marketingDetail.marketingName && (clearMb === 'true' ? false : true)}}"><text>{{marketingDetail.marketingName}}</text></view>
     <view class="adm-desc {{clearMb === 'true' ? 'clearMb' : ''}}">
       <template is="wxParse" data="{{wxParseData: article.nodes}}"/> <!-- 商品详情desc -->
     </view>
