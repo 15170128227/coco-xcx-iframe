@@ -19,16 +19,19 @@ Page({
     indicatorColor: app.globalData.swiperCurColor, // swiper 圆点颜色
     indicatorActiveColor: app.globalData.swiperCurActiveColor, // swiper 圆点选中的颜色
     // 商品列表
-    goodsList: null, // 商品列表
-    isEmptyList: null, // 商品列表为空--空状态页面
+    goodsList: [], // 商品列表
+    isEmptyList: false, // 商品列表为空--空状态页面
     imageQuery: '?x-oss-process=image/resize,m_fill,w_275,h_275,q_60', // 图片服务器商品列表图片截取参数 ?x-oss-process=image/resize,m_fill,w_300,h_300,q_60
     // 滚动加载参数
     scrollEleHeight: '', // 滚动元素的高度
     scrollTop: 0, // 滚动元素的滚动高度
     scrollLoadDis: true, // true允许加载，false禁止加载
     timeState: null, // 定时器状态
-    pageNumber: 1, // 商品列表页码
+    pageNo: 2, // 商品页码
+    pageNumber: 2, // 加载多少条
     pageSize: 10, // 商品列表每页商品数量
+    queueList: '', // 队列列表
+    query: '', // 传入随机的值
     hasMore: true, // 是否还有下一页数据
     hideTip: false, // 列表元素总长度小于3个，隐藏底部的 我是有底线的元素 false:显示  true:隐藏
     // 个人中心列表--抽屉式列表
@@ -43,7 +46,6 @@ Page({
     shareTitle: '西柚集 - 让你与品质生活不期而遇',
     indexTitle: '西柚集 - 精选好货',
     listArr: [],
-    queue: null, // 判断是否是最后一页
     // 专题活动对应的数据
     goodsSpecData: [
       {text:'默认', bgColor: 'none'},
@@ -134,7 +136,7 @@ Page({
     this.data.hasMore = true
     this.data.hideTip = false
     this.getBannerList() // banner列表
-    this.getGoodsList(2, 1) // 商品列表
+    this.getGoodsList() // 商品列表
     // this.data.loginState = app.globalData.loginState // 从入口app.js获取判断登录态
     // if (this.data.loginState) this.login('init')
   },
@@ -176,43 +178,44 @@ Page({
       console.log('error', e)
     })
   },
-  getGoodsList (number, refresh) {
-    if (this.data.queue === 0) {
-      wx.stopPullDownRefresh()
-      if (number === 1) {
-        this.setData({
-          pullDownRefreshState: true,
-          pullDownRefreshText: '数据已经全部加载'
-        })
-        setTimeout(() => { // 2s后自动隐藏弹窗提示
-          this.setData({
-            pullDownRefreshState: false,
-          })
-        },2000)
-      }
-      return
-    }
+  getGoodsList () {
     this.data.isload = false
     this.data.scrollLoadDis = false // 触发上拉加载，状态false
-    goodsList(number, this.data.pageSize, refresh).then(({data: {code, message, data}}) => {
+    goodsList(this.data.pageNo, this.data.pageNumber, this.data.pageSize, this.data.query).then(({data: {code, message, data}}) => {
       let hasData = false
-      this.data.queue = data.queue
+      if (data.queue !== undefined) {
+        this.data.queueList = data.queue
+        console.log(this.data.queueList)
+      }
       if (code === '200' && message === '0101' && data.pageView.dataList) {
         hasData = true
         if (data.pageView.dataList.length < 3 && this.data.pageNumber === 2) { // 当前页为第一页，且列表数只有1-2个，隐藏列表底部的信息提示栏
           this.data.hideTip = true
         }
         this.data.hasMore = true
-        if (data.queue === 0) { // 判断是否最后一页
+        if (this.data.queueList.length === 0) { // 判断是否最后一页
           this.data.hasMore = false
           this.data.hideTip = false
         }
-        if (number === 1) {
+        if (this.data.pageNumber === 1) {
           this.data.goodsList = data.pageView.dataList.concat(this.data.goodsList)
+          if (this.data.queueList.length === 0) {
+            wx.stopPullDownRefresh()
+            this.setData({
+              pullDownRefreshState: true,
+              pullDownRefreshText: '看完啦 重新刷新下吧'
+            })
+            setTimeout(() => { // 2s后自动隐藏弹窗提示
+              this.setData({
+                pullDownRefreshState: false,
+              })
+            },2000)
+          }
         } else {
           this.data.goodsList = this.data.goodsList.concat(data.pageView.dataList)
         }
         this.setData({
+          pageNo: this.data.pageNo,
           hasMore: this.data.hasMore,
           hideTip: this.data.hideTip,
           goodsList: this.data.goodsList
@@ -241,6 +244,7 @@ Page({
         }, 2000)
       }
       setTimeout(() => {
+        wx.stopPullDownRefresh()
         this.data.isload = true
       }, 1000)
     })
@@ -248,9 +252,16 @@ Page({
   // 下拉
   onPullDownRefresh () { 
     this.data.isPullDownRefresh = true // 刷新后的文本模块状态 true执行，默认：false 不执行相应事件
-    if (this.data.isload) {
-      wx.stopPullDownRefresh()
-      this.getGoodsList(1, 0)
+    if (this.data.queueList.length !== 0) {
+      this.data.pageNumber = 1
+      this.data.pageNo = this.data.pageNo + 1
+      console.log('前' + this.data.queueList)
+      this.data.query = this.data.queueList[0]
+      this.data.queueList.splice(0, 1)
+      console.log('后' + this.data.queueList)
+      if (this.data.isload) {
+        this.getGoodsList(1, 0)
+      }
     }
   }, 
   // 上拉
@@ -262,9 +273,22 @@ Page({
   // 上拉加载
   loadMore (){
     clearTimeout(scrollTimeState) // 清除滚动加载的定时器
-    scrollTimeState = setTimeout(() => {
-      this.getGoodsList()
-    }, 200)
+    if (this.data.queueList.length !== 0) {
+      this.data.pageNumber = 2
+      if (this.data.queueList.length === 1) {
+        this.data.pageNo = this.data.pageNo + 1
+        this.data.query = this.data.queueList[0]
+        this.data.queueList.splice(0,1)
+      } else {
+        this.data.pageNo = this.data.pageNo + 2
+        this.data.query = this.data.queueList[0] + ',' + this.data.queueList[1]
+        this.data.queueList.splice(0, 2)
+        console.log('后' + this.data.queueList)
+      }
+      scrollTimeState = setTimeout(() => {
+        this.getGoodsList()
+      }, 200)
+    }
   },
   //************************** 侧栏-个人中心 **************************/
   // 显示个人中心
