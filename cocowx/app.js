@@ -62,8 +62,9 @@ App({
    * Demo: this.statistics({argument:'',cUrlName:'首页',url:'index'})
   */
   statistics (options) {
-    Object.assign(options, {userId: ''})
-    this.http.request('GET', this.api.statistics, options).catch(res => console.log('统计接口', res))
+    let userId = wx.getStorageSync('userId')
+    if (userId) Object.assign(options, {userId: wx.getStorageSync('userId')})
+    this.http.request('GET', this.api.statistics, options).catch(err => console.log('统计接口', err))
   },
   getAppInfo (cb) {
     appInfo().then(({data: {code, message, data}}) => {
