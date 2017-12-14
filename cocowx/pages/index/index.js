@@ -141,6 +141,7 @@ Page({
   // 获取banner列表数据
   getBannerList () {
     bannerList().then(({ data: { code, message, data}}) => {
+      console.log("data", data)
       if (code === '200' && message === '0101') {
         // 遍历过滤出 1.活动详情 2.商品详情链接（后续需要衡量是否开启更多的不同方式的链接跳转）
         if (!data.listDistThemeBanner) return
@@ -150,7 +151,11 @@ Page({
             let linkUrl = ''
             if (url.indexOf('=') > -1) linkUrl = url.replace('=', '')
             else linkUrl = decodeURIComponent(url).replace('=', '')
-            v.linkUrl = `/pages/activityDetail/activityDetail?marketingId=${linkUrl}`
+            if (v.linkUrl.indexOf('type') > -1) {
+              v.linkUrl = `/pages/goodsDetail/goodsDetail?productId=${linkUrl}`
+            } else {
+              v.linkUrl = `/pages/activityDetail/activityDetail?marketingId=${linkUrl}`
+            }
           } else if (v.linkUrl && v.linkUrl.indexOf('productId') > -1) {
             let url = v.linkUrl.split('productId')[1]
             let linkUrl = ''
@@ -244,6 +249,7 @@ Page({
   onPullDownRefresh () { 
     this.data.isPullDownRefresh = true // 刷新后的文本模块状态 true执行，默认：false 不执行相应事件
     if (this.data.isload) {
+      wx.stopPullDownRefresh()
       this.getGoodsList(1, 0)
     }
   }, 
