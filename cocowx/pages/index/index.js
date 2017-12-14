@@ -27,9 +27,9 @@ Page({
     scrollTop: 0, // 滚动元素的滚动高度
     scrollLoadDis: true, // true允许加载，false禁止加载
     timeState: null, // 定时器状态
-    pageNo: 2, // 商品页码
+    pageNo: 1, // 商品页码
     pageNumber: 2, // 加载多少条
-    pageSize: 10, // 商品列表每页商品数量
+    pageSize: 20, // 商品列表每页商品数量
     queueList: '', // 队列列表
     query: '', // 传入随机的值
     hasMore: true, // 是否还有下一页数据
@@ -140,7 +140,6 @@ Page({
     })
     // 刷新前重置列表参数
     this.data.goodsList = [] // 重置商品列表数据
-    this.data.pageNumber = 2 // 重置页码
     this.data.hasMore = true
     this.data.hideTip = false
     this.getBannerList() // banner列表
@@ -188,7 +187,7 @@ Page({
   getGoodsList () {
     this.data.isload = false
     this.data.scrollLoadDis = false // 触发上拉加载，状态false
-    goodsList(this.data.pageNo, this.data.pageNumber, this.data.pageSize, this.data.query).then(({data: {code, message, data}}) => {
+    goodsList(this.data.pageNo, this.data.pageSize, this.data.query).then(({data: {code, message, data}}) => {
       let hasData = false
       if (data.queue !== undefined) {
         this.data.queueList = data.queue
@@ -310,7 +309,6 @@ Page({
     // 重复数据过滤参数重置 end
 
     this.data.isPullDownRefresh = true // 刷新后的文本模块状态 true执行，默认：false 不执行相应事件
-    this.data.pageNumber = 2
     this.data.isPull = true
     // if (this.data.queueList.length !== 0) {
     //   this.data.pageNo = this.data.pageNo + 1
@@ -332,7 +330,7 @@ Page({
     //   },2000)
     // }
     this.data.query = ''
-    this.data.pageNo = 2
+    this.data.pageNo = 1
     wx.stopPullDownRefresh()
     if (this.data.isload) {
       this.getGoodsList()
@@ -348,16 +346,9 @@ Page({
   loadMore (){
     clearTimeout(scrollTimeState) // 清除滚动加载的定时器
     if (this.data.queueList.length !== 0) {
-      this.data.pageNumber = 2
-      if (this.data.queueList.length === 1) {
-        this.data.pageNo = this.data.pageNo + 1
-        this.data.query = this.data.queueList[0]
-        this.data.queueList.splice(0,1)
-      } else {
-        this.data.pageNo = this.data.pageNo + 2
-        this.data.query = this.data.queueList[0] + ',' + this.data.queueList[1]
-        this.data.queueList.splice(0, 2)
-      }
+      this.data.pageNo = this.data.pageNo + 1
+      this.data.query = this.data.queueList[0]
+      this.data.queueList.splice(0, 1)
       scrollTimeState = setTimeout(() => {
         this.getGoodsList()
       }, 200)

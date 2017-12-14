@@ -61,12 +61,11 @@ export const bannerList = () => get(api.queryMainList) // banner列表
 /**
  * goodsList 商品列表
  * params pageNo number 必须 页码
- * params pageNumber number 必须 每次请求的数据
  * params pageSize number 必须 每页数量
  * params queueList array 必须 传入的数组 根据第一次给的排序方式传入pageNo对应的数组下表数量 如果是下拉 传入数组中最前的一个数字并且去除，如果是上拉传入两个并且去除 非必填
  * return get(api.queryList, {pageNo, pageSize}) Promise Function
 */
-export const goodsList = (pageNo =2, pageNumber = 2, pageSize = 10, queueList = '') => get(api.queryList, {pageNo, pageNumber, pageSize, queueList}) // 商品列表
+export const goodsList = (pageNo =2, pageSize = 20, queueList = '') => get(api.queryList, {pageNo, pageSize, queueList}) // 商品列表
 
 /*************************************************************  商品详情  *************************************************************/ 
 /**
