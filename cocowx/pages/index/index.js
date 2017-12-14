@@ -54,7 +54,8 @@ Page({
       {text:'活动', bgColor: 'stateFour'},
       {text:'攻略', bgColor: 'stateTwo'},
     ],
-    isload: true // 数据请求完成继续加载
+    isload: true, // 数据请求完成继续加载
+    isPull: false
   },
   //事件处理函数
   onLoad (options) {
@@ -197,20 +198,18 @@ Page({
           this.data.hasMore = false
           this.data.hideTip = false
         }
-        if (this.data.pageNumber === 1) {
-          this.data.goodsList = data.pageView.dataList.concat(this.data.goodsList)
-          if (this.data.queueList.length === 0) {
-            wx.stopPullDownRefresh()
-            this.setData({
-              pullDownRefreshState: true,
-              pullDownRefreshText: '看完啦 重新刷新下吧'
-            })
-            setTimeout(() => { // 2s后自动隐藏弹窗提示
-              this.setData({
-                pullDownRefreshState: false,
-              })
-            },2000)
-          }
+        // if (this.data.pageNumber === 1) {
+        //   this.data.goodsList = data.pageView.dataList
+        //   if (!this.data.isPullDownRefresh) {
+        //     this.data.goodsList = data.pageView.dataList
+        //   } else {
+        //     this.data.goodsList = data.pageView.dataList.concat(this.data.goodsList)
+        //   }
+        // } else {
+        //   this.data.goodsList = this.data.goodsList.concat(data.pageView.dataList)
+        // }
+        if (this.data.isPull) {
+          this.data.goodsList = data.pageView.dataList
         } else {
           this.data.goodsList = this.data.goodsList.concat(data.pageView.dataList)
         }
@@ -235,7 +234,7 @@ Page({
         this.data.isPullDownRefresh = false // 重置状态
         this.setData({
           pullDownRefreshState: true,
-          pullDownRefreshText: hasData ? '与品质生活不期而遇 更新10件': '刷新失败了 换个姿势再来一次'
+          pullDownRefreshText: hasData ? '与品质生活不期而遇': '刷新失败了 换个姿势再来一次'
         })
         setTimeout(() => { // 2s后自动隐藏弹窗提示
           this.setData({
@@ -252,16 +251,32 @@ Page({
   // 下拉
   onPullDownRefresh () { 
     this.data.isPullDownRefresh = true // 刷新后的文本模块状态 true执行，默认：false 不执行相应事件
-    if (this.data.queueList.length !== 0) {
-      this.data.pageNumber = 1
-      this.data.pageNo = this.data.pageNo + 1
-      console.log('前' + this.data.queueList)
-      this.data.query = this.data.queueList[0]
-      this.data.queueList.splice(0, 1)
-      console.log('后' + this.data.queueList)
-      if (this.data.isload) {
-        this.getGoodsList(1, 0)
-      }
+    this.data.pageNumber = 2
+    this.data.isPull = true
+    // if (this.data.queueList.length !== 0) {
+    //   this.data.pageNo = this.data.pageNo + 1
+    //   this.data.query = this.data.queueList[0]
+    //   this.data.queueList.splice(0, 1)
+    // } else {
+    //   this.data.query = ''
+    //   this.data.pageNo = 2
+    //   this.data.isPullDownRefresh = false
+    //   wx.stopPullDownRefresh()
+    //   this.setData({
+    //     pullDownRefreshState: true,
+    //     pullDownRefreshText: '看完啦 重新刷新下吧'
+    //   })
+    //   setTimeout(() => { // 2s后自动隐藏弹窗提示
+    //     this.setData({
+    //       pullDownRefreshState: false,
+    //     })
+    //   },2000)
+    // }
+    this.data.query = ''
+    this.data.pageNo = 2
+    wx.stopPullDownRefresh()
+    if (this.data.isload) {
+      this.getGoodsList()
     }
   }, 
   // 上拉
@@ -283,7 +298,6 @@ Page({
         this.data.pageNo = this.data.pageNo + 2
         this.data.query = this.data.queueList[0] + ',' + this.data.queueList[1]
         this.data.queueList.splice(0, 2)
-        console.log('后' + this.data.queueList)
       }
       scrollTimeState = setTimeout(() => {
         this.getGoodsList()

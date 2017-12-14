@@ -40,7 +40,8 @@ const request = function (method, url, param) {
               'Content-Type': 'application/json;charset=utf-8' // 定义公共请求头 Content-Type
             },
             success: resolve, // Promose 的resolve方法
-            fail: function () {
+            fail: function (err) {
+              console.error('error', url, err)
               wx.showModal({
                 content: '网络超时！',
                 showCancel: false,
