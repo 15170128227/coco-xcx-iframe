@@ -23,6 +23,7 @@ page
     textOverflowEs(2)
     background-color: $white
   .adm-desc 
+    box-sizing: border-box
     padding: 0 $paddingPage
     background-color: $white
     view 
@@ -30,7 +31,14 @@ page
       font-size: $fontSize32Im
       line-height: $detailLineHei
     image 
+      max-width: 100%
       margin-bottom: 16rpx   
+    &.clearMb
+      padding: 0
+      image 
+        display: block
+        width: 750rpx !important
+        margin-bottom: 0  
   // 空状态
   .adm-es
     display: flex

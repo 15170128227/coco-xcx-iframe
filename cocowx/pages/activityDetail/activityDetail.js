@@ -9,10 +9,14 @@ Page({
     isEmptyList: null, // 物流信息为空--空状态页面
     protocol: 'http:',
     imgQuery: '', // banner图自图片服务器裁切参数 ?x-oss-process=image/resize,m_fill,w_375,h_375,q_60
-    bannerPreviewImgs: [] // banner栏预览图片数组
+    bannerPreviewImgs: [], // banner栏预览图片数组
+    clearMb: ''
   },
   // 生命周期函数--监听页面加载
   onLoad(options) {
+    this.setData({
+      clearMb: options.clearMb
+    })
     this.data.marketingId = options.marketingId
     app.statistics({url: 'activityDetail', cUrlName: '活动详情', argument: this.data.marketingId}) // 统计
     // console.log('this.data.marketingId', this.data.marketingId)

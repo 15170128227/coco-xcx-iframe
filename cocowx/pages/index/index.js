@@ -143,7 +143,6 @@ Page({
   // 获取banner列表数据
   getBannerList () {
     bannerList().then(({ data: { code, message, data}}) => {
-      console.log("data", data)
       if (code === '200' && message === '0101') {
         // 遍历过滤出 1.活动详情 2.商品详情链接（后续需要衡量是否开启更多的不同方式的链接跳转）
         if (!data.listDistThemeBanner) return
@@ -185,7 +184,6 @@ Page({
       let hasData = false
       if (data.queue !== undefined) {
         this.data.queueList = data.queue
-        console.log(this.data.queueList)
       }
       if (code === '200' && message === '0101' && data.pageView.dataList) {
         hasData = true

@@ -254,6 +254,7 @@ page {
   background-color: #fff;
 }
 .ad-main .adm-desc {
+  box-sizing: border-box;
   padding: 0 24rpx;
   background-color: #fff;
 }
@@ -263,7 +264,16 @@ page {
   line-height: 48rpx;
 }
 .ad-main .adm-desc image {
+  max-width: 100%;
   margin-bottom: 16rpx;
+}
+.ad-main .adm-desc.clearMb {
+  padding: 0;
+}
+.ad-main .adm-desc.clearMb image {
+  display: block;
+  width: 750rpx !important;
+  margin-bottom: 0;
 }
 .ad-main .adm-es {
   display: flex;

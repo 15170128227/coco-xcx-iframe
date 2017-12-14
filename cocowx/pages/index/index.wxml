@@ -37,13 +37,17 @@
         </view>
       </navigator>-->
         <!-- 推荐12 -->
-      <navigator url="{{ item.displayType === 11 ? '/pages/activityDetail/activityDetail?marketingId='+item.displayId : '/pages/goodsDetail/goodsDetail?productId='+item.productId + '&type=details'}}" class="goods-single_contain" wx:elif="{{item.displayType === 12 || item.displayType === 11}}">
+      <navigator url="{{(item.displayType === 11 || item.displayType === 13) ? '/pages/activityDetail/activityDetail?marketingId='+item.displayId+ (item.displayType === 13 ? '&clearMb=true' : '') : '/pages/goodsDetail/goodsDetail?productId='+item.productId + '&type=details'}}" 
+      class="goods-single_contain" wx:elif="{{item.displayType === 12 || item.displayType === 11 || item.displayType === 13}}">
         <view class="goods-single_img" ><image src="https:{{item.mainPic + imageQuery}}" /></view>
           <view class="goods-spec_tip {{goodsSpecData[4].bgColor}}" wx:if="{{item.displayType === 11}}">
             <text>{{goodsSpecData[4].text}}</text>
           </view>
-          <view class="goods-spec_tip {{goodsSpecData[1].bgColor}}" wx:if="{{item.displayType === 12}}">
+          <view class="goods-spec_tip {{goodsSpecData[1].bgColor}}" wx:elif="{{item.displayType === 12}}">
             <text>{{goodsSpecData[1].text}}</text>
+          </view>
+          <view class="goods-spec_tip {{goodsSpecData[3].bgColor}}" wx:elif="{{item.displayType === 13}}">
+            <text>{{goodsSpecData[3].text}}</text>
           </view>
         <view class="goods-single_content">
           <image class="gsc-quot" src="/images/quot.png"></image>
