@@ -261,6 +261,7 @@ Page({
         // }
         if (this.data.isPull) {
           this.data.goodsList = data.pageView.dataList
+          this.data.isPull = false
         } else {
           this.data.goodsList = this.data.goodsList.concat(data.pageView.dataList)
         }
