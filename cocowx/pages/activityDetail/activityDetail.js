@@ -32,7 +32,7 @@ Page({
     if (this.data.clearMb) path += `&clearMb=true`
     return {
       title: this.data.marketingDetail.marketingName,
-      path: `/pages/activityDetail/activityDetail?appEncrypt=${app.globalData.appEncrypt}&marketingId=${this.data.marketingId}`,
+      path: path,
       imageUrl: this.data.marketingDetail.marketingDetailsImg,
       success (res) {
         // 转发成功
