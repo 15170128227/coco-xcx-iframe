@@ -28,6 +28,8 @@ Page({
       // 来自页面内转发按钮
       console.log('来自页面内转发按钮', res.target)
     }
+    let path = `/pages/activityDetail/activityDetail?appEncrypt=${app.globalData.appEncrypt}&marketingId=${this.data.marketingId}`
+    if (this.data.clearMb) path += `&clearMb=true`
     return {
       title: this.data.marketingDetail.marketingName,
       path: `/pages/activityDetail/activityDetail?appEncrypt=${app.globalData.appEncrypt}&marketingId=${this.data.marketingId}`,

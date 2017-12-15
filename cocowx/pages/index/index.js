@@ -216,6 +216,7 @@ Page({
                 queueArr.push(o)
                 queueObg[o] = 1
               } else {
+                console.log('重复的活动', o)
                 queueObg[o] += 1
               }
             })
@@ -305,6 +306,7 @@ Page({
     this.data.listPage = 1,
     this.data.activityNum = 1,
     this.data.activityArr = [],
+    this.data.goodsArr = [],
     this.data.goodsTotal = 0
     // 重复数据过滤参数重置 end
 
