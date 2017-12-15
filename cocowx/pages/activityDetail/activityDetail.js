@@ -18,7 +18,7 @@ Page({
       clearMb: options.clearMb
     })
     this.data.marketingId = options.marketingId
-    app.statistics({url: 'activityDetail', cUrlName: '活动详情', argument: this.data.marketingId}) // 统计
+    app.statistics({url: 'activityDetail', cUrlName:  '活动详情', argument: this.data.marketingId}) // 统计
     // console.log('this.data.marketingId', this.data.marketingId)
     this.getMarketingDetail()
   },
