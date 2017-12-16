@@ -113,7 +113,6 @@ Page({
       // 来自页面内转发按钮
       console.log('来自页面内转发按钮', res.target)
     }
-    console.log('that.data.shareTitle', that.data.shareTitle)
     return {
       title: that.data.shareTitle,
       path: `/pages/index/index?appEncrypt=${app.globalData.appEncrypt}`,
@@ -132,12 +131,12 @@ Page({
   init () {
     let that = this
     app.statistics({url: 'home', cUrlName: '首页'}) // 统计
-    app.getAppInfo(function () {
-      wx.setNavigationBarTitle({ // 动态设置标题
-        // title: app.globalData.appTitle
-        title: that.data.indexTitle // 
-      })
-    })
+    // app.getAppInfo(function () {
+    //   wx.setNavigationBarTitle({ // 动态设置标题
+    //     // title: app.globalData.appTitle
+    //     title: that.data.indexTitle // 
+    //   })
+    // })
     // 刷新前重置列表参数
     this.data.goodsList = [] // 重置商品列表数据
     this.data.hasMore = true
@@ -194,7 +193,7 @@ Page({
       }
       if (code === '200' && message === '0101' && data.pageView.dataList) {
 
-        //----------------- clear queue start
+        /* //----------------- clear queue start
           if (data.pageView.dataList) {
             data.pageView.dataList.forEach(o => {
               // 過濾活動專題數據
@@ -238,7 +237,7 @@ Page({
             this.data.listPage++
           }
           // 过滤重复专题
-        //----------------- clear queue end
+        //----------------- clear queue end */
 
         hasData = true
         if (data.pageView.dataList.length < 3 && this.data.pageNumber === 2) { // 当前页为第一页，且列表数只有1-2个，隐藏列表底部的信息提示栏
@@ -302,13 +301,13 @@ Page({
   },
   // 下拉
   onPullDownRefresh () { 
-    // 重复数据过滤参数重置 start
+    /* // 重复数据过滤参数重置 start
     this.data.listPage = 1,
     this.data.activityNum = 1,
     this.data.activityArr = [],
     this.data.goodsArr = [],
     this.data.goodsTotal = 0
-    // 重复数据过滤参数重置 end
+    // 重复数据过滤参数重置 end */
 
     this.data.isPullDownRefresh = true // 刷新后的文本模块状态 true执行，默认：false 不执行相应事件
     this.data.isPull = true

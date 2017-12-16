@@ -33,7 +33,6 @@ Page({
     return {
       title: this.data.marketingDetail.marketingName,
       path: path,
-      imageUrl: this.data.marketingDetail.marketingDetailsImg,
       success (res) {
         // 转发成功
         console.log('转发成功', res)

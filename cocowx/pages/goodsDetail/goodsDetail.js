@@ -45,7 +45,7 @@ Page({
   // 生命周期函数--监听页面初始化加载
   onLoad (options) {  
     let productId = this.data.productId = options.productId // 当前页面商品id
-    this.data.type = options.type // 判断是否是详情页点击
+    this.data.type = options.type // 区分普通商品详情/精选商品
     wx.setStorage({
       key: 'fromGoodsDetailRrefshSmile',
       data: productId
@@ -71,9 +71,11 @@ Page({
       // 来自页面内转发按钮
       console.log('来自页面内转发按钮', res.target)
     }
+    let path = `/pages/goodsDetail/goodsDetail?appEncrypt=${app.globalData.appEncrypt}&productId=${that.data.productId}`
+    if (this.data.type) path += `&type=details`
     return {
       title: that.data.goodsDetailInfo.productName,
-      path: `/pages/goodsDetail/goodsDetail?appEncrypt=${app.globalData.appEncrypt}&productId=${that.data.productId}`,
+      path: path,
       imageUrl: that.data.goodsDetailInfo.mainPic,
       success (res) {
         // 转发成功
