@@ -14,6 +14,6 @@
     "build": "node config/webpack.config.js",
     "stylus": "node config/stylus-compile.js"
   },
-  "author": "Alinc",
+  "author": "Lecey",
   "license": "ISC"
 }
